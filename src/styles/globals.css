@@ -16,12 +16,112 @@
   }
 }
 
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --foreground-rgb: 0, 0, 0;
+    --background-start-rgb: 255, 255, 255;
+    --background-end-rgb: 255, 255, 255;
+  }
+}
+
+
 body {
-  color: rgb(var(--foreground-rgb));
+  color: black;
   background: linear-gradient(
       to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
+      rgb(var(--foreground-rgb))
     )
-    rgb(var(--background-start-rgb));
+    rgb(var(--foreground-rgb));
+}
+
+
+header {
+  grid-area: header;
+  background-color: #fed330;
+  padding: 20px;
+}
+article {
+  grid-area: content;
+  background-color: #ffffff;
+  padding: 20px;
+}
+aside {
+  grid-area: sidebar;
+}
+footer {
+  padding: 20px;
+  grid-area: footer;
+  background-color: #fd9644;
+}
+.wrapper {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 4fr;
+  grid-template-areas: 
+    "header  header"
+    "sidebar content"
+}
+
+
+.light-gray {
+  background-color: rgb(242, 244, 248);
+}
+
+
+.card {
+  background-color: rgb(46, 51, 68);
+}
+
+.dark-gray {
+  color: rgb(128, 136, 155);
+}
+
+.border-gray {
+  border-color: rgb(220, 221, 227);
+}
+
+.text-gray {
+  color: rgb(114, 119, 132);
+}
+
+
+.lock-scroll {
+  overflow: hidden;
+}
+
+
+.linkedin-btn {
+  background-color: #0073b1;
+  border: 0;
+  border-radius: 2px;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: inherit;
+  height: 45px;
+  line-height: 40px;
+  overflow: hidden;
+  outline-width: 2px;
+  padding: 0 24px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  -webkit-transition-duration: 167ms;
+  transition-duration: 167ms;
+  -webkit-transition-property: background-color,color,-webkit-box-shadow;
+  transition-property: background-color,color,-webkit-box-shadow;
+  transition-property: background-color,box-shadow,color;
+  transition-property: background-color,box-shadow,color,-webkit-box-shadow;
+  -webkit-transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  transition-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  vertical-align: middle;
+  z-index: 0;
+  background: #0a66c2;
+  border-radius: 28px !important;
 }
