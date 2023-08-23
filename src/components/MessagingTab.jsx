@@ -3,7 +3,8 @@
 function MessagingTab() {
     return (
         <div className="h-full border flex flex-col justify-center items-center">
-            <form>
+            <p>Messaging</p>
+            {/* <form>
                 <select className="mb-6 py-3 bg-white h-full hover:border-setly-100 hover:border-2 rounded-lg flex px-2 border border-gray w-full outline-none text-gray-400">
                     <option>Select a Messaging Mode</option>
                     <option>Connect Request Mode</option>
@@ -28,7 +29,7 @@ function MessagingTab() {
                         <textarea className="border w-full" rows={4} placeholder="Write your reason for connect request"></textarea>
                     </div>
                 </div>
-            </form>
+            </form> */}
         </div>
     );
 }

@@ -6,6 +6,7 @@ import { withProtected } from "@/hooks/routes";
 
 function Prospects() {
     const [prospects, setProspects] = useState([]);
+    const [prospect, setProspect] = useState(null);
     const [disabled, setDisabled] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
 
@@ -33,14 +34,16 @@ function Prospects() {
         setIsOpen(false)
     }
     
-    function openModal() {
-        setIsOpen(true)
+    function openModal(lead) {
+        setProspect(lead);
+        console.log(lead);
+        setIsOpen(true);
     }
 
 
     return (
         <>
-            <InboxModal closeModal={closeModal} isOpen={isOpen} />
+            <InboxModal closeModal={closeModal} isOpen={isOpen} prospect={prospect} />
             <Layout>
                 <div className="flex items-center justify-between py-5 bg-white shadow fixed z-[10] min-w-[1150px] top-0 right-0 px-4">
                     <div>
@@ -125,7 +128,7 @@ function Prospects() {
                                             <label for="checkbox-table-search-1" className="sr-only">checkbox</label>
                                         </div>
                                     </td>
-                                    <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap" onClick={openModal}>
+                                    <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap" onClick={() => openModal(prospect)}>
                                     <Image className="w-10 h-10 rounded-full" width={100} height={100} src={prospect.image} alt={`${prospect.name} Image`} />
                                         <div className="pl-3">
                                             <div className="text-base font-semibold">{ prospect.name }</div>

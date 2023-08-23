@@ -6,15 +6,16 @@ import ProspectService from "@/services/ProspectService";
 import { ProspectModalTabs } from ".";
 
 
-function InboxModal({isOpen, closeModal }) {
+function InboxModal({isOpen, closeModal, prospect }) {
 
   const [prospects, setProspects] = useState({});
   const [disabled, setDisabled] = useState(false);
 
 
     // useEffect(() => {
-    //     fetchLeads();
-    // }, [])
+    //     //fetchLeads();
+    //     console.log(prospect);
+    // },)
 
   const fetchLeads = async () => {
     setDisabled(true);
@@ -72,17 +73,19 @@ function InboxModal({isOpen, closeModal }) {
                   <aside className="side-profile h-full border">
                     <div class="w-full max-w-sm bg-white rounded-lg shadow-lg pt-2 mb-6">
                         <div class="flex flex-col items-center pb-8">
-                            <Image class="w-16 h-16 mb-3 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
-                            <span class="top-20 left-[12rem] absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
-                            <h5 class="text-xl font-medium text-gray-900 py-0 mb-0">Bonnie Green</h5>
-                            <span class="text-sm text-green-500">Connected</span>
+                            <Image class="w-16 h-16 mb-3 rounded-full shadow-lg" src={prospect?.image} alt="Bonnie image" height={30} width={80} />
+                            { prospect?.status === "pending"  && <span class="top-20 left-[12rem] absolute w-3.5 h-3.5 bg-yellow-400 border-2 border-white dark:border-gray-800 rounded-full"></span> }
+                            { prospect?.status === "active"  && <span class="top-20 left-[12rem] absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span> }
+                            <h5 class="text-xl font-medium text-gray-900 py-0 mb-0">{prospect?.name}</h5>
+                            { prospect?.status === "active"  && <span class="text-sm text-green-500">{prospect?.status}</span>}
+                            { prospect?.status === "pending"  && <span class="text-sm text-yellow-500 capitalize">{prospect?.status}</span>}
                             <div className="flex gap-3 items-center mt-3">
                               <div className="h-10 w-10 bg-gray-100 flex items-center justify-center rounded-md">
                                 <OfficeBuildingIcon className="h-5 w-5" />
                               </div>
                               <div className="flex flex-col items-center">
-                                <span class="text-sm text-black font-bold">Visual Designer</span>
-                                <span class="text-sm text-gray-500">Visual Designer</span>
+                                <span class="text-sm text-black font-bold">{prospect?.job_title}</span>
+                                <span class="text-sm text-gray-500">{prospect?.location}</span>
                               </div>
                             </div>
                         </div>
