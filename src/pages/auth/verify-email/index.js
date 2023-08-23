@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import React, { useState } from "react";
-import logo from "../../../assets/rythink.png";
+import logo from "@/assets/logo-white.png";
 import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services/AuthService";
 import { Button } from "@/components";
@@ -72,27 +72,29 @@ const VerifyEmail = ({ auth }) => {
             <Toaster />
             <div className="h-[100vh]">
                 <div className="grid gap-x-20 grid-cols-2 h-full py-8 mx-auto w-[80%]">
-                    <div className="light-gray rounded-lg flex flex-col justify-between px-12 py-10">
+                    <div className="card rounded-lg flex flex-col justify-between px-12 py-10">
                         <div className="w-[380px]">
                             <div className="mb-20">
-                                <Image src={logo} alt="Rythink Logo" width="120" height="60" />
+                                <Image src={logo} alt="Rythink Logo" width="100" height="40" />
                             </div>
-                            <h3 className="font-bold text-2xl mb-6">Let us help you run your freelance business.</h3>
-                            <p>Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
+                            <h3 className="font-bold text-2xl mb-6 text-white">Let us help you run your freelance business.</h3>
+                            <p className="text-gray-300">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
                         </div>
 
                         <div>
-                            <div className="card rounded-lg h-[150px] p-5">
-                                <p className="text-white mb-3">Im impressed with the results Ive seen since starting to use this product, I begin receiving clients and projects in the first week.</p>
-                                <div className="text-white">
+                            <div className="card setly-bg rounded-lg  p-5">
+                                <p className="mb-3 text-black text-opacity-80">Im impressed with the results Ive seen since starting to use this product, I begin receiving clients and projects in the first week.</p>
+                                <div className="text-black text-opacity-80">
                                     <div>
-                                        <p className="text-sm font-bold">Jonas Kim</p>
-                                        <p className="text-sm dark-gray">Product Designer</p>
+                                        <p className="text-sm font-semibold">Jonas Kim</p>
+                                        <p className="text-sm text-gray-800">Product Designer</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+
                     <div className="pt-12 px-12 flex flex-col justify-center">
 
                         

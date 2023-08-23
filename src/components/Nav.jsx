@@ -14,9 +14,9 @@ function Nav() {
                 <Image src={logo} class="mr-3" width={40} height={30} alt="Flowbite Logo" />
                 <div className="flex gap-12">
                     <button type="button" class="relative text-sm font-medium text-center">
-                        <BellIcon className="h-8 w-8" />
+                        <BellIcon className="h-7 w-7 text-gray-500" />
                         <span class="sr-only">Notifications</span>
-                        <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-blue-500 border-white rounded-full -top-1 -right-2 dark:border-gray-900">20</div>
+                        <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-blue-500 border-white rounded-full top-1 -right-2 dark:border-gray-900">20</div>
                     </button>
                     <TopMenu />
                 </div>

@@ -1,8 +1,9 @@
 import { Dialog, Transition } from "@headlessui/react"
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
-import {PhoneIcon, MailIcon, PencilAltIcon, OfficeBuildingIcon, XIcon} from "@heroicons/react/outline";
+import {PhoneIcon, MailIcon, PencilAltIcon, OfficeBuildingIcon, XIcon, PaperClipIcon} from "@heroicons/react/outline";
 import ProspectService from "@/services/ProspectService";
+import { ProspectModalTabs } from ".";
 
 
 function InboxModal({isOpen, closeModal }) {
@@ -62,72 +63,17 @@ function InboxModal({isOpen, closeModal }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="h-[700px] grid grid-cols-5 gap-3 w-full transform rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  {/* <Dialog.Title
-                    as="h3"
-                    className="text-lg font-medium leading-6 text-gray-900"
-                  >
-                    Payment successful
-                  </Dialog.Title> */}
-                  <div className="mt-2 col-span-4 overflow-y-auto relative">
-                    <div className="fixed bottom-0 left-0 w-full px-4">
-                      <textarea rows={2} className="border w-full "></textarea>
-                    </div>
-
-
-
-                    <div className="flex items-center justify-end gap-3 mb-10 px-5">
-                      <span className="text-sm text-gray-500">11pm</span>
-                      <div className="bg-setly-200 px-3 py-2 rounded-md bg-opacity-20">
-                        <span className="">This is a new message I have sent to you today,</span>
-
-                      </div>
-                      <Image class="w-10 h-10 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
-                    </div>
-
-                    <div className="flex flex-row-reverse items-center justify-end gap-3 mb-10 px-5">
-                      <span className="text-sm text-gray-500">11pm</span>
-                      <div className="bg-setly-100 px-3 py-2 rounded-md bg-opacity-20">
-                        <span className="">This is a new message I have sent to you today, I hope you get it.
-                        This is a new message I have sent to you today, I hope you get it.
-                        This is a new message I have sent to you today, I hope you get it.
-                        This is a new message I have sent to you today, I hope you get it.</span>
-
-                      </div>
-                      <Image class="w-10 h-10 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
-                    </div>
-
-                    <div className="flex items-center justify-end gap-3 mb-10 px-5">
-                      <span className="text-sm text-gray-500">11pm</span>
-                      <div className="bg-setly-200 px-3 py-2 rounded-md bg-opacity-20">
-                        <span className="">This is a new message I have sent to you today, I hope you get it.</span>
-
-                      </div>
-                      <Image class="w-10 h-10 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
-                    </div>
-
-                    <div className="flex flex-row-reverse items-center justify-end gap-3 mb-10 px-5">
-                      <span className="text-sm text-gray-500">11pm</span>
-                      <div className="bg-setly-100 px-3 py-2 rounded-md bg-opacity-20">
-                        <span className="">This is a new message I have sent to you today, I hope you get it.
-                        This is a new message I have sent to you today, I hope you get it.
-                        This is a new message I have sent to you today, I hope you get it.
-                        This is a new message I have sent to you today, I hope you get it.</span>
-                        This is a new message I have sent to you today, I hope you get it.This is a new message I have sent to you today, I hope you get it.
-                        This is a new message I have sent to you today, I hope you get it.
-
-                      </div>
-                      <Image class="w-10 h-10 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
-                    </div>
-
-
+                <Dialog.Panel className="h-[700px] inbox-wrapper w-full transform rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                  <div className="messages w-full h-full">
+                    <ProspectModalTabs />
                   </div>
 
-                  <div className="">
+
+                  <aside className="side-profile h-full border">
                     <div class="w-full max-w-sm bg-white rounded-lg shadow-lg pt-2 mb-6">
                         <div class="flex flex-col items-center pb-8">
                             <Image class="w-16 h-16 mb-3 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
-                            <span class="top-20 right-[7.8rem] absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                            <span class="top-20 left-[12rem] absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                             <h5 class="text-xl font-medium text-gray-900 py-0 mb-0">Bonnie Green</h5>
                             <span class="text-sm text-green-500">Connected</span>
                             <div className="flex gap-3 items-center mt-3">
@@ -169,7 +115,9 @@ function InboxModal({isOpen, closeModal }) {
                     </div>
 
 
-                  </div>
+                  </aside>
+
+
                 </Dialog.Panel>
               </Transition.Child>
             </div>

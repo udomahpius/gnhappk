@@ -9,12 +9,12 @@ function Layout({ children }) {
         //         { children }
         //     </div>
         // </>
-        <div className="wrapper overflow-y-hidden overflow-hidden h-screen">
-            <Nav />
+        <div className="wrapper overflow-y-hidden  h-screen">
+            {/* <Nav /> */}
             <SideBar />
-                <article className="relative h-screen overflow-y-auto w-full">
-                    { children }
-                </article>
+            <article className="relative h-screen overflow-y-auto w-full bg-gray-50">
+                { children }
+            </article>
             
         </div>
     );

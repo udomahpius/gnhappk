@@ -42,7 +42,7 @@ function Prospects() {
         <>
             <InboxModal closeModal={closeModal} isOpen={isOpen} />
             <Layout>
-                <div className="flex items-center justify-between py-5 bg-white shadow fixed z-[10] min-w-[1160px] top-[4.6rem] right-0 px-4">
+                <div className="flex items-center justify-between py-5 bg-white shadow fixed z-[10] min-w-[1150px] top-0 right-0 px-4">
                     <div>
                         <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" className="inline-flex items-center text-gray-500 bg-white focus:outline-none hover:bg-gray-100 focus:ring-1 focus:ring-gray-200 font-medium rounded-lg text-sm px-3 py-1.5 " type="button">
                             <span className="sr-only">Actions button</span>
@@ -82,7 +82,7 @@ function Prospects() {
                 </div>
 
 
-                <div className="relative pt-28 px-4 ">
+                <div className="relative pt-20 px-4 ">
                     
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead className="text-xs text-gray-700 uppercase bg-white  dark:text-gray-400">
@@ -118,7 +118,7 @@ function Prospects() {
                         </thead>
                         <tbody>
                             { prospects.map((prospect, index) => (
-                                <tr className="bg-white border-b dark:border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600" key={index}>
+                                <tr className="bg-white border-b dark:border-gray-200 hover:bg-gray-100 cursor-pointer" key={index}>
                                     <td className="w-4 p-4">
                                         <div className="flex items-center">
                                             <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />

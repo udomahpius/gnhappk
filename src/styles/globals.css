@@ -47,21 +47,55 @@ article {
   background-color: #ffffff;
   padding: 20px;
 }
+
+
 aside {
   grid-area: sidebar;
 }
+
+
 footer {
   padding: 20px;
   grid-area: footer;
   background-color: #fd9644;
 }
+
+
 .wrapper {
   display: grid;
-  grid-gap: 20px;
+  grid-gap: 5px;
   grid-template-columns: 1fr 4fr;
   grid-template-areas: 
-    "header  header"
+    "sidebar  content"
     "sidebar content"
+}
+
+
+.messages {
+  grid-area: messages;
+  width: 100%;
+}
+
+aside.side-profile {
+  grid-area: side-profile;
+  width: 100%;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+
+
+
+.inbox-wrapper {
+  display: grid;
+  grid-gap: 15px;
+  grid-template-columns: 1fr 3fr;
+  grid-template-areas: 
+    "side-profile messages messages"
+    "side-profile messages messages"
+    "side-profile footer footer"
 }
 
 
@@ -124,4 +158,23 @@ footer {
   z-index: 0;
   background: #0a66c2;
   border-radius: 28px !important;
+}
+
+
+.black {
+  background-color: rgb(14, 24, 37);
+}
+
+
+.setly-bg {
+  background: linear-gradient(to right, rgb(49, 189, 253) , rgb(73, 231, 182));
+}
+
+.setly-bg-hover:hover {
+  background: linear-gradient(to right, rgb(49, 189, 253) , rgb(73, 231, 182));
+}
+
+
+.setly-color {
+  color: linear-gradient(to right, rgb(49, 189, 253) , rgb(73, 231, 182));
 }
