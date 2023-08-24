@@ -109,7 +109,7 @@ const Login = ({ auth }) => {
                                 { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
                             </div>
 
-                            <div className="mb-5">
+                            <div className="mb-3">
                                 <div className="flex justify-between items-center">
                                     <label className="mb-2 text-gray text-sm flex">Password</label>
                                     { values.password.length >= 8 && <p className="text-sm text-green-600">Strong!</p> } 
@@ -125,14 +125,14 @@ const Login = ({ auth }) => {
                                 </div>
                                 { errors.password && touched.password && <small className="text-red-700">{ errors.password }</small>}
                             </div>
+                            <div className="flex justify-end items-center mb-6">
+                                <Link href="/auth/signup" className="bg-transparent text-[#269ACE] flex text-[14px]">Forgot Password?</Link>
+                            </div>
 
                             <Button text="Login" type="submit" disable={disabled} disabled={disabled} />
                         </form>
 
-                        <div className="flex justify-center items-center gap-1">
-                            <span className="text-[#9E9E9E] text-[14px]">Don&apos;t have an account?</span>
-                            <Link href="/auth/signup" className="bg-transparent text-[#269ACE] flex text-[14px]">Signup</Link>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
