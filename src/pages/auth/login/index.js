@@ -6,7 +6,7 @@ import { useFormik } from "formik";
 import { object, string, number, date, InferType } from "yup";
 import React, { useState, useRef, useEffect } from "react";
 import logo from "@/assets/logo-white.png";
-import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/react/outline";
+import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon, EyeOffIcon, EyeIcon } from "@heroicons/react/outline";
 import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services/AuthService";
 import { withPublic } from "@/hooks/routes";
@@ -21,6 +21,7 @@ const Login = ({ auth }) => {
     const { setUser } = auth;
 
     const [disabled, setDisabled] = useState(false);
+    const [activePassword, setActivePassword] = useState(false);
 
 
 
@@ -90,7 +91,7 @@ const Login = ({ auth }) => {
                         <div className="mb-12">
                             <h2 className="font-semibold text-2xl mb-2">Welcome Back</h2>
                             <div className="flex items-center gap-1">
-                                <span className="text-gray-800 text-[14px]">Login to continue using Setly. Don&apos;t have an account?</span>
+                                <span className="text-[#9E9E9E] text-[14px]">Login to continue using Setly. Already have an account?</span>
                                 <Link href="/auth/signup" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
                             </div>
                         </div>
@@ -109,22 +110,21 @@ const Login = ({ auth }) => {
                                 { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
                             </div>
 
-                            <div className="mb-3">
-                                <div className="flex justify-between items-center">
-                                    <label className="mb-2 text-gray-800 text-sm flex">Password</label>
-                                    { values.password.length >= 8 && <p className="text-sm text-green-600">Strong!</p> } 
-                                    
-                                </div>
+                            <div className="mb-5">
+                                <label className="mb-2 text-gray-800 text-sm flex">Password</label>
                                 <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
                                         <LockClosedIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="password" name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-700"
+                                        <input type={ activePassword ? "text" : "password"} name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-700"
                                         onChange={handleChange} onBlur={handleBlur} value={values.password} />
                                     </div>
-                                    <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
+                                    <EyeIcon className={ activePassword ? "h-6 w-6 self-center" : "hidden"} onClick={(e) => setActivePassword(false)} />
+                                    <EyeOffIcon className={ activePassword ? "hidden" : "h-6 w-6 self-center"} onClick={(e) => setActivePassword(true)} />
                                 </div>
                                 { errors.password && touched.password && <small className="text-red-700">{ errors.password }</small>}
                             </div>
+
+
                             <div className="flex justify-end items-center mb-6">
                                 <Link href="/auth/forgot-password" className="bg-transparent text-[#269ACE] font-semibold flex text-[14px]">Forgot Password?</Link>
                             </div>

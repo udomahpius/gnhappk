@@ -17,11 +17,14 @@ const AuthService = {
 	},
 
 
-	register: async (name, email, password) => {
+	register: async (first_name, last_name, email, password, company, industry) => {
         const response = await noAuthAPI.post("auth/signup", {
-			name,
+			first_name,
+			last_name,
             email,
-            password
+            password,
+			company,
+			industry
         });
 
         return response
