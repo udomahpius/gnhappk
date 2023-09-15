@@ -1,6 +1,26 @@
-import { Nav, SideBar } from "@/components"
+import React, { useEffect, useState } from "react";
+import { Nav, SideBar, TopNav } from "@/components/index.js";
+import { PlusIcon } from "@heroicons/react/outline";
+import useTheme from "@/hooks/theme";
+import { Montserrat } from "next/font/google";
+const inter = Montserrat({ subsets: ['latin'] });
+
 
 function Layout({ children }) {
+    const [darkToggle, setDarkToggle] = useState(false);
+    const [colorTheme, setTheme] = useTheme();
+    const [darkSide, setDarkSide] = useState(colorTheme === "light" ? true : false);
+
+    const toggleDarkMode = checked => {
+        setTheme(colorTheme);
+        setDarkSide(!darkSide);
+        console.log(checked);
+    };
+
+    const toggleMode = () => {
+        localStorage.setItem("mode", JSON.stringify(!darkToggle));
+    }
+
     return (
         // <>
         //     <Nav />
@@ -9,10 +29,10 @@ function Layout({ children }) {
         //         { children }
         //     </div>
         // </>
-        <div className="wrapper overflow-y-hidden  h-screen">
+        <div className={`${inter.className} bg-gray-200 dark:bg-slate-600 wrapper overflow-y-hidden h-screen transition duration-200 ${darkSide}`}>
             {/* <Nav /> */}
-            <SideBar />
-            <article className="relative h-screen overflow-y-auto w-full bg-gray-50">
+            <SideBar toggleMode={toggleDarkMode} darkSide={darkSide} />
+            <article className="relative h-screen overflow-y-auto w-full bg-gray-200 dark:bg-slate-600 side-bar article p-0">
                 { children }
             </article>
             

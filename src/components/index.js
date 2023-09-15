@@ -9,6 +9,8 @@ export { default as InboxModal } from "./InboxModal";
 export { default as Nav } from "./Nav";
 export { default as SideBar } from "./SideBar";
 export { default as TopMenu} from "./TopMenu";
+export { default as DropDown} from "./DropDown";
+export { default as TopNav} from "./TopNav";
 export { default as Profile } from "./Profile";
 export { default as NotificationTab } from "./NotificationTab";
 export { default as IntegrationTab } from "./IntegrationTab";

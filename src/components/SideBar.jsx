@@ -1,49 +1,81 @@
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Inter, Montserrat } from "next/font/google"
 const inter = Montserrat({ subsets: ['latin'] });
-import {InboxInIcon, HomeIcon, ChartPieIcon, UserGroupIcon, QuestionMarkCircleIcon, CogIcon, LogoutIcon, BellIcon} from "@heroicons/react/outline";
+import {InboxIcon, HomeIcon, UserGroupIcon, QuestionMarkCircleIcon, CogIcon, LogoutIcon, BellIcon, CollectionIcon, SunIcon, DocumentTextIcon} from "@heroicons/react/outline";
+import { MoonIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import logo from "@/assets/logo-white.png";
+import logo from "@/assets/setly2.svg";
 
 
-function SideBar() {
+
+function SideBar({ toggleMode, darkSide }) {
     const router = useRouter();
 
+    useEffect(() => {
+        console.log(darkSide);
+    })
+
     return (
-        <aside id="separator-sidebar" className="h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-            <div className="h-full flex flex-col justify-between px-3 py-4 overflow-y-auto black">
+        <aside id="separator-sidebar" className="side-bar h-screen transition-transform -translate-x-full sm:translate-x-0 border-r dark:border-gray-800 z-[100]" aria-label="Sidebar">
+            <div className="h-full flex flex-col justify-between px-3 pb-4 pt-7 overflow-y-auto bg-white dark:bg-slate-900">
                 <div>
-                    <div className="flex justify-center mb-10">
-                        <Image src={logo} class="" width={60} height={30} alt="Flowbite Logo" />
+                    <div className="flex justify-start mb-12 ml-2">
+                        <Image src={logo} class="" width="150" height={20} alt="Setly Logo" />
                     </div>
+
+                    <button className="mb-8 p-2 rounded-md relative w-full flex justify-between items-center hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                        <div className="flex gap-3">
+                            <div className="">
+                                <Image className="rounded-full h-10 w-10" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" 
+                                width={85} height={85} alt="" />
+                                <span class="bottom-2 left-9 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                            </div>
+                            <div className="flex flex-col items-start justify-start text-clip overflow-hidden">
+                                <h3 className="text-gray-500 dark:text-gray-300  text-sm font-bold">Saviour Essien</h3>
+                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300  truncate">80/1000 Credits</span>
+                            </div>
+                        </div>
+                        <BellIcon className="h-7 w-7 text-gray-500 dark:text-gray-300" />
+                        <span class="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-red-600 border-white rounded-full top-1 right-1 dark:border-gray-900">20</span>
+                    </button>
+
+
                     <ul className="space-y-5 font-medium">
                         <li>
-                            <Link href="/dashboard" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard" ? "rounded-lg text-white setly-bg" : "text-gray-300 rounded-lg"}`}>
+                            <Link href="/dashboard" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <HomeIcon className="h-6 w-6 mr-3" />
                                 <span>Dashboard</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/analytics" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/analytics" ? "rounded-lg text-white setly-bg" : "text-gray-300 rounded-lg"}`}>
-                                <ChartPieIcon className="h-6 w-6 mr-3" />
-                                <span>Analytics</span>
+                            <Link href="/dashboard/tasks" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/tasks" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                                <CollectionIcon className="h-6 w-6 mr-3" />
+                                <span>Tasks</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/prospects" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/prospects" ? "rounded-lg text-white setly-bg" : "text-gray-300 rounded-lg"}`}>
+                            <Link href="/dashboard/prospects" className={`group flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/prospects" ? "rounded-lg text-white bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <UserGroupIcon className="h-6 w-6 mr-3" />
                                 <span>Prospects</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/inbox" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/inbox" ? "rounded-lg text-white setly-bg" : "text-gray-300 rounded-lg"}`}>
-                                <InboxInIcon className="h-6 w-6 mr-3" />
-                                <span className="flex-1 ml-3 whitespace-nowrap">Inbox</span>
-                                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-white setly-bg rounded-full hover:bg-white hover:text-setly-100">3</span>
+                            <Link href="/dashboard/inbox" className={`flex items-center p-2  group ${router.pathname === "/dashboard/inbox" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                                <InboxIcon className="h-6 w-6 mr-3 group-hover:text-white" />
+                                <span className="flex-1 whitespace-nowrap group-hover:text-white">Inbox</span>
+                                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-white bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN dark:bg-white rounded-full dark:group-hover:bg-white hover:text-white">3</span>
+                            </Link>
+                        </li>
+
+                        <li>
+                            <Link href="/dashboard/make-a-post" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/make-a-post" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                                <DocumentTextIcon className="h-6 w-6 mr-3" />
+                                <span className="flex-1 whitespace-nowrap">Make a Post</span>
                             </Link>
                         </li>
 
@@ -52,39 +84,30 @@ function SideBar() {
                 
                 <ul className="pt-4 mt-4 space-y-5 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
-                        <Link href="/dashboard/help" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/help" ? "rounded-lg text-white setly-bg" : "text-gray-300 rounded-lg"}`}>
+                        <Link href="/dashboard/help" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/help" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                             <QuestionMarkCircleIcon className="h-6 w-6 mr-3" />
                             <span>Help</span>
                         </Link>
                     </li>
 
                     <li>
-                        <Link href="/dashboard/settings" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/settings" ? "rounded-lg text-white setly-bg" : "text-gray-300 rounded-lg"}`}>
+                        <Link href="/dashboard/settings" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/settings" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                             <CogIcon className="h-6 w-6 mr-3" />
                             <span>Settings</span>
                         </Link>
                     </li>
 
-                    <li>
-                        <Link href="/dashboard/settings" className="flex items-center p-2 text-gray-300 rounded-lg hover:text-white setly-bg-hover group">
+                    <li className="flex justify-between items-center">
+                        <Link href="/dashboard/settings" className="flex items-center p-2 text-gray-600 dark:text-gray-300 rounded-lg hover:text-white setly-bg-hover group">
                             <LogoutIcon className="h-6 w-6 mr-3" />
                             <span>Logout</span>
                         </Link>
+                        <button onClick={toggleMode}>
+                            { darkSide ? <SunIcon className="h-7 w-7 text-gray-200" /> : <MoonIcon className="h-7 w-7 text-gray-500" /> }
+                        </button>
                     </li>
                 </ul>
-                <button className="p-2 rounded-md relative flex gap-5 items-start hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                    <div className="">
-                        <Image className="rounded-full h-10 w-10" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" 
-                        width={85} height={85} alt="" />
-                        <span class="bottom-2 left-9 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
-                    </div>
-                    <div className="flex flex-col items-start justify-start text-clip overflow-hidden">
-                        <h3 className="text-white text-sm font-bold">Saviour Essien</h3>
-                        <span className="text-[0.7rem] text-gray-200 truncate w-28">essiensavioudjgdfghfghftgyhfr.a@gmail.com</span>
-                    </div>
-                    <BellIcon className="h-7 w-7 mr-3 text-gray-300" />
-                    <span class="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-blue-500 border-white rounded-full -top-1 right-7 dark:border-gray-900">20</span>
-                </button>
+                
             </div>
         </aside>
     );
