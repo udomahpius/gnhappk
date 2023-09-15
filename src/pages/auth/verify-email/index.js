@@ -5,19 +5,24 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import { object, string } from "yup";
 import React, { useState } from "react";
-import logo from "@/assets/logo-white.png";
+import logo from "@/assets/1.svg";
 import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services/AuthService";
-import { Button } from "@/components";
+import { BigButton, Button } from "@/components/index.js";
 import OtpInput from "react-otp-input";
 import { withPublic } from "@/hooks/routes";
+import { Montserrat } from "next/font/google";
+import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/react/outline";
+
+const inter = Montserrat({ subsets: ['latin'] })
 
 
-const VerifyEmail = ({ auth }) => {
+
+
+
+const VerifyEmail = () => {
     const router = useRouter();
-    const { setUser, user } = auth;
-    const [otp, setOtp] = useState('');
-
+    const [otp, setOtp] = useState("");
     const [disabled, setDisabled] = useState(false);
 
 
@@ -27,30 +32,32 @@ const VerifyEmail = ({ auth }) => {
 
 
     const onSubmit = async (values, actions) => {
-        console.log(isSubmitting);
+        console.log("Hello");
+        setDisabled(true);
         try {
-            const response = await AuthService.verifyEmail(otp);
+            const response = await AuthService.verifyEmail(values.token);
             toast.success(response.data.message);
-            setUser(response.data.data)
             setDisabled(false);
-            router.replace("/auth/login");
+            //router.replace("/auth/login");
+            setTimeout(() => {
+                router.replace("/auth/login");
+            }, 1500);
         } catch (error) {
-            console.log(error);
             toast.error(error.response.data.message);
             actions.setSubmitting(false)
             setDisabled(false);
-        }
+        } 
     }
 
     const verifyEmail = async () => {
         setDisabled(true);
         try {
             const response = await AuthService.verifyEmail(otp);
-            console.log(response);
             toast.success(response.data.message);
-            setUser(response.data.data)
             setDisabled(false);
-            router.replace("/auth/login");
+            setTimeout(() => {
+                router.replace("/auth/login");
+            }, 1500);
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
@@ -70,12 +77,12 @@ const VerifyEmail = ({ auth }) => {
     return (
         <>
             <Toaster />
-            <div className="h-[100vh]">
+            <div className={`h-[100vh] ${inter.className} overflow-x-hidden`}>
                 <div className="grid gap-x-20 grid-cols-2 h-full py-8 mx-auto w-[80%]">
-                    <div className="card rounded-lg flex flex-col justify-between px-12 py-10">
+                    <div className="card rounded-lg flex flex-col justify-between px-12 py-3 pb-10">
                         <div className="w-[380px]">
-                            <div className="mb-20">
-                                <Image src={logo} alt="Rythink Logo" width="100" height="40" />
+                            <div className="mb-0">
+                                <Image src={logo} alt="Rythink Logo" width="180" height="10" />
                             </div>
                             <h3 className="font-bold text-2xl mb-6 text-white">Let us help you run your freelance business.</h3>
                             <p className="text-gray-300">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
@@ -99,7 +106,7 @@ const VerifyEmail = ({ auth }) => {
 
                         
                             <h3 className="text-2xl md:text-3xl mb-2 font-jakarta text-black font-bold tracking-tight">Verify Your Email Address</h3>
-                            <p className="mb-3">A verification email has been sent to: { user?.email }</p>
+                            <p className="mb-3">A verification email has been sent to: boringcreatives@gmail.com</p>
                             <p className="mb-5 text-slate-500">Get the OTP token from your email to verify your account</p>
 
                             <div className="mb-5">
@@ -134,7 +141,7 @@ const VerifyEmail = ({ auth }) => {
 
                                 <br /> <br />
 
-                                <Button text="Verify Email" onClick={verifyEmail} type="button" background="#269ACE" color="white" disable={disabled} disabled={disabled} />
+                                <BigButton text="Verify Email" onClick={verifyEmail} type="submit" disable={disabled} disabled={disabled} />
                             </div>
 
                             {/* <Button text="Resend Verification Email" onClick={sendVerificationEmail} type="button" background="transparent" color="#269ACE" disable={spin} /> */}
@@ -146,4 +153,4 @@ const VerifyEmail = ({ auth }) => {
     )
 }
 
-export default withPublic(VerifyEmail);
+export default VerifyEmail;

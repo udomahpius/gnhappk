@@ -25,7 +25,6 @@ const ForgotPassword = () => {
 
     let userSchema = object({
         email: string().email().trim().required("Email is required"),
-        password: string().min(8, "Password must be at least 8 characters long").required("Password is required"),
     });
 
 
@@ -41,7 +40,6 @@ const ForgotPassword = () => {
     const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {
           email: "",
-          password: ""
         },
         validationSchema: userSchema,
         onSubmit
@@ -86,14 +84,14 @@ const ForgotPassword = () => {
 
                         <form className="mb-12" onSubmit={handleSubmit}>
                             <div className="mb-8">
-                                <label className="mb-2 text-gray text-sm flex">Email Address</label>
-                                <div className="border rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <label className="mb-2 text-gray-600 font-medium text-sm flex">Email Address</label>
+                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
                                         <AtSymbolIcon className="h-5 w-5 text-gray-600" />
                                         <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-500 focus:bg-white"
                                         onChange={handleChange} onBlur={handleBlur} value={values.email} />
                                     </div>
-                                    <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
+                                    { !errors.email && touched.email && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
                                 </div>
                                 { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
                             </div>

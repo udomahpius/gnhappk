@@ -87,11 +87,11 @@ const ResetPassword = () => {
 
                         <form className="mb-12" onSubmit={handleSubmit}>
                             <div className="mb-5">
-                                <label className="mb-2 text-gray text-sm flex">OTP Token</label>
-                                <div className="border rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <label className="mb-2 text-gray-600 font-medium text-sm flex">OTP Token</label>
+                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
                                         <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="text" name="otp" placeholder="Enter OTP Token" className="w-full flex items-center h-full outline-none text-gray-500"
+                                        <input type="text" name="otp" placeholder="Enter OTP Token" className="w-full flex items-center h-full outline-none text-gray-600"
                                         onChange={handleChange} onBlur={handleBlur} value={values.email} />
                                     </div>
                                     <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
@@ -101,14 +101,14 @@ const ResetPassword = () => {
 
                             <div className="mb-3">
                                 <div className="flex justify-between items-center">
-                                    <label className="mb-2 text-gray text-sm flex">Password</label>
+                                    <label className="mb-2 text-gray-600 font-medium text-sm flex">Password</label>
                                     { values.password.length >= 8 && <p className="text-sm text-green-600">Strong!</p> } 
                                     
                                 </div>
-                                <div className="border rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
                                         <LockClosedIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="password" name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-500"
+                                        <input type="password" name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-600"
                                         onChange={handleChange} onBlur={handleBlur} value={values.password} />
                                     </div>
                                     <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
@@ -118,14 +118,14 @@ const ResetPassword = () => {
 
                             <div className="mb-8">
                                 <div className="flex justify-between items-center">
-                                    <label className="mb-2 text-gray text-sm flex">Confirm Password</label>
+                                    <label className="mb-2 text-gray-600 font-medium text-sm flex">Confirm Password</label>
                                     { values.password.length >= 8 && <p className="text-sm text-green-600">Strong!</p> } 
                                     
                                 </div>
-                                <div className="border rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
                                         <LockClosedIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="password" name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-500"
+                                        <input type="password" name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-600"
                                         onChange={handleChange} onBlur={handleBlur} value={values.password} />
                                     </div>
                                     <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />

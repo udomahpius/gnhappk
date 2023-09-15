@@ -37,7 +37,7 @@ const Signup = ({ auth }) => {
     const onSubmit = async (values, actions) => {
         setDisabled(true);
         try {
-            const response = await AuthService.register(values.name, values.email, values.password);
+            const response = await AuthService.register(values.first_name, values.last_name, values.email, values.password, values.company, values.industry);
             toast.success(response.data.message);
             setUser(response.data.data)
             setDisabled(false);
@@ -107,7 +107,7 @@ const Signup = ({ auth }) => {
                                     <div className="border rounded-lg px-4 flex justify-between h-14 bg-white hover:border-setly-100 hover:border-2">
                                         <div className="flex gap-3 items-center w-full">
                                             <UserCircleIcon className="h-6 w-6 text-gray-600" />
-                                            <input type="text" name="first_name" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-700"
+                                            <input type="text" name="first_name" placeholder="Enter first name" className="w-full flex items-center h-full outline-none text-gray-700"
                                             onChange={handleChange} onBlur={handleBlur} value={values.first_name} />
                                         </div>
                                     </div>
@@ -130,7 +130,7 @@ const Signup = ({ auth }) => {
                                         <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-700"
                                         onChange={handleChange} onBlur={handleBlur} value={values.email} />
                                     </div>
-                                    <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
+                                    { !errors.email && touched.email && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
                                 </div>
                                 { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
                             </div>
@@ -159,7 +159,7 @@ const Signup = ({ auth }) => {
                                     </div>
                                     <select name="industry" className="bg-white h-full hover:border-setly-100 rounded-lg flex px-2 border border-gray w-full outline-none text-gray-600"
                                     onChange={handleChange} onBlur={handleBlur} value={values.industry}>
-                                        <option selected disabled>Select an Industry</option>
+                                        <option  disabled>Select an Industry</option>
                                         <option>Advertising &amp; Media</option>
                                         <option>Automotive</option>
                                         <option>Construction</option>

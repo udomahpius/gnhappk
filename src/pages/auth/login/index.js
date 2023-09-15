@@ -41,7 +41,7 @@ const Login = ({ auth }) => {
             toast.success(response.data.message);
             setUser(response.data.data)
             setDisabled(false);
-            router.replace("/dashboard")
+            router.replace("/dashboard/inbox")
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
@@ -93,7 +93,7 @@ const Login = ({ auth }) => {
                             <h2 className="font-semibold text-2xl mb-2">Welcome Back</h2>
                             <div className="flex items-center gap-1">
                                 <span className="text-gray-800 text-[13px]">Login to continue using Setly. Already have an account?</span>
-                                <Link href="/auth/signuo" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
+                                <Link href="/auth/signup" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
                             </div>
                         </div>
 
@@ -106,7 +106,7 @@ const Login = ({ auth }) => {
                                         <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-700"
                                         onChange={handleChange} onBlur={handleBlur} value={values.email} />
                                     </div>
-                                    <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
+                                    { !errors.email && touched.email && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
                                 </div>
                                 { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
                             </div>
