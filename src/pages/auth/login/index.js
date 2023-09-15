@@ -1,19 +1,20 @@
 "use client";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useFormik } from "formik";
 import { object, string, number, date, InferType } from "yup";
-import React, { useState, useRef, useEffect } from "react";
-import logo from "@/assets/logo-white.png";
-import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon, EyeOffIcon, EyeIcon } from "@heroicons/react/outline";
+import logo from "@/assets/setly2.svg";
+import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon, EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services/AuthService";
 import { withPublic } from "@/hooks/routes";
-import { BigButton, Button } from "@/components";
-// import Modal from "@/components/Modal";
+import { BigButton } from "@/components/index.js";
 import { noAuthAPI } from "@/config/api";
-import { cookies } from "next/dist/client/components/headers";
+import { Montserrat } from "next/font/google";
+
+const inter = Montserrat({ subsets: ['latin'] })
 
 
 const Login = ({ auth }) => {
@@ -88,11 +89,11 @@ const Login = ({ auth }) => {
 
 
                     <div className="bg-[rgb(0, 0, 0)] pt-12 px-12">
-                        <div className="mb-12">
+                        <div className="mb-14">
                             <h2 className="font-semibold text-2xl mb-2">Welcome Back</h2>
                             <div className="flex items-center gap-1">
-                                <span className="text-[#9E9E9E] text-[14px]">Login to continue using Setly. Already have an account?</span>
-                                <Link href="/auth/signup" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
+                                <span className="text-gray-800 text-[13px]">Login to continue using Setly. Already have an account?</span>
+                                <Link href="/auth/signuo" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
                             </div>
                         </div>
 
