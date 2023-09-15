@@ -10,7 +10,7 @@ import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, Lock
 import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services/AuthService";
 import { withPublic } from "@/hooks/routes";
-import { Button } from "@/components";
+import { BigButton, Button } from "@/components";
 // import Modal from "@/components/Modal";
 import { noAuthAPI } from "@/config/api";
 import { cookies } from "next/dist/client/components/headers";
@@ -61,12 +61,12 @@ const Login = ({ auth }) => {
     return (
         <>
             <Toaster />
-            <div className="h-[100vh]">
+            <div className={`h-[100vh] ${inter.className} overflow-x-hidden`}>
                 <div className="grid gap-x-20 grid-cols-2 h-full py-8 mx-auto w-[80%]">
-                    <div className="card rounded-lg flex flex-col justify-between px-12 py-10">
+                    <div className="card rounded-lg flex flex-col justify-between px-12 py-3 pb-10">
                         <div className="w-[380px]">
-                            <div className="mb-20">
-                                <Image src={logo} alt="Rythink Logo" width="80" height="40" />
+                            <div className="mb-12 pt-6">
+                                <Image src={logo} alt="Rythink Logo" width="250" height="10" />
                             </div>
                             <h3 className="font-bold text-2xl mb-6 text-white">Let us help you run your freelance business.</h3>
                             <p className="text-gray-300">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
@@ -90,18 +90,18 @@ const Login = ({ auth }) => {
                         <div className="mb-12">
                             <h2 className="font-semibold text-2xl mb-2">Welcome Back</h2>
                             <div className="flex items-center gap-1">
-                                <span className="text-[#9E9E9E] text-[14px]">Login to continue using Setly. Already have an account?</span>
-                                <Link href="/auth/login" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
+                                <span className="text-gray-800 text-[14px]">Login to continue using Setly. Don&apos;t have an account?</span>
+                                <Link href="/auth/signup" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
                             </div>
                         </div>
 
                         <form className="mb-12" onSubmit={handleSubmit}>
                             <div className="mb-5">
-                                <label className="mb-2 text-gray text-sm flex">Email Address</label>
-                                <div className="border rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <label className="mb-2 text-gray-800 text-sm flex">Email Address</label>
+                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
                                         <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-500"
+                                        <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-700"
                                         onChange={handleChange} onBlur={handleBlur} value={values.email} />
                                     </div>
                                     <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
@@ -111,14 +111,14 @@ const Login = ({ auth }) => {
 
                             <div className="mb-3">
                                 <div className="flex justify-between items-center">
-                                    <label className="mb-2 text-gray text-sm flex">Password</label>
+                                    <label className="mb-2 text-gray-800 text-sm flex">Password</label>
                                     { values.password.length >= 8 && <p className="text-sm text-green-600">Strong!</p> } 
                                     
                                 </div>
-                                <div className="border rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
                                         <LockClosedIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="password" name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-500"
+                                        <input type="password" name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-700"
                                         onChange={handleChange} onBlur={handleBlur} value={values.password} />
                                     </div>
                                     <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
@@ -126,10 +126,10 @@ const Login = ({ auth }) => {
                                 { errors.password && touched.password && <small className="text-red-700">{ errors.password }</small>}
                             </div>
                             <div className="flex justify-end items-center mb-6">
-                                <Link href="/auth/signup" className="bg-transparent text-[#269ACE] flex text-[14px]">Forgot Password?</Link>
+                                <Link href="/auth/forgot-password" className="bg-transparent text-[#269ACE] font-semibold flex text-[14px]">Forgot Password?</Link>
                             </div>
 
-                            <Button text="Login" type="submit" disable={disabled} disabled={disabled} />
+                            <BigButton text="Login" type="submit" disable={disabled} disabled={disabled} />
                         </form>
 
                         
