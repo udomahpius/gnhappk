@@ -22,6 +22,8 @@ export function withPublic(WrappedComponent) {
 	  const router = useRouter();
 	  const auth = useAuth();
 	  const [cookies, setCookie] = useCookies(["setly.sid"]);
+
+	  console.log(cookies["setly.sid"]);
   
 	  const accessToken = cookies["setly.sid"];
 
