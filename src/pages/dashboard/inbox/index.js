@@ -1,4 +1,4 @@
-import { Layout } from "@/components";
+import { Button, Layout } from "@/components";
 import { withProtected } from "@/hooks/routes";
 import {PhoneIcon, MailIcon, PencilAltIcon, OfficeBuildingIcon, XIcon, PaperClipIcon} from "@heroicons/react/outline";
 import Image from "next/image";
@@ -47,7 +47,7 @@ function Inbox() {
             </div>
 
 
-            <section className="inbox-wrapper overflow-hidden h-[100vh] pt-16">
+            <section className="inbox-wrapper overflow-hidden h-full pt-16">
               <div className="pt-3 messages overflow-y-auto  bg-gray-100">
                 <div className="flex items-center justify-end gap-3 mb-10 px-5">
                   <span className="text-sm text-gray-500">12:00</span>
@@ -211,180 +211,171 @@ function Inbox() {
 
                     </div>
 
-                  <div className="flex flex-col justify-start footer h-[90px]">
-                    <div className="flex gap-x-5 items-center footer px-4">
-                      <PaperClipIcon className="h-6 w-6" />
+                  
+                    <div className="flex gap-x-5 footer items-center justify-between px-4">
+                      <PaperClipIcon className="h-6 w-6 text-gray-400" />
                       <textarea className="border h-fit w-full px-1"></textarea>
-                      <div className="flex gap-5 items-center">
-                        <button>Send</button>
+                      <div>
+                        <Button text="Send" disable={false} disabled={false} />
                       </div>
                     </div>
-                  </div>
 
 
                   <aside className="side-profile overflow-y-auto">
-                    <div className="mb-8">
-                        <div className="flex justify-between items-center mb-4">
-                            <h4>Inbox</h4> 
-                            <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-slate-800 rounded-full hover:bg-whit">3</span>
-                        </div>
-                    </div>
 
-                    
-
-                    <div className="  pb-12 pt-2">
-                        <div className="flex gap-2 items-center border-l-4 border-blue-600 pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                    <div className="pb-12 pt-2">
+                      
+                      <div className="flex gap-2 items-center justify-between mb-6 py-4 shadow-lg rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
-                        <div className="flex gap-2 items-center pl-3 mb-6">
-                            <div className="flex gap-2 items-center">
+
+                        <div className="flex gap-2 items-center justify-between mb-6 py-4 rounded-md px-2 w-full">
+                          <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
 
 
-                        <div className="flex gap-2 items-center pl-3">
+                        <div className="flex gap-2 items-center justify-between py-4 rounded-md px-2 w-full">
                             <div className="flex gap-2 items-center">
                                 <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                                 <div className="">
-                                    <h4 className="mb-0">Julia Hosten</h4>
+                                  <h4 className="mb-0 text-sm font-medium">Julia Hosten</h4>
                                     <p className="text-xs">Project Manager</p>
-                                    <p className="text-xs text-ellipsis overflow-hidden">Hello Kate how are things going</p>
+                                    <p className="text-xs truncate w-28">Hello Kate how are things going</p>
                                 </div>
                             </div>
-                            <div className="text-center">
-                                <span className="text-xs font-bold">13:55</span>
-                                <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full hover:bg-whit">3</span>
+                            <div className="flex flex-col items-center">
+                              <span className="text-xs font-bold">13:55</span>
+                              <span class="inline-flex items-center justify-center w-2 h-2 p-[0.6rem] text-xs font-medium text-white bg-blue-600 rounded-full">3</span>
                             </div>
                         </div>
                     </div>
-
-
                   </aside>
             </section>
         </Layout>
