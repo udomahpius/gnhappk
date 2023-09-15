@@ -1,4 +1,5 @@
 export { default as Button } from "./Button";
+export { default as BigButton } from "./BigButton";
 export { default as Toggle } from "./Toggle";
 export { default as CardRadio } from "./CardRadio";
 export { default as LinkedinButton } from "./LinkedinButton";
