@@ -4,7 +4,7 @@ import { withProtected } from "@/hooks/routes";
 import LeadService from "@/services/ProspectService";
 import { Toaster, toast } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Button, DropDown, Layout, Nav, SideBar } from "@/components/index.js";
+import { Button, ConnectLinkedin, DropDown, Layout, Nav, SideBar, SubscriptionPayment } from "@/components";
 import Image from "next/image";
 import TopMenu from "@/components/TopMenu";
 import { Montserrat } from "next/font/google";
@@ -17,7 +17,11 @@ import {
   } from "react-circular-progressbar";
   import "react-circular-progressbar/dist/styles.css";
 import useTheme from "@/hooks/theme";
-const inter = Montserrat({ subsets: ['latin'] })
+const inter = Montserrat({ subsets: ['latin'] });
+
+
+
+
 
 
 const override = {
@@ -29,8 +33,9 @@ const override = {
 };
 
 
-function Dashboard() {
+function Dashboard({ auth }) {
     const router = useRouter();
+    const { user } = auth;
     const [leads, setLeads] = useState([]);
     const [disabled, setDisabled] = useState(false);
     const [progress, setProgress] = useState(30);
@@ -69,38 +74,36 @@ function Dashboard() {
     // }
 
 
-    // { user.status === "onboarding" && router.replace("/dashboard/connect/linkedin") }
 
-    // { user.status === "default_incomplete" && router.replace("/dashboard/subscription") }
-
-
-    // { disabled && 
-    //     <div className="min-h-screen flex items-center justify-center">
-    //         <ClipLoader
-    //             color="white"
-    //             loading={true}
-    //             cssOverride={override}
-    //             size={50}
-    //             aria-label="Loading Spinner"
-    //             data-testid="loader"
-    //         />
-    //     </div>
-    // }
+    { disabled && 
+        <div className="min-h-screen flex items-center justify-center">
+            <ClipLoader
+                color="white"
+                loading={true}
+                cssOverride={override}
+                size={50}
+                aria-label="Loading Spinner"
+                data-testid="loader"
+            />
+        </div>
+    }
 
     return (
        <>
-        <Layout>
+        <Layout user={user}>
             <div className="text-center dark:border-b dark:border-slate-700 bg-white dark:bg-slate-900 shadow dark:shadow-none w-full topnav px-4 h-16">
-                <h2 className="font-semibold text-3xl dark:text-gray-100">Welcome Essien</h2>
+                <h2 className="font-semibold text-3xl dark:text-gray-100">Welcome { user?.first_name}</h2>
                 <p className="text-sm dark:text-gray-100">Here is where you can track your progress as the ultimate Setly Prospector</p>
             </div>
 
-            <div className="mb-24 bg-white dark:bg-slate-900 h-full pt-12 px-8 side-body">
+            { user.status === "onboarding" && <ConnectLinkedin /> }
+
+            { user.status === "default_incomplete" && <SubscriptionPayment /> }
+
+            { user.status === "activated" && <div className="mb-24 bg-white dark:bg-slate-900 h-full pt-12 px-8 side-body">
                 <div className="mx-auto w-[60%] flex flex-col justify-center items-center mb-20">
                     <h2 className="font-bold text-2xl dark:text-gray-100">Current Level</h2>
                     <p className="font-light mb-6 dark:text-gray-100">Beginner Lvl <span className="font-bold">1</span></p>
-
-                    <DropDown />
 
                     <div className="flex justify-between gap-6 w-full items-center mb-8 mt-0">
                         <div className="text-center">
@@ -269,7 +272,7 @@ function Dashboard() {
 
                     </div>
                 </div>
-            </div>
+            </div>}
 
 
             

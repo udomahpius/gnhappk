@@ -5,11 +5,11 @@ import api from "../config/api";
 const AuthService = {
 	waitForAuthorization: async (callback) => {
 		try {
-            const response = await noAuthAPI.get("users");
+            const response = JSON.parse(localStorage.getItem("setly_user"))
 
             console.log(response);
 
-            callback(response?.data?.data);
+            callback(response);
         } catch (error) {
 			console.log(error);
 			callback(error?.message);
@@ -86,9 +86,10 @@ const AuthService = {
 
 	
 
-	// logout: async () =>  {
-	// 	await firebase.auth().signOut();
-	// }
+	logout: async () =>  {
+		const response = await noAuthAPI.get("auth/logout");
+        return response
+	}
 }
 
 

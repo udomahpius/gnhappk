@@ -1,7 +1,5 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-//import { isExpired, decodeToken } from "react-jwt";
-//import useAuth from "./auth";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useCookies } from 'react-cookie';
 import useAuth from "@/hooks/auth";
@@ -55,6 +53,7 @@ export function withProtected(WrappedComponent) {
 	const accessToken = cookies["setly.sid"];
 
 	  if (!accessToken) {
+		localStorage.removeItem("setly_user");
 		router.replace("/auth/login");
 		return (
 			<div className="min-h-screen flex items-center justify-center">

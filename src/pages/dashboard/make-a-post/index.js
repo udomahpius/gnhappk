@@ -5,7 +5,7 @@ import Image from "next/image";
 import setly from "@/assets/icon.png";
 
 
-function Inbox({ auth }) {
+function MakeAPost({ auth }) {
   const { user } = auth;
   return (
     <>
@@ -92,4 +92,4 @@ function Inbox({ auth }) {
   );
 }
 
-export default withProtected(Inbox);
+export default withProtected(MakeAPost);

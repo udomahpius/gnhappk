@@ -7,22 +7,34 @@ import { MoonIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import logo from "@/assets/setly2.svg";
+import AuthService from "@/services/AuthService";
 
 
 
-function SideBar({ toggleMode, darkSide }) {
+function SideBar({ toggleMode, darkSide, user }) {
     const router = useRouter();
 
     useEffect(() => {
         console.log(darkSide);
-    })
+    });
+
+    const logout = async () => {
+        try {
+            const response = await AuthService.logout();
+            console.log(response);
+            localStorage.removeItem("setly_user");
+            router.replace("/auth/login")
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     return (
-        <aside id="separator-sidebar" className="side-bar h-screen transition-transform -translate-x-full sm:translate-x-0 border-r dark:border-gray-800 z-[100]" aria-label="Sidebar">
+        <aside id="separator-sidebar" className="side-bar h-screen transition-transform -translate-x-full sm:translate-x-0 border-r dark:border-gray-800 z-[100] shadow-lg" aria-label="Sidebar">
             <div className="h-full flex flex-col justify-between px-3 pb-4 pt-7 overflow-y-auto bg-white dark:bg-slate-900">
                 <div>
                     <div className="flex justify-start mb-12 ml-2">
-                        <Image src={logo} class="" width="150" height={20} alt="Setly Logo" />
+                        <Image src={logo} className="" width="150" height={20} alt="Setly Logo" />
                     </div>
 
                     <button className="mb-8 p-2 rounded-md relative w-full flex justify-between items-center hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
@@ -30,15 +42,15 @@ function SideBar({ toggleMode, darkSide }) {
                             <div className="">
                                 <Image className="rounded-full h-10 w-10" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" 
                                 width={85} height={85} alt="" />
-                                <span class="bottom-2 left-9 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
+                                <span className="bottom-2 left-9 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                             </div>
                             <div className="flex flex-col items-start justify-start text-clip overflow-hidden">
                                 <h3 className="text-gray-500 dark:text-gray-300  text-sm font-bold">Saviour Essien</h3>
-                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300  truncate">80/1000 Credits</span>
+                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300  truncate">{ user?.points }/{ process.env.NEXT_PUBLIC_SETLY_POINTS } Credits</span>
                             </div>
                         </div>
                         <BellIcon className="h-7 w-7 text-gray-500 dark:text-gray-300" />
-                        <span class="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-red-600 border-white rounded-full top-1 right-1 dark:border-gray-900">20</span>
+                        <span className="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-red-600 border-white rounded-full top-1 right-1 dark:border-gray-900">20</span>
                     </button>
 
 
@@ -68,7 +80,7 @@ function SideBar({ toggleMode, darkSide }) {
                             <Link href="/dashboard/inbox" className={`flex items-center p-2  group ${router.pathname === "/dashboard/inbox" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <InboxIcon className="h-6 w-6 mr-3 group-hover:text-white" />
                                 <span className="flex-1 whitespace-nowrap group-hover:text-white">Inbox</span>
-                                <span class="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-white bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN dark:bg-white rounded-full dark:group-hover:bg-white hover:text-white">3</span>
+                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-white bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN dark:bg-white rounded-full dark:group-hover:bg-white hover:text-white">3</span>
                             </Link>
                         </li>
 
@@ -98,10 +110,10 @@ function SideBar({ toggleMode, darkSide }) {
                     </li>
 
                     <li className="flex justify-between items-center">
-                        <Link href="/dashboard/settings" className="flex items-center p-2 text-gray-600 dark:text-gray-300 rounded-lg hover:text-white setly-bg-hover group">
+                        <button className="flex items-center p-2 text-gray-600 dark:text-gray-300 rounded-lg hover:text-gray-500 dark:hover:text-gray-300 setly-bg-hover group" onClick={logout}>
                             <LogoutIcon className="h-6 w-6 mr-3" />
                             <span>Logout</span>
-                        </Link>
+                        </button>
                         <button onClick={toggleMode}>
                             { darkSide ? <SunIcon className="h-7 w-7 text-gray-200" /> : <MoonIcon className="h-7 w-7 text-gray-500" /> }
                         </button>

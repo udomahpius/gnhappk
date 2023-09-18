@@ -4,9 +4,9 @@ import Link from "next/link";
 import { Button } from ".";
 
 
-function Profile() {
+function Profile({ user }) {
     return (
-        <div className="h-full">
+        <div className="h-full bg-white">
             <div className="flex justify-between items-center mb-7">
                 <div>
                     <h3 className="mb-1 text-xl">General Details</h3>
@@ -26,12 +26,12 @@ function Profile() {
                             <div className=" mb-5">
                                 <label className="mb-2 flex">Full Name</label>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="border rounded-lg p-4 flex gap-2">
+                                    <div className="border rounded-lg px-4 flex items-center gap-2 h-14">
                                         <UserCircleIcon className="h-6 w-6 text-gray-400" />
-                                        <input type="text" placeholder="Enter first name" className="w-full flex items-center h-full outline-none" />
+                                        <input type="text" placeholder="Enter first name" className="w-full flex h-full outline-none" defaultValue={user?.first_name} />
                                     </div>
                                     <div className="border rounded-lg px-4">
-                                        <input type="text" placeholder="Enter last name" className="w-full flex items-center h-full outline-none" />
+                                        <input type="text" placeholder="Enter last name" className="w-full flex items-center h-full outline-none" defaultValue={user?.last_name} />
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@ function Profile() {
                                 <div className="border rounded-lg px-4 flex justify-between h-14">
                                     <div className="flex gap-3 items-center w-full">
                                         <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none" />
+                                        <input type="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none" defaultValue={user?.email} />
                                     </div>
                                     <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
                                 </div>
@@ -52,29 +52,26 @@ function Profile() {
                     <div className="rounded-lg bg-white py-5 shadow-lg border border-gray-200">
                         <h4 className="border-b pb-3 px-6 mb-6">Company Information</h4>
                         <form className="px-6">
-                            <div className=" mb-5">
+                            <div className="mb-5">
                                 <label className="mb-2 flex">Company Name</label>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="border rounded-lg p-4 flex gap-2">
-                                        <OfficeBuildingIcon className="h-6 w-6 text-gray-400" />
-                                        <input type="text" placeholder="Enter first name" className="w-full flex items-center h-full outline-none" />
-                                    </div>
-                                    <div className="border rounded-lg p-4">
-                                        <input type="text" placeholder="Enter last name" className="w-full flex items-center h-full outline-none" />
+                                <div className="border rounded-lg px-4 flex justify-between h-14">
+                                    <div className="flex gap-3 items-center w-full">
+                                        <AtSymbolIcon className="h-5 w-5 text-gray-600" />
+                                        <input type="text" name="company" placeholder="Enter company name" className="w-full flex items-center h-full outline-none" defaultValue={user?.company} />
                                     </div>
                                 </div>
                             </div>
 
                             <div>
                                 <label className="mb-2 flex">Industry</label>
-                                <div className="border rounded-lg p-4 flex justify-between items-center">
-                                    <div className="flex gap-3 items-center">
+                                <div className="border rounded-lg px-4 flex justify-between h-14">
+                                    <div className="flex gap-3 items-center w-full">
                                         <BriefcaseIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="email" placeholder="Enter industry" className="w-full flex items-center h-full outline-none" />
+                                        <input type="text" name="industry" placeholder="Enter industry" className="w-full flex items-center h-full outline-none" defaultValue={user?.industry} />
                                     </div>
-                                    <CheckCircleIcon className="h-5 w-5 text-green-400" />
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>
@@ -83,21 +80,18 @@ function Profile() {
 
                 <div className="col-span-2">
                     <div className="bg-white shadow-lg rounded-lg py-5 mb-8 border border-gray-200">
-                        <h4 className="border-b pb-3 px-6 mb-5">Your Photo</h4>
-                        <div className="px-5 mb-7 flex gap-4 items-start hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
+                        <h4 className="border-b pb-3 px-6 mb-5">Your Details</h4>
+                        <div className="px-5 mb-7 flex gap-4 items-center hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                             <Image className="rounded-full h-14 w-14" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" 
                                 width={85} height={85} alt="" />
-                            <div className="flex flex-col items-start justify-start">
-                                <h3 className="text-slate-700 mb-2">Edit your photo</h3>
-                                <div className="flex gap-4">
-                                    <button className="text-sm text-red-400">Delete</button>
-                                    <button className="text-sm text-blue-600">Update</button>
-                                </div>
+                            <div className="flex flex-col items-start justify-center">
+                                <h3 className="text-slate-700 mb-1">{ user?.first_name } { user?.last_name}</h3>
+                                <p>{ user?.email }</p>
                             </div>
                         </div>
 
 
-                        <div class="flex items-center justify-center w-full px-5">
+                        {/* <div class="flex items-center justify-center w-full px-5">
                             <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-white hover:bg-gray-100">
                                 <div class="flex flex-col items-center justify-center pt-5 pb-6">
                                     <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
@@ -108,7 +102,7 @@ function Profile() {
                                 </div>
                                 <input id="dropzone-file" type="file" class="hidden" />
                             </label>
-                        </div> 
+                        </div>  */}
                     </div>
 
 

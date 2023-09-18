@@ -2,9 +2,9 @@ import { noAuthAPI } from "../config/api";
 
 const ProspectService = {
 	fetchProspects: async () => {
-        const response = await noAuthAPI.get("/prospect");
+        const response = await noAuthAPI.get("/prospects");
         return response;
-	}
+        }
 }
 
 

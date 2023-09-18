@@ -39,9 +39,10 @@ const Login = ({ auth }) => {
             const response = await AuthService.login(values.email, values.password);
             console.log(response);
             toast.success(response.data.message);
-            setUser(response.data.data)
+            setUser(response.data.data);
+            localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
-            router.replace("/dashboard/inbox")
+            router.replace("/dashboard")
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);

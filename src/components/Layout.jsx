@@ -5,7 +5,7 @@ import { Montserrat } from "next/font/google";
 const inter = Montserrat({ subsets: ['latin'] });
 
 
-function Layout({ children }) {
+function Layout({ children, user }) {
     const [darkToggle, setDarkToggle] = useState(false);
     const [colorTheme, setTheme] = useTheme();
     const [darkSide, setDarkSide] = useState(colorTheme === "light" ? true : false);
@@ -30,7 +30,7 @@ function Layout({ children }) {
         // </>
         <div className={`${inter.className} bg-gray-200 dark:bg-slate-600 wrapper overflow-y-hidden h-screen transition duration-200 ${darkSide}`}>
             {/* <Nav /> */}
-            <SideBar toggleMode={toggleDarkMode} darkSide={darkSide} />
+            <SideBar toggleMode={toggleDarkMode} darkSide={darkSide} user={user} />
             <article className="relative h-screen overflow-y-auto w-full bg-gray-200 dark:bg-slate-600 side-bar article p-0">
                 { children }
             </article>

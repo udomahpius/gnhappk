@@ -7,7 +7,7 @@ import { Button, Toggle } from ".";
 
 function NotificationTab() {
     return (
-        <div className="h-full">
+        <div className="h-full w-full">
             <div className="flex justify-between items-center mb-7">
                 <div>
                     <h3 className="mb-1 text-xl">Notification Permissions</h3>
