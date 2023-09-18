@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { ConnectLinkedin, InboxModal, Layout, Pagination, ProspectsList, SubscriptionPayment, TopNav } from "@/components/index.js";
 import Image from "next/image";
 import ProspectService from "@/services/ProspectService";
@@ -20,7 +20,9 @@ function Prospects({ auth }) {
     const [checked, setChecked] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const [prospectsPerPage] = useState(7);
-    const [inputValue, setInputValue] = useState("")
+    const [inputValue, setInputValue] = useState("");
+    const [isCheckAll, setIsCheckAll] = useState(false);
+    const [isCheck, setIsCheck] = useState([]);
     
     
     const router = useRouter();
@@ -29,22 +31,30 @@ function Prospects({ auth }) {
   const indexOfLastPost = currentPage * prospectsPerPage;
   const indexOfFirstPost = indexOfLastPost - prospectsPerPage;
   const currentProspects = prospects.slice(indexOfFirstPost, indexOfLastPost);
-  const [initialList] = useState(prospects);
   const [filteredList, setFilteredList] = useState(currentProspects);
 
-    const handleCheckAllChange = (e) => {
-        setChecked(
-            e.target.checked ? countries.map((c) => c.countryName) : []
-        );
-    };
 
-    const handleCountryChange = (e, c) => {
-        setChecked((prevChecked) =>
-        e.target.checked
-            ? [...prevChecked, c.countryName]
-            : prevChecked.filter((item) => item !== c.countryName)
-        );
-    };
+    const handleSelectAll = e => {
+        setIsCheckAll(!isCheckAll);
+        setIsCheck(currentProspects.map(li => li._id));
+        if (isCheckAll) {
+          setIsCheck([]);
+        }
+
+    }
+
+    const handleClick = e => {
+        const { id, checked } = e.target;
+        setIsCheck([...isCheck, id]);
+        if (!checked) {
+          setIsCheck(isCheck.filter(item => item !== id));
+        }
+
+        console.log(id);
+    }
+
+    //console.log(isCheck);
+
 
     useEffect(() => {
         fetchProspects();
@@ -81,7 +91,7 @@ function Prospects({ auth }) {
     const fetchProspects = async () => {
         setDisabled(true);   
         try {
-            const response = await ProspectService.fetchProspects();
+            const response = await ProspectService.listProspects();
             console.log(response);
             //toast.success(response.data.message);
             setProspects(response.data.data);
@@ -127,8 +137,8 @@ function Prospects({ auth }) {
                             <tr>
                                 <th scope="col" className="p-4">
                                     <div className="flex items-center">
-                                        <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
-                                        onChange={handleCheckAllChange}
+                                        <input id="selectAll" name="selectAll" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                                        onChange={handleSelectAll} checked={isCheckAll}
 
                                         />
                                         <label htmlFor="checkbox-all-search" className="sr-only">checkbox</label>
@@ -157,7 +167,7 @@ function Prospects({ auth }) {
                                 </th>
                             </tr>
                         </thead>
-                        <ProspectsList prospects={inputValue.length > 0 ? filteredList : currentProspects} />
+                        <ProspectsList prospects={inputValue.length > 0 ? filteredList : currentProspects} checked={isCheck} handleCheckChange={handleClick} />
                     </table>
                     <Pagination
                         prospectsPerPage={prospectsPerPage}

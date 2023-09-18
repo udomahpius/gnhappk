@@ -1,35 +1,72 @@
-import { Button, ProspectModalTabs } from "@/components";
+import { Button, Labels, ProspectModalTabs } from "@/components";
 import { withProtected } from "@/hooks/routes";
-import { MailIcon } from "@heroicons/react/outline";
+import ProspectService from "@/services/ProspectService";
+import { MailIcon, TagIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
+//import { useRouter, useParams } from "next/navigation";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 
 function Prospect() {
-    return (
-        <div className="inbox-wrapper w-full h-full transform bg-white dark:bg-slate-900 text-left align-middle  transition-all">
-            <div className="messages w-full h-full pt-6">
-                <ProspectModalTabs />
-            </div>
-
-            <aside className="side-profile h-full border-r dark:border-slate-700">
-                <div class="w-full max-w-sm pt-2 mb-6 px-6">
-                    <div class="flex flex-col items-center pb-8">
-                        <Image class="w-20 h-20 mb-3 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
-                        <h5 class="text-xl font-medium text-gray-900 py-0 mb-0">John Doe</h5>
-                        <span class="text-sm text-yellow-500 capitalize">Pending</span>
-
-                        <div className="my-3">
-                            <Link className="h-9 w-9 border border-setly-200 rounded-full flex items-center justify-center cursor-pointer" href="/dashboard/inbox">
-                                <MailIcon className="h-5 w-5 text-setly-300" />
-                            </Link>
-                        </div>
+  const [prospect, setProspect] = useState({});
+  const [disabled, setDisabled] = useState(false);
+  //const router = useRouter();
+  const { query } = useRouter();
 
 
-                        <div className="flex gap-1 items-center">
-                            <span class="w-2 h-2 flex bg-green-400 rounded-full"></span>
-                            <span className="text-gray-500 dark:text-gray-300 text-sm">Last activity : 2 Jan 2020 at 09:00 AM</span>
-                        </div>
+  useEffect(() => {
+    fetchProspects(query.handle);
+    console.log(query.handle);
+  }, [query]);
+
+
+  const fetchProspects = async (handle) => {
+    setDisabled(true);   
+    try {
+      const response = await ProspectService.fetchProspect(handle);
+      console.log(response);
+          //toast.success(response.data.message);
+      setProspect({...response.data.data});
+      setDisabled(false);
+    } catch (error) {
+      console.log(error);
+      //toast.error(error.response.data.message);
+      setDisabled(false);
+    }
+  }
+  return (
+    <div className="inbox-wrapper overflow-hidden w-full h-screen transform bg-white dark:bg-slate-900 text-left align-middle transition-all">
+      <ProspectModalTabs />
+
+      <aside className="side-profile h-full border-r dark:border-slate-700">
+        <div class="w-full max-w-sm pt-2 mb-6 px-6">
+          <div class="flex flex-col items-center pb-8">
+            <Image class="w-20 h-20 mb-3 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
+              <h5 class="text-xl font-medium text-gray-900 py-0 mb-0">{ prospect?.name }</h5>
+              <span class="text-sm text-[#da45da] capitalize">Pending</span>
+
+              <div className="my-3">
+                <Link className="px-4 py-1 border border-setly-200 rounded-full flex gap-2 items-center justify-center cursor-pointer" href="/dashboard/inbox">
+                  <MailIcon className="h-5 w-5 text-setly-300" />
+                  <span className="text-gray-700 text-sm">Send Message</span>
+                </Link>
+              </div>
+
+              <div className="flex  items-center justify-between mb-2 w-full">
+                <div className="flex gap-1 items-center">
+                  <TagIcon className="h-4 w-4 text-amber-500" />
+                  <span className="text-amber-500 text-sm">Label</span> 
+                </div>
+                <Labels />
+              </div>
+
+
+              <div className="flex gap-1 items-center">
+                <span class="w-2 h-2 flex bg-green-400 rounded-full"></span>
+                <span className="text-gray-500 dark:text-gray-300 text-xs">Last activity : 2 Jan 2020 at 09:00 AM</span>
+              </div>
                             {/* <div className="flex gap-3 items-center mt-3">
                               <div className="h-10 w-10 bg-gray-100 flex items-center justify-center rounded-md">
                                 <OfficeBuildingIcon className="h-5 w-5" />
@@ -38,24 +75,22 @@ function Prospect() {
                                 <span class="text-sm text-black font-bold">Software Engineer</span>
                                 <span class="text-sm text-gray-500">Los Angeles</span>
                               </div>
-                            </div> */}
-
-                            
-                    </div>
+                            </div> */}      
+          </div>
 
                     <div className="mb-4">
                         <h5 className="text-gray-400 dark:text-gray-400 text-sm">Job Title</h5>
-                        <span className="text-gray-600 dark:text-gray-300 font-medium">Content Writer</span>
+                        <span className="text-gray-600 dark:text-gray-300 font-medium">{ prospect?.job_title }</span>
                     </div>
 
                     <div className="mb-4">
                         <h5 className="text-gray-400 dark:text-gray-400 text-sm">Email</h5>
-                        <span className="text-gray-600 dark:text-gray-300 font-medium">joremebell@gmail.com</span>
+                        <span className="text-gray-600 dark:text-gray-300 font-medium">{ prospect?.email === null && "No Email" }</span>
                     </div>
 
                     <div className="mb-4">
                         <h5 className="text-gray-400 dark:text-gray-400 text-sm">Phone</h5>
-                        <span className="text-gray-600 dark:text-gray-300 font-medium">(405)555-1230</span>
+                        <span className="text-gray-600 dark:text-gray-300 font-medium">{ prospect?.phone === null && "No Phone" }</span>
                     </div>
 
                     <div className="mb-7">

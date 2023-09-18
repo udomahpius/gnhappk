@@ -1,17 +1,21 @@
 import { MailIcon, TrashIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const ProspectItem = ({ prospect }) => {
+const ProspectItem = ({ prospect, handleCheckChange, checked }) => {
+    const router = useRouter();
+
   return (
     <tr className="bg-white dark:bg-slate-900 border-b dark:border-slate-700 hover:bg-gray-100 dark:hover:bg-slate-600 cursor-pointer group">
         <td className="w-4 p-4">
             <div className="flex items-center">
-                <input id="checkbox-table-search-1" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input name={prospect._id} id={prospect._id} type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" 
+                onChange={handleCheckChange} checked={checked} />
                 <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
             </div>
         </td>
-        <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap" onClick={() => openModal(prospect)}>
+        <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap" onClick={() => router.push(`/dashboard/prospects/${prospect.handle}`)}>
             <Image className="w-10 h-10 rounded-full" width={100} height={100} src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Hello" />
             <div className="pl-3 group">
                 <div className="dark:group-hover:text-gray-200 text-base font-semibold text-gray-600 dark:text-gray-200">{ prospect.name }</div>

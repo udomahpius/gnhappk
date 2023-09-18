@@ -16,7 +16,7 @@ function SideBar({ toggleMode, darkSide, user }) {
 
     useEffect(() => {
         console.log(darkSide);
-    });
+    }, [darkSide]);
 
     const logout = async () => {
         try {
@@ -80,7 +80,7 @@ function SideBar({ toggleMode, darkSide, user }) {
                             <Link href="/dashboard/inbox" className={`flex items-center p-2  group ${router.pathname === "/dashboard/inbox" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <InboxIcon className="h-6 w-6 mr-3 group-hover:text-white" />
                                 <span className="flex-1 whitespace-nowrap group-hover:text-white">Inbox</span>
-                                <span className="inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium text-white bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN dark:bg-white rounded-full dark:group-hover:bg-white hover:text-white">3</span>
+                                <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium ${router.pathname === "/dashboard/inbox" ? "text-white bg-black" : "text-white dark:text-gray-300 bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}  dark:bg-white rounded-full dark:group-hover:bg-white hover:text-white`}>3</span>
                             </Link>
                         </li>
 

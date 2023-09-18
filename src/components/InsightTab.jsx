@@ -3,7 +3,7 @@ import { Button } from ".";
 
 function InsightTab() {
     return (
-        <div className="border-2 h-[600px]">
+        <div className="border-2 h-[100vh]">
             <div className="flex flex-col h-full justify-center items-center">
                 <Button text="Generate Insight" background="black" />
             </div>

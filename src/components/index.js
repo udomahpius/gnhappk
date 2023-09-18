@@ -14,6 +14,7 @@ export { default as Nav } from "./Nav";
 export { default as SideBar } from "./SideBar";
 export { default as TopMenu} from "./TopMenu";
 export { default as DropDown} from "./DropDown";
+export { default as Labels} from "./Labels";
 export { default as TopNav} from "./TopNav";
 export { default as Profile } from "./Profile";
 export { default as NotificationTab } from "./NotificationTab";
@@ -22,7 +23,7 @@ export { default as BillingTab } from "./BillingTab";
 export { default as InsightTab } from "./InsightTab";
 export { default as TaskTab } from "./TaskTab";
 export { default as WorkflowTab } from "./WorkflowTab";
-export { default as MessagingTab } from "./MessagingTab";
+export { default as NoteTab } from "./NoteTab";
 
 export { default as ProspectItem } from "./prospects/ProspectItem";
 export { default as ProspectsList } from "./prospects/ProspectsList";

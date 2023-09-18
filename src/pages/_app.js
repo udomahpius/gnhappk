@@ -1,4 +1,5 @@
-import '@/styles/globals.css';
+import "@/styles/globals.css";
+import "react-quill/dist/quill.snow.css";
 import { AuthProvider } from "@/hooks/auth";
 import AppLayout from "@/layout/AppLayout";
 import AuthStateChanged from "@/layout/AuthStateChanged";
