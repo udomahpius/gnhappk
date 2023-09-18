@@ -32,7 +32,8 @@ function IntegrationTab() {
                     <div className="border border-gray-200 pt-4 pb-9 px-3 rounded-xl bg-white shadow">
                         <div className="flex justify-between items-center mb-2">
                             <Image src={slack} width="35" height="20" alt="Slack Icon" />
-                            <Toggle />
+                            <h5 className="font-semibold">Coming Soon</h5>
+                            {/* <Toggle /> */}
                         </div>
                         <p className="mb-2">Slack</p>
                         <p className="text-gray-500 font-normal text-sm">Send notifications to channels and create projects from messages</p>
@@ -41,7 +42,8 @@ function IntegrationTab() {
                     <div className="border border-gray-200 pt-4 pb-9 px-3 rounded-xl bg-white shadow">
                         <div className="flex justify-between items-center mb-2">
                             <Image src={maze} width="40" height="20" alt="Slack Icon" className="rounded-full" />
-                            <Toggle />
+                            <h5 className="font-semibold">Coming Soon</h5>
+                            {/* <Toggle /> */}
                         </div>
                         
                         <p className="mb-2">Maze</p>
@@ -51,7 +53,8 @@ function IntegrationTab() {
                     <div className="border border-gray-200 pt-4 pb-9 px-3 rounded-xl bg-white shadow">
                         <div className="flex justify-between items-center mb-2">
                             <Image src={zapier} width="35" height="20" alt="Slack Icon" />
-                            <Toggle />
+                            <h5 className="font-semibold">Coming Soon</h5>
+                            {/* <Toggle /> */}
                         </div>
                         <p className="mb-2">Zapier</p>
                         <p className="text-gray-500 font-normal text-sm">Zapier help you to build custom automation and integration with other apps.</p>
@@ -61,7 +64,8 @@ function IntegrationTab() {
                     <div className="border border-gray-200 pt-4 pb-9 px-3 rounded-xl bg-white shadow">
                         <div className="flex justify-between items-center mb-2">
                             <Image src={hubspot} width="35" height="20" alt="Slack Icon" />
-                            <Toggle />
+                            <h5 className="font-semibold">Coming Soon</h5>
+                            {/* <Toggle /> */}
                         </div>
                         <p className="mb-2">Hubspot</p>
                         <p className="text-gray-500 font-normal text-sm">Send notifications to channels and create projects from messages</p>
@@ -70,7 +74,8 @@ function IntegrationTab() {
                     <div className="border border-gray-200 pt-4 pb-9 px-3 rounded-xl bg-white shadow">
                         <div className="flex justify-between items-center mb-2">
                             <Image src={salesforce} width="50" height="20" alt="Slack Icon" />
-                            <Toggle />
+                            <h5 className="font-semibold">Coming Soon</h5>
+                            {/* <Toggle /> */}
                         </div>
                         <p className="mb-2">Salesforce</p>
                         <p className="text-gray-500 font-normal text-sm">Product research should&apos;t feel slow or complicated. Collect actionable user insights make decisons in hours</p>
@@ -79,7 +84,8 @@ function IntegrationTab() {
                     <div className="border border-gray-200 pt-4 pb-9 px-3 rounded-xl bg-white shadow">
                         <div className="flex justify-between items-center mb-2">
                             <Image src={mailchimp} width="35" height="20" alt="Slack Icon" />
-                            <Toggle />
+                            <h5 className="font-semibold">Coming Soon</h5>
+                            {/* <Toggle /> */}
                         </div>
                         <p className="mb-2">Mailchimp</p>
                         <p className="text-gray-500 font-normal text-sm">Zapier help you to build custom automation and integration with other apps.</p>

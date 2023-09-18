@@ -66,8 +66,6 @@ function Settings({ auth }) {
                     </Tab.List>
 
                     
-
-                    { user.status === "activated" &&
                     <Tab.Panels className="mt-2 h-full bg-gray-50">
                     {Object.values(categories).map((posts, idx) => (
                         <Tab.Panel
@@ -91,14 +89,11 @@ function Settings({ auth }) {
                         </ul>
                         </Tab.Panel>
                     ))}
-                    </Tab.Panels> }
+                    </Tab.Panels> 
                     
                 </Tab.Group>
                 
             </div>
-            { user.status === "onboarding" && <ConnectLinkedin /> }
-
-            { user.status === "default_incomplete" && <SubscriptionPayment /> }
         </Layout>
     );
 }

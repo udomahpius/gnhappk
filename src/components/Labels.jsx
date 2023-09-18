@@ -23,7 +23,7 @@ const Labels = ({ status }) => {
     <div className="relative">
       <button id="dropdownActionButton" data-dropdown-toggle="dropdownAction" className="inline-flex text-amber-400 items-center text-sm dark:text-white bg-white dark:bg-slate-900  focus:outline-none hover:bg-gray-100 font-medium rounded-lg px-3 py-1.5 " type="button" onClick={toggle}>
         <span className="sr-only ">Actions button</span>
-          Mark as Lead
+          Edit Label
         <svg className="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
           <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
         </svg>    

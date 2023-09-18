@@ -56,8 +56,11 @@ function Prospect() {
 
               <div className="flex  items-center justify-between mb-2 w-full">
                 <div className="flex gap-1 items-center">
-                  <TagIcon className="h-4 w-4 text-amber-500" />
-                  <span className="text-amber-500 text-sm">Label</span> 
+                  {/* <TagIcon className="h-4 w-4 text-amber-500" /> */}
+                  <div className="flex flex-col text-xs">
+                    <span>Current Label</span>
+                    <span className="text-amber-500 text-sm">Standard</span> 
+                  </div>
                 </div>
                 <Labels />
               </div>

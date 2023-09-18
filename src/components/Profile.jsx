@@ -12,10 +12,6 @@ function Profile({ user }) {
                     <h3 className="mb-1 text-xl">General Details</h3>
                     <p className="text-gray-500">Update your photo and personal details here</p>
                 </div>
-                <div className="flex gap-4">
-                    <Button text="Cancel" background="red" disable={false} disabled={false} />
-                    <Button text="Save" background="bg-gradient-to-r from-green-400 to-blue-500" disable={false} disabled={false} />
-                </div>
             </div>
 
             <div className="grid grid-cols-6 h-full gap-4">
@@ -28,10 +24,10 @@ function Profile({ user }) {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="border rounded-lg px-4 flex items-center gap-2 h-14">
                                         <UserCircleIcon className="h-6 w-6 text-gray-400" />
-                                        <input type="text" placeholder="Enter first name" className="w-full flex h-full outline-none" defaultValue={user?.first_name} />
+                                        <input type="text" disabled placeholder="Enter first name" className="w-full flex h-full outline-none" defaultValue={user?.first_name} />
                                     </div>
                                     <div className="border rounded-lg px-4">
-                                        <input type="text" placeholder="Enter last name" className="w-full flex items-center h-full outline-none" defaultValue={user?.last_name} />
+                                        <input type="text" disabled placeholder="Enter last name" className="w-full flex items-center h-full outline-none" defaultValue={user?.last_name} />
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +37,7 @@ function Profile({ user }) {
                                 <div className="border rounded-lg px-4 flex justify-between h-14">
                                     <div className="flex gap-3 items-center w-full">
                                         <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none" defaultValue={user?.email} />
+                                        <input type="email" disabled placeholder="Enter email" className="w-full flex items-center h-full outline-none" defaultValue={user?.email} />
                                     </div>
                                     <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" />
                                 </div>
@@ -57,7 +53,7 @@ function Profile({ user }) {
                                 <div className="border rounded-lg px-4 flex justify-between h-14">
                                     <div className="flex gap-3 items-center w-full">
                                         <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="text" name="company" placeholder="Enter company name" className="w-full flex items-center h-full outline-none" defaultValue={user?.company} />
+                                        <input type="text" disabled name="company" placeholder="Enter company name" className="w-full flex items-center h-full outline-none" defaultValue={user?.company} />
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +63,7 @@ function Profile({ user }) {
                                 <div className="border rounded-lg px-4 flex justify-between h-14">
                                     <div className="flex gap-3 items-center w-full">
                                         <BriefcaseIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="text" name="industry" placeholder="Enter industry" className="w-full flex items-center h-full outline-none" defaultValue={user?.industry} />
+                                        <input type="text" disabled name="industry" placeholder="Enter industry" className="w-full flex items-center h-full outline-none" defaultValue={user?.industry} />
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +110,9 @@ function Profile({ user }) {
                         <p className="mb-2">Linkedin</p>
 
                         <div className="text-sm">
-                            <span> You have connected your Linkedin account. </span>
+                        {/* AQVUgl1K4TvXyZ71Zr3hFodZCAwA2EpzS3OwJXShoCFBtS0etS6MxVLrzCnty5LbkCsq1yQ5j */}
+                            { user?.LINKEDIN_ACCESS_TOKEN != null && <span> You have connected your Linkedin account. </span> }
+                            { user?.LINKEDIN_ACCESS_TOKEN == null && <span> You need to connect your Linkedin account. </span> }
                             <Link href="/dashbooard" className="text-blue-500">Click here to learn more.</Link>
                         </div>
 
