@@ -20,6 +20,7 @@ export { default as NotificationTab } from "./NotificationTab";
 export { default as IntegrationTab } from "./IntegrationTab";
 export { default as BillingTab } from "./BillingTab";
 export { default as InsightTab } from "./InsightTab";
+export { default as TaskTab } from "./TaskTab";
 export { default as WorkflowTab } from "./WorkflowTab";
 export { default as MessagingTab } from "./MessagingTab";
 
