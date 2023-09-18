@@ -10,7 +10,7 @@ function Inbox({ auth }) {
   return (
     <>
       <Layout user={user}>
-        <TopNav />
+        <TopNav placeholder="Search inbox" />
         { user.status === "onboarding" && <ConnectLinkedin /> }
 
         { user.status === "default_incomplete" && <SubscriptionPayment /> }

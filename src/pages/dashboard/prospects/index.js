@@ -34,7 +34,7 @@ function Prospects({ auth }) {
 
     const handleCheckAllChange = (e) => {
         setChecked(
-        e.target.checked ? countries.map((c) => c.countryName) : []
+            e.target.checked ? countries.map((c) => c.countryName) : []
         );
     };
 
@@ -75,8 +75,8 @@ function Prospects({ auth }) {
 
 
 
-  // Change page
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+    // Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     const fetchProspects = async () => {
         setDisabled(true);   
