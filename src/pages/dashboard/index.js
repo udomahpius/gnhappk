@@ -8,7 +8,7 @@ import { Button, ConnectLinkedin, DropDown, Layout, Nav, SideBar, SubscriptionPa
 import Image from "next/image";
 import TopMenu from "@/components/TopMenu";
 import { Montserrat } from "next/font/google";
-import { ChevronRightIcon } from "@heroicons/react/outline";
+import { LinkIcon, MailOpenIcon, CollectionIcon, DocumentDuplicateIcon } from "@heroicons/react/outline";
 import Link from "next/link";
 import {
     CircularProgressbar,
@@ -100,101 +100,95 @@ function Dashboard({ auth }) {
 
             { user.status === "default_incomplete" && <SubscriptionPayment /> }
 
-            { user.status === "activated" && <div className="mb-24 bg-white dark:bg-slate-900 h-full pt-12 px-8 side-body">
-                <div className="mx-auto w-[60%] flex flex-col justify-center items-center mb-20">
-                    <h2 className="font-bold text-2xl dark:text-gray-100">Current Level</h2>
-                    <p className="font-light mb-6 dark:text-gray-100">Beginner Lvl <span className="font-bold">1</span></p>
+            { user.status === "activated" && <div className="pb-4 dark:bg-slate-900 h-full pt-4 px-8 side-body">
 
-                    <div className="flex justify-between gap-6 w-full items-center mb-8 mt-0">
-                        <div className="text-center">
-                            <h5 className="font-semibold dark:text-gray-100">lvl 1</h5>
-                            <span className="text-sm dark:text-gray-100">Beginner</span>
-                        </div>
-                        <div className="h-[30px] w-full bg-gray-300">
-                            <div className="h-full bg-setly-200 text-right" style={{ width: `${progress}%`}}>
-                                {/* <span className="h-8 w-8 border-4 border-white rounded-full bg-setly-300 absolute bottom-0" style={{ left: `${progress + 65}%`}}></span> */}
-                                <span className="p-8 text-white font-bold">{`${progress}%`}</span>
+                <div className="mx-auto w-[65%] px-12 py-4 bg-white flex flex-col justify-center items-center mb-12">
+                        <h2 className="text-2xl text-gray-600 dark:text-gray-100">Current Level</h2>
+                        <p className="font-semibold mb-6 dark:text-gray-100">Beginner Lvl <span className="font-bold">1</span></p>
+
+                        <div className="flex justify-between gap-6 w-full items-center mb-8 mt-0">
+                            <div className="text-center">
+                                <h5 className="font-semibold dark:text-gray-100">lvl 1</h5>
+                                <span className="text-sm dark:text-gray-100">Beginner</span>
+                            </div>
+                            <div className="h-[30px] w-full bg-gray-300">
+                                <div className="h-full bg-setly-200 text-right" style={{ width: `${progress}%`}}>
+                                    {/* <span className="h-8 w-8 border-4 border-white rounded-full bg-setly-300 absolute bottom-0" style={{ left: `${progress + 65}%`}}></span> */}
+                                    <span className="p-8 text-white font-bold">{`${progress}%`}</span>
+                                </div>
+                            </div>
+                            <div className="text-center">
+                                <h5 className="font-semibold dark:text-gray-100">lvl 2</h5>
+                                <span className="text-sm dark:text-gray-100">Advanced</span>
                             </div>
                         </div>
-                        <div className="text-center">
-                            <h5 className="font-semibold dark:text-gray-100">lvl 2</h5>
-                            <span className="text-sm dark:text-gray-100">Advanced</span>
-                        </div>
-                    </div>
 
-                    <div className="bg-[#4C58F0] px-20 py-2 text-center rounded-lg bg-opacity-80">
-                        <p className="text-white text-sm">Next Price: lvl <span className="font-bold">5</span></p>
-                        <p className="text-gray-100">$10 Gift Card to Starbucks</p>
-                    </div>
-                    
+                        <div className="bg-[#4C58F0] px-20 py-2 text-center rounded-lg bg-opacity-80">
+                            <p className="text-white text-sm">Next Price: lvl <span className="font-bold">5</span></p>
+                            <p className="text-gray-100">$10 Gift Card to Starbucks</p>
+                        </div>
                 </div>
 
-                <div className={`${inter.className} grid grid-cols-2 gap-12 mb-5 dark:text-gray-100`}>
-                    <div className="relative text-center">
+                <div className="">
+                    {/* <div className="grid grid-cols-4 gap-4 mb-8">
+                        <div class="px-6 py-4 bg-white rounded-lg shadow">
+                            <LinkIcon className="h-8 w-8 text-slate-700 mb-1" />
+                            <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                            <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Connection Request Sent</h5>
+                        </div>
+
+                        <div class="px-6 py-4 bg-white rounded-lg shadow">
+                            <MailOpenIcon className="h-8 w-8 text-slate-700 mb-1" />
+                            <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                            <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Message Sent</h5>
+                        </div>
+
+                        <div class="px-6 py-4 bg-white rounded-lg shadow">
+                            <CollectionIcon className="h-8 w-8 text-slate-700 mb-1" />
+                            <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                            <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Comments Made </h5>
+                        </div>
+
+                        <div class="px-6 py-4 bg-white rounded-lg shadow">
+                            <DocumentDuplicateIcon className="h-8 w-8 text-slate-700 mb-1" />
+                            <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                            <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Posts Made </h5>
+                        </div>
+                    </div> */}
+                </div>
+
+                <div className="grid grid-cols-2 gap-12  dark:text-gray-100">
+                    <div className="relative  bg-white drop-shadow-lg rounded-lg px-6 py-4">
                         <h2 className="font-semibold text-center text-lg">Your Daily Goal Progression</h2>
                         <p className="text-sm mb-7 text-center">How are you doing today? have you reached your goals?</p>
-                        <div className="flex justify-center gap-12 items-center mb-5">
-                            <h5 className="font-semibold">Connection Request Sent 7/10</h5>
-                            <div className="" style={{ width: 70, height: 70 }}>
-                                <CircularProgressbar
-                                    value={progress}
-                                    text={`${progress}%`}
-                                    styles={buildStyles({
-                                        strokeLinecap: "butt",
-                                        height: "100px", 
-                                        pathColor: "#3B82F6"
-                                    })}
-                                />
+                        <div className="grid grid-cols-2 gap-4">
+                            <div class="px-6 py-4 bg-white rounded-lg shadow-xl">
+                                <LinkIcon className="h-8 w-8 text-slate-700 mb-1" />
+                                <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                                <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Connection Request Sent</h5>
                             </div>
-                        </div>
 
-                        <div className="flex justify-start gap-12 items-center mb-5">
-                            <h5 className="font-semibold">InMails Sent 7/10</h5>
-                            <div className="" style={{ width: 70, height: 70 }}>
-                                <CircularProgressbar
-                                    value={progress}
-                                    text={`${progress}%`}
-                                    styles={buildStyles({
-                                        strokeLinecap: "butt",
-                                        height: "100px",
-                                        pathColor: "#EF4444"
-                                    })}
-                                />
+                            <div class="px-6 py-4 bg-white rounded-lg shadow-xl">
+                                <MailOpenIcon className="h-8 w-8 text-slate-700 mb-1" />
+                                <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                                <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Message Sent</h5>
                             </div>
-                        </div>
 
-                        <div className="flex justify-center gap-12 items-center mb-5">
-                            <h5 className="font-semibold">Message Sent 7/10</h5>
-                            <div className="" style={{ width: 70, height: 70 }}>
-                                <CircularProgressbar
-                                    value={progress}
-                                    text={`${progress}%`}
-                                    styles={buildStyles({
-                                        strokeLinecap: "butt",
-                                        height: "100px",
-                                        pathColor: "#14B8A6"
-                                    })}
-                                />
+                            <div class="px-6 py-4 bg-white rounded-lg shadow-xl">
+                                <CollectionIcon className="h-8 w-8 text-slate-700 mb-1" />
+                                <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                                <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Comments Made </h5>
                             </div>
-                        </div>
 
-                        <div className="flex justify-start gap-12 items-center mb-5">
-                            <h5 className="font-semibold">Posts Made 7/10</h5>
-                            <div className="" style={{ width: 70, height: 70 }}>
-                                <CircularProgressbar
-                                    value={progress}
-                                    text={`${progress}%`}
-                                    styles={buildStyles({
-                                        strokeLinecap: "butt",
-                                        height: "100px",
-                                        pathColor: "#EAB208"
-                                    })}
-                                />
+                            <div class="px-6 py-4 bg-white rounded-lg shadow-xl">
+                                <DocumentDuplicateIcon className="h-8 w-8 text-slate-700 mb-1" />
+                                <h5 class="mb-1 text-lg font-semibold tracking-tight text-gray-600">0/10</h5>
+                                <h5 class="mb-2 font-semibold text-sm tracking-tight text-gray-600">Posts Made </h5>
                             </div>
                         </div>
                     </div>
 
-                    <div>
+                    <div className="bg-white drop-shadow-lg rounded-lg px-6 py-4">
                         <h2 className="font-semibold text-center text-lg">Your Weekly Goals</h2>
                         <p className="text-sm mb-7 text-center">Earn your weekly goals to unlock awesome prizes!</p>
 
@@ -252,7 +246,7 @@ function Dashboard({ auth }) {
                             </div>
                         </div>
 
-                        <div className="relative pt-1 mb-7">
+                        <div className="relative pt-1">
                             <div className="flex mb-2 items-center justify-between">
                                 <div>
                                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-gray-600 bg-yellow-200">
@@ -286,33 +280,7 @@ function Dashboard({ auth }) {
 
 
 
-            {/* <div className={`${inter.className} grid grid-cols-3 gap-4 mb-5`}>
-
-                <div class="p-6 bg-white border-2 border-setly-100 rounded-lg shadow">
-                    <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
-                    </svg>
-                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-600">200</h5>
-                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-600">Pending Leads</h5>
-                </div>
-
-                <div class="p-6 bg-white border-2 border-setly-100 rounded-lg shadow">
-                    <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
-                    </svg>
-                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-600">200</h5>
-                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-600">Pending Leads</h5>
-                </div>
-
-                <div class="p-6 bg-white border-2 border-setly-100 rounded-lg shadow">
-                    <svg class="w-7 h-7 text-gray-500 dark:text-gray-400 mb-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M18 5h-.7c.229-.467.349-.98.351-1.5a3.5 3.5 0 0 0-3.5-3.5c-1.717 0-3.215 1.2-4.331 2.481C8.4.842 6.949 0 5.5 0A3.5 3.5 0 0 0 2 3.5c.003.52.123 1.033.351 1.5H2a2 2 0 0 0-2 2v3a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V7a2 2 0 0 0-2-2ZM8.058 5H5.5a1.5 1.5 0 0 1 0-3c.9 0 2 .754 3.092 2.122-.219.337-.392.635-.534.878Zm6.1 0h-3.742c.933-1.368 2.371-3 3.739-3a1.5 1.5 0 0 1 0 3h.003ZM11 13H9v7h2v-7Zm-4 0H2v5a2 2 0 0 0 2 2h3v-7Zm6 0v7h3a2 2 0 0 0 2-2v-5h-5Z"/>
-                    </svg>
-                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-600">200</h5>
-                    <h5 class="mb-2 text-2xl font-semibold tracking-tight text-gray-600">Pending Leads</h5>
-                </div>
-
-            </div> */}
+            
 
 
 

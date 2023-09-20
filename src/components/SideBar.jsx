@@ -56,36 +56,36 @@ function SideBar({ toggleMode, darkSide, user }) {
 
                     <ul className="space-y-5 font-medium">
                         <li>
-                            <Link href="/dashboard" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                            <Link href="/dashboard" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <HomeIcon className="h-6 w-6 mr-3" />
                                 <span>Dashboard</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/tasks" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/tasks" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                            <Link href="/dashboard/tasks" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/tasks" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <CollectionIcon className="h-6 w-6 mr-3" />
                                 <span>Tasks</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/prospects" className={`group flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/prospects" ? "rounded-lg text-white bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                            <Link href="/dashboard/prospects" className={`group flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/prospects" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <UserGroupIcon className="h-6 w-6 mr-3" />
                                 <span>Prospects</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/inbox" className={`flex items-center p-2  group ${router.pathname === "/dashboard/inbox" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                            <Link href="/dashboard/inbox" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/inbox" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <InboxIcon className="h-6 w-6 mr-3 group-hover:text-white" />
                                 <span className="flex-1 whitespace-nowrap group-hover:text-white">Inbox</span>
-                                <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium ${router.pathname === "/dashboard/inbox" ? "text-white bg-black" : "text-white dark:text-gray-300 bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}  dark:bg-white rounded-full dark:group-hover:bg-white hover:text-white`}>3</span>
+                                <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium bg-slate-900 ${router.pathname === "/dashboard/inbox" ? "text-white bg-SETLY-BLUE" : "text-white dark:text-gray-300 bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}  dark:bg-SETLY-BLUE rounded-full dark:group-hover:bg-white hover:text-white`}>3</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/make-a-post" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/make-a-post" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                            <Link href="/dashboard/make-a-post" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/make-a-post" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <DocumentTextIcon className="h-6 w-6 mr-3" />
                                 <span className="flex-1 whitespace-nowrap">Make a Post</span>
                             </Link>
@@ -96,21 +96,21 @@ function SideBar({ toggleMode, darkSide, user }) {
                 
                 <ul className="pt-4 mt-4 space-y-5 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
-                        <Link href="/dashboard/help" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/help" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                        <Link href="/dashboard/help" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/help" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                             <QuestionMarkCircleIcon className="h-6 w-6 mr-3" />
                             <span>Help</span>
                         </Link>
                     </li>
 
                     <li>
-                        <Link href="/dashboard/settings" className={`flex items-center p-2 hover:text-white setly-bg-hover group ${router.pathname === "/dashboard/settings" ? "rounded-lg text-white setly-bg" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                        <Link href="/dashboard/settings" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/settings" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                             <CogIcon className="h-6 w-6 mr-3" />
                             <span>Settings</span>
                         </Link>
                     </li>
 
                     <li className="flex justify-between items-center">
-                        <button className="flex items-center p-2 text-gray-600 dark:text-gray-300 rounded-lg hover:text-gray-500 dark:hover:text-gray-300 setly-bg-hover group" onClick={logout}>
+                        <button className="flex w-full items-center p-2 text-sm text-gray-600 hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN dark:text-gray-300 rounded-lg dark:hover:text-gray-300 setly-bg-hover group" onClick={logout}>
                             <LogoutIcon className="h-6 w-6 mr-3" />
                             <span>Logout</span>
                         </button>

@@ -15,7 +15,7 @@ const ProspectItem = ({ prospect, handleCheckChange, checked }) => {
                 <label htmlFor="checkbox-table-search-1" className="sr-only">checkbox</label>
             </div>
         </td>
-        <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap" onClick={() => router.push(`/dashboard/prospects/${prospect.handle}`)}>
+        <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap" onClick={() => )}>
             <Image className="w-10 h-10 rounded-full" width={100} height={100} src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Hello" />
             <div className="pl-3 group">
                 <div className="dark:group-hover:text-gray-200 text-base font-semibold text-gray-600 dark:text-gray-200">{ prospect.name }</div>

@@ -124,11 +124,11 @@ function Inbox({ auth }) {
           </div>
 
 
-          <aside className="side-profile overflow-y-auto bg-white dark:bg-slate-900 shadow-lg">
+          <aside className="side-profile overflow-y-auto dark:bg-slate-900 shadow-lg">
 
-            <div className="pb-12 pt-2">
+            <div className="pb-12">
               { prospects.map((prospect, index) => (
-                <div className="flex gap-2 items-start justify-between mb-6 py-4 shadow-lg rounded-md px-2 w-full cursor-pointer" key={index} onClick={() => selectMessage(prospect.messages)}>
+                <div className="bg-white flex gap-2 items-start justify-between mb-3 py-4 shadow-lg rounded-md px-2 w-full cursor-pointer" key={index} onClick={() => selectMessage(prospect.messages)}>
                   <div className="flex gap-2 items-center">
                     <Image class="w-12 h-12 rounded-full shadow-lg" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" alt="Bonnie image" height={30} width={80} />
                     <div className="">
