@@ -1,5 +1,4 @@
 import axios from "axios";
-import { Cookie } from "next/font/google";
 const LIVE_BASE_URL = "https://api.setly.ai/api/v1/";
 const LOCAL_BASE_URL = "http://localhost:4000/api/v1/";
 
