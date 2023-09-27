@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import { ConnectLinkedin, InboxModal, Layout, Pagination, ProspectsList, SubscriptionPayment, TopNav } from "@/components/index.js";
+import { ConnectLinkedin, InboxModal, Layout, Pagination, ProspectItem, ProspectModal, ProspectsList, SubscriptionPayment, TopNav } from "@/components/index.js";
 import Image from "next/image";
 import ProspectService from "@/services/ProspectService";
 import { withProtected } from "@/hooks/routes";
@@ -108,11 +108,10 @@ function Prospects({ auth }) {
         setIsOpen(false)
     }
     
-    function openModal() {
-        // setProspect(lead);
-        // console.log(lead);
-        //setIsOpen(true);
-        router.push("/dashboard/prospects/hello")
+    function openModal(prospect) {
+        setProspect(prospect);
+        console.log(prospect    );
+        setIsOpen(true);
     }
 
     // function load () {
@@ -123,7 +122,7 @@ function Prospects({ auth }) {
 
     return (
         <>
-            <InboxModal closeModal={closeModal} isOpen={isOpen} />
+            <ProspectModal closeModal={closeModal} isOpen={isOpen} prospect={prospect} />
             <Layout user={user}>
             
                 <TopNav placeholder="Search prospects" inputValue={inputValue} setInputValue={setInputValue} />
@@ -167,7 +166,7 @@ function Prospects({ auth }) {
                                 </th>
                             </tr>
                         </thead>
-                        <ProspectsList prospects={inputValue.length > 0 ? filteredList : currentProspects} checked={isCheck} handleCheckChange={handleClick} />
+                        <ProspectsList prospects={inputValue.length > 0 ? filteredList : currentProspects} checked={isCheck} handleCheckChange={handleClick} openModal={openModal} />
                     </table>
                     <Pagination
                         prospectsPerPage={prospectsPerPage}

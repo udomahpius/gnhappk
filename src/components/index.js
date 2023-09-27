@@ -9,7 +9,7 @@ export { default as SubscriptionPayment } from "./SubscriptionPayment";
 export { default as ProspectModalTabs } from "./ProspectModalTabs";
 export { default as Layout } from "./Layout";
 export { default as Pagination } from "./Pagination";
-export { default as InboxModal } from "./InboxModal";
+export { default as ProspectModal } from "./prospects/ProspectModal";
 export { default as Nav } from "./Nav";
 export { default as SideBar } from "./SideBar";
 export { default as TopMenu} from "./TopMenu";

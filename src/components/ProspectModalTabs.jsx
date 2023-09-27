@@ -29,7 +29,7 @@ export default function ProspectModalTabs() {
   })
 
   return (
-    <div className="w-full px-2 sm:px-0  bg-white">
+    <div className="w-full px-2 sm:px-0">
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-gray-100 dark:bg-slate-900 p-1">
           {Object.keys(categories).map((category) => (
@@ -59,7 +59,7 @@ export default function ProspectModalTabs() {
               )}
             >
               {posts.map((post) => (
-                <section key={post.id} className="h h-screen">
+                <section key={post.id} className="">
                   { post.title }
                 </section>
             ))}

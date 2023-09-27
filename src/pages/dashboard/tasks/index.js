@@ -10,7 +10,6 @@ const inter = Montserrat({ subsets: ['latin'] })
 
 
 
-
 function Tasks({ auth }) {
     const [prospects, setProspects] = useState([]);
     const [prospect, setProspect] = useState(null);
