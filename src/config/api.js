@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Cookie } from "next/font/google";
-const LIVE_BASE_URL = "https://setly-adc71ba4fc26.herokuapp.com/api/v1/";
+const LIVE_BASE_URL = "https://api.setly.ai/api/v1/";
 const LOCAL_BASE_URL = "http://localhost:4000/api/v1/";
 
 export const noAuthAPI = axios.create({
