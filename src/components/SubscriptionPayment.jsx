@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { Button, LinkedinButton } from "@/components";
 import AuthService from "@/services/AuthService";
@@ -9,6 +9,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Layout, Nav } from "@/components";
 import Image from "next/image";
 import stripe from "@/assets/stripe.png";
+import PaymentService from "@/services/PaymentService";
 
 const override = {
     display: "flex",
@@ -23,10 +24,30 @@ function SubscriptionPayment() {
     const [disabled, setDisabled] = useState(false);
     const [text, setText] = useState("Connect Linkedin");
 
+    useEffect(() => {
+        fetchUser()
+    })
+
+    const fetchUser = async() => {
+        setDisabled(true);
+        try {
+            const response = await UserService.fetchUser();
+            alert("Yes")
+            //toast.success(response.data.message);
+            //setUser(response.data.data);
+            //localStorage.setItem("setly_user", JSON.stringify(response.data.data));
+            setDisabled(false);
+            //router.replace("/dashboard")
+        } catch (error) {
+            toast.error(error.response.data.message);
+            setDisabled(false);
+        }
+    }
+
     const checkoutSession = async() => {
         setDisabled(true);
         try {
-            const response = await UserService.createCheckoutSession();
+            const response = await PaymentService.createCheckoutSession();
             console.log(response.data.data);
             setDisabled(false);
             router.replace(response.data.data)
