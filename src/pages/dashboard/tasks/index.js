@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, ConnectLinkedin, InboxModal, Layout, SubscriptionPayment, TopNav } from "@/components/index.js";
+import { Button, ConnectLinkedin, Layout, SubscriptionPayment, TopNav } from "@/components/index.js";
 import Image from "next/image";
 import ProspectService from "@/services/ProspectService";
 import { withProtected } from "@/hooks/routes";
@@ -50,7 +50,6 @@ function Tasks({ auth }) {
 
     return (
         <>
-            <InboxModal closeModal={closeModal} isOpen={isOpen} />
             <Layout user={user}>
             <TopNav />
 

@@ -31,7 +31,7 @@ export default function AuthStateChanged({ children }) {
 			
 		});
 		
-	}, []);
+	}, [setUser]);
 
 	if (loading) {
 		return (
