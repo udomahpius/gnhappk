@@ -7,14 +7,9 @@ const PaymentService = {
         return response;
 	},
 
-	
 
-	fetchUser: async (email, password) => {
-		const response = await noAuthAPI.post("/users", {
-            email,
-            password
-        });
-
+	fetchUser: async () => {
+		const response = await noAuthAPI.get("/users");
 		return response;
 	},
 

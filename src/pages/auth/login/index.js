@@ -42,6 +42,7 @@ const Login = ({ auth }) => {
             toast.success(response.data.message);
             setUser(response.data.data);
             localStorage.setItem("setly_user", JSON.stringify(response.data.data));
+            if(response.data.data.status === "pending" ) return router.replace("/auth/verify-email");
             setDisabled(false);
             setCookie("setly.sid", "s%3A64ahNUyPIaYmACKiV69CmJVuaoNeG82U.aaYiOiDbTQ8E7sPn8NQQFYVSYjz6Uv7A4t41xNwKwFE", { maxAge: 6000000});
             router.replace("/dashboard")

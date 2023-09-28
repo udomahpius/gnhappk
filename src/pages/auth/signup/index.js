@@ -39,7 +39,8 @@ const Signup = ({ auth }) => {
         try {
             const response = await AuthService.register(values.first_name, values.last_name, values.email, values.password, values.company, values.industry);
             toast.success(response.data.message);
-            setUser(response.data.data)
+            setUser(response.data.data);
+            localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
             router.replace("/auth/verify-email")
         } catch (error) {

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useFormik } from "formik";
 import { object, string } from "yup";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import logo from "@/assets/1.svg";
 import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services/AuthService";
@@ -13,7 +13,6 @@ import OtpInput from "react-otp-input";
 import { withPublic } from "@/hooks/routes";
 import { Montserrat } from "next/font/google";
 import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/react/outline";
-
 const inter = Montserrat({ subsets: ['latin'] })
 
 
@@ -24,11 +23,18 @@ const VerifyEmail = () => {
     const router = useRouter();
     const [otp, setOtp] = useState("");
     const [disabled, setDisabled] = useState(false);
+    const [email, setEmail] = useState(null);
 
 
     let verifySchema = object({
         token: string().min(5, "Token must be 5 values").required("Token is required"),
     });
+
+
+    useEffect(() => {
+        const getEmail = JSON.parse(localStorage.getItem("setly_user"));
+        setEmail(getEmail.email)
+    }, [email])
 
 
     const onSubmit = async (values, actions) => {
@@ -38,7 +44,6 @@ const VerifyEmail = () => {
             const response = await AuthService.verifyEmail(values.token);
             toast.success(response.data.message);
             setDisabled(false);
-            //router.replace("/auth/login");
             setTimeout(() => {
                 router.replace("/auth/login");
             }, 1500);
@@ -54,6 +59,7 @@ const VerifyEmail = () => {
         try {
             const response = await AuthService.verifyEmail(otp);
             toast.success(response.data.message);
+            localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
             setTimeout(() => {
                 router.replace("/auth/login");
@@ -102,11 +108,9 @@ const VerifyEmail = () => {
                     </div>
 
 
-                    <div className="pt-12 px-12 flex flex-col justify-center">
-
-                        
+                    <div className="pt-12 px-12 flex flex-col justify-center">                        
                             <h3 className="text-2xl md:text-3xl mb-2 font-jakarta text-black font-bold tracking-tight">Verify Your Email Address</h3>
-                            <p className="mb-3">A verification email has been sent to: boringcreatives@gmail.com</p>
+                            <p className="mb-3">A verification email has been sent to: { email }</p>
                             <p className="mb-5 text-slate-500">Get the OTP token from your email to verify your account</p>
 
                             <div className="mb-5">
