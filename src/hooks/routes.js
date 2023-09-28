@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import ClipLoader from "react-spinners/ClipLoader";
 import { useCookies } from 'react-cookie';
 import useAuth from "@/hooks/auth";
+import { setCookie, hasCookie } from 'cookies-next';
 
 
 const override = {
@@ -20,6 +21,9 @@ export function withPublic(WrappedComponent) {
 	  const router = useRouter();
 	  const auth = useAuth();
 	  const [cookies, setCookie] = useCookies(["setly.sid"]);
+	  const tester = hasCookie("setly.sid", { domain: 'api.setly.ai' }); // => true
+
+	  alert(tester)
 
 	  console.log(cookies["setly.sid"]);
   
