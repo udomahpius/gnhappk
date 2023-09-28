@@ -13,7 +13,7 @@ import { BigButton } from "@/components/index.js";
 import { noAuthAPI } from "@/config/api";
 import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon, EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
 import { Montserrat } from "next/font/google";
-const inter = Montserrat({ subsets: ['latin'] })
+const inter = Montserrat({ subsets: ['latin'] });
 
 
 const Signup = ({ auth }) => {

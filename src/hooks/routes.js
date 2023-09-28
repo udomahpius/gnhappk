@@ -20,12 +20,7 @@ export function withPublic(WrappedComponent) {
 	return function WithPublic({...props}) {
 	  const router = useRouter();
 	  const auth = useAuth();
-	  const [cookies, setCookie] = useCookies(["setly.sid"]);
-	  const tester = hasCookie("setly.sid", { domain: 'api.setly.ai' }); // => true
-
-	  alert(tester)
-
-	  console.log(cookies["setly.sid"]);
+	  const [cookies] = useCookies(["setly.sid"]);
   
 	  const accessToken = cookies["setly.sid"];
 

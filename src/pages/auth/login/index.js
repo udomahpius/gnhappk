@@ -13,6 +13,7 @@ import { withPublic } from "@/hooks/routes";
 import { BigButton } from "@/components/index.js";
 import { noAuthAPI } from "@/config/api";
 import { Montserrat } from "next/font/google";
+import { setCookie, hasCookie } from 'cookies-next';
 
 const inter = Montserrat({ subsets: ['latin'] })
 
@@ -42,6 +43,7 @@ const Login = ({ auth }) => {
             setUser(response.data.data);
             localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
+            setCookie("setly.sid", "s%3A64ahNUyPIaYmACKiV69CmJVuaoNeG82U.aaYiOiDbTQ8E7sPn8NQQFYVSYjz6Uv7A4t41xNwKwFE", { maxAge: 6000000});
             router.replace("/dashboard")
         } catch (error) {
             console.log(error);
