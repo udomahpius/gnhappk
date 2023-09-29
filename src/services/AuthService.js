@@ -89,7 +89,6 @@ const AuthService = {
 
 	logout: async () =>  {
 		const response = await noAuthAPI.get("auth/logout");
-		localStorage.removeItem("setly_user");
         return response;
 	}
 }
