@@ -91,9 +91,9 @@ function Dashboard({ auth }) {
     return (
        <>
         <Layout user={user}>
-            <div className="text-center dark:border-b dark:border-slate-700 bg-white dark:bg-slate-900 shadow dark:shadow-none w-full topnav px-4 h-16">
+            <div className="flex justify-center items-center dark:border-b dark:border-slate-700 bg-white dark:bg-slate-900 shadow dark:shadow-none w-full topnav px-4 h-16">
                 <h2 className="font-semibold text-3xl dark:text-gray-100">Welcome { user?.first_name}</h2>
-                <p className="text-sm dark:text-gray-100">Here is where you can track your progress as the ultimate Setly Prospector</p>
+                {/* <p className="text-sm dark:text-gray-100">Here is where you can track your progress as the ultimate Setly Prospector</p> */}
             </div>
 
             { user.status === "onboarding" && <ConnectLinkedin /> }

@@ -46,9 +46,10 @@ function SideBar({ toggleMode, darkSide, user }) {
                             </div>
                             <div className="flex flex-col items-start justify-start text-clip overflow-hidden">
                                 <h3 className="text-gray-500 dark:text-gray-300  text-sm font-bold"></h3>
-                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300  truncate">{ user?.points }/{ process.env.NEXT_PUBLIC_SETLY_POINTS } Credits</span>
+                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300  truncate">{ user?.points }/500 Credits</span>
                             </div>
                         </div>
+                        {/* { process.env.NEXT_PUBLIC_SETLY_POINTS } */}
                         <BellIcon className="h-7 w-7 text-gray-500 dark:text-gray-300" />
                         <span className="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-red-600 border-white rounded-full top-1 right-1 dark:border-gray-900">0</span>
                     </button>

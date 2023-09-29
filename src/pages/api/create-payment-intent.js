@@ -16,6 +16,8 @@ export default async function handler(req, res) {
     amount: calculateOrderAmount(items),
     currency: "usd",
     customer: "cus_OikG6U8ukSwqUN",
+    setup_future_usage: "on_session",
+    receipt_email: "essiensaviour.a@gmail.com",
     // In the latest version of the API, specifying the `automatic_payment_methods` parameter is optional because Stripe enables its functionality by default.
     automatic_payment_methods: {
       enabled: true,
