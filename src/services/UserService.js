@@ -9,7 +9,7 @@ const UserService = {
 	},
 
 	fetchUser: async () => {
-		const response = await noAuthAPI.post("/users");
+		const response = await noAuthAPI.get("/users");
 		return response;
 	},
 
