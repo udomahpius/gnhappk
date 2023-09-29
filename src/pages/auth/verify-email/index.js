@@ -41,7 +41,7 @@ const VerifyEmail = () => {
         console.log("Hello");
         setDisabled(true);
         try {
-            const response = await AuthService.verifyEmail(values.token);
+            const response = await AuthService.verifyEmail(values.token, email);
             toast.success(response.data.message);
             setDisabled(false);
             setTimeout(() => {

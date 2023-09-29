@@ -45,12 +45,12 @@ function SideBar({ toggleMode, darkSide, user }) {
                                 <span className="bottom-2 left-9 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                             </div>
                             <div className="flex flex-col items-start justify-start text-clip overflow-hidden">
-                                <h3 className="text-gray-500 dark:text-gray-300  text-sm font-bold">Saviour Essien</h3>
+                                <h3 className="text-gray-500 dark:text-gray-300  text-sm font-bold"></h3>
                                 <span className="text-[0.7rem] text-gray-600 dark:text-gray-300  truncate">{ user?.points }/{ process.env.NEXT_PUBLIC_SETLY_POINTS } Credits</span>
                             </div>
                         </div>
                         <BellIcon className="h-7 w-7 text-gray-500 dark:text-gray-300" />
-                        <span className="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-red-600 border-white rounded-full top-1 right-1 dark:border-gray-900">20</span>
+                        <span className="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-red-600 border-white rounded-full top-1 right-1 dark:border-gray-900">0</span>
                     </button>
 
 
@@ -80,7 +80,7 @@ function SideBar({ toggleMode, darkSide, user }) {
                             <Link href="/dashboard/inbox" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/inbox" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <InboxIcon className="h-6 w-6 mr-3 group-hover:text-white" />
                                 <span className="flex-1 whitespace-nowrap group-hover:text-white">Inbox</span>
-                                <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium bg-slate-900 ${router.pathname === "/dashboard/inbox" ? "text-white bg-SETLY-BLUE" : "text-white dark:text-gray-300 bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}  dark:bg-SETLY-BLUE rounded-full dark:group-hover:bg-white hover:text-white`}>3</span>
+                                <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium bg-slate-900 ${router.pathname === "/dashboard/inbox" ? "text-white bg-SETLY-BLUE" : "text-white dark:text-gray-300 bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}  dark:bg-SETLY-BLUE rounded-full dark:group-hover:bg-white hover:text-white`}>0</span>
                             </Link>
                         </li>
 

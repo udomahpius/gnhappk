@@ -105,21 +105,23 @@ const Signup = ({ auth }) => {
                             <div className="mb-5">
                                 <label className="mb-2 text-gray-800 text-sm flex">Full Name</label>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="border rounded-lg px-4 flex justify-between h-14 bg-white hover:border-setly-100 hover:border-2">
-                                        <div className="flex gap-3 items-center w-full">
-                                            <UserCircleIcon className="h-6 w-6 text-gray-600" />
-                                            <input type="text" name="first_name" placeholder="Enter first name" className="w-full flex items-center h-full outline-none text-gray-700"
-                                            onChange={handleChange} onBlur={handleBlur} value={values.first_name} />
+                                    <div>
+                                        <div className="border rounded-lg px-4 flex justify-between h-14 bg-white hover:border-setly-100 hover:border-2">
+                                            <div className="flex gap-3 items-center w-full">
+                                                <UserCircleIcon className="h-6 w-6 text-gray-600" />
+                                                <input type="text" name="first_name" placeholder="Enter first name" className="w-full flex items-center h-full outline-none text-gray-700"
+                                                onChange={handleChange} onBlur={handleBlur} value={values.first_name} />
+                                            </div>
                                         </div>
+                                        { errors.first_name && touched.first_name && <small className="text-red-700">{ errors.first_name }</small>}
                                     </div>
-                                    <div className="border rounded-lg px-4 bg-white hover:border-setly-100">
-                                        <input type="text" name="last_name" placeholder="Enter last name" className="w-full flex items-center h-full outline-none text-gray-700"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.last_name} />
+                                    <div>
+                                        <div className="border rounded-lg px-4 h-14 bg-white hover:border-setly-100">
+                                            <input type="text" name="last_name" placeholder="Enter last name" className="w-full flex items-center h-full outline-none text-gray-700"
+                                            onChange={handleChange} onBlur={handleBlur} value={values.last_name} />
+                                        </div>
+                                        { errors.last_name && touched.last_name && <small className="text-red-700">{ errors.last_name }</small>}
                                     </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    { errors.first_name && touched.first_name && <small className="text-red-700">{ errors.first_name }</small>}
-                                    { errors.last_name && touched.last_name && <small className="text-red-700">{ errors.last_name }</small>}
                                 </div>
                             </div>
 
@@ -153,33 +155,38 @@ const Signup = ({ auth }) => {
                             <div className="mb-8">
                                 <label className="mb-2 text-gray-800 text-sm flex">Company Information</label>
                                 <div className="grid grid-cols-2 gap-4">
-                                    <div className="border bg-white rounded-lg p-4 flex gap-2 hover:border-setly-100">
-                                        <OfficeBuildingIcon className="h-6 w-6 text-gray-400" />
-                                        <input type="text" name="company" placeholder="Company name" className="w-full flex items-center h-full outline-none text-gray-700"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.company} />
+                                    <div>
+                                        <div className="border bg-white rounded-lg p-4 flex gap-2 hover:border-setly-100">
+                                            <OfficeBuildingIcon className="h-6 w-6 text-gray-400" />
+                                            <input type="text" name="company" placeholder="Company name" className="w-full flex items-center h-full outline-none text-gray-700"
+                                            onChange={handleChange} onBlur={handleBlur} value={values.company} />
+                                        </div>
+                                        { errors.company && touched.company && <small className="text-red-700">{ errors.company }</small>}
                                     </div>
-                                    <select name="industry" className="bg-white h-full hover:border-setly-100 rounded-lg flex px-2 border border-gray w-full outline-none text-gray-600"
-                                    onChange={handleChange} onBlur={handleBlur} value={values.industry}>
-                                        <option  disabled>Select an Industry</option>
-                                        <option>Advertising &amp; Media</option>
-                                        <option>Automotive</option>
-                                        <option>Construction</option>
-                                        <option>Consulting & Coaching</option>
-                                        <option>Financial Services</option>
-                                        <option>Higher Education</option>
-                                        <option>Information Technology & Services</option>
-                                        <option>Legal</option>
-                                        <option>Manufacturing</option>
-                                        <option>Medical & Health Care</option>
-                                        <option>Oil &amp; Energy</option>
-                                        <option>Retail</option>
-                                        <option>Sales</option>
-                                        <option>Telecommunications</option>
-                                    </select>
+                                    <div className="h-14">
+                                        <select name="industry" className="bg-white h-full hover:border-setly-100 rounded-lg flex px-2 border border-gray w-full outline-none text-gray-600"
+                                        onChange={handleChange} onBlur={handleBlur} value={values.industry}>
+                                            <option>Select an Industry</option>
+                                            <option>Automotive</option>
+                                            <option>Construction</option>
+                                            <option>Consulting & Coaching</option>
+                                            <option>Financial Services</option>
+                                            <option>Higher Education</option>
+                                            <option>Information Technology & Services</option>
+                                            <option>Legal</option>
+                                            <option>Manufacturing</option>
+                                            <option>Medical & Health Care</option>
+                                            <option>Oil &amp; Energy</option>
+                                            <option>Retail</option>
+                                            <option>Sales</option>
+                                            <option>Telecommunications</option>
+                                        </select>
+                                        { errors.industry && touched.industry && <small className="text-red-700">{ errors.industry }</small>}
+                                    </div>
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
-                                    { errors.company && touched.company && <small className="text-red-700">{ errors.company }</small>}
-                                    { errors.industry && touched.industry && <small className="text-red-700">{ errors.industry }</small>}
+                                    
+                                    
                                 </div>
                             </div>
 

@@ -21,13 +21,6 @@ function Layout({ children, user }) {
     }
 
     return (
-        // <>
-        //     <Nav />
-        //     <SideBar />
-        //     <div className="px-12 pt-24 sm:ml-64 relative bg-white">
-        //         { children }
-        //     </div>
-        // </>
         <div className={`${inter.className} bg-gray-100 dark:bg-slate-600 wrapper overflow-y-hidden h-screen transition duration-200 ${darkSide}`}>
             {/* <Nav /> */}
             <SideBar toggleMode={toggleDarkMode} darkSide={darkSide} user={user} />

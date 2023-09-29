@@ -24,6 +24,7 @@ export { default as InsightTab } from "./InsightTab";
 export { default as TaskTab } from "./TaskTab";
 export { default as WorkflowTab } from "./WorkflowTab";
 export { default as NoteTab } from "./NoteTab";
+export { default as CheckoutForm } from "./CheckoutForm";
 
 export { default as ProspectItem } from "./prospects/ProspectItem";
 export { default as ProspectsList } from "./prospects/ProspectsList";

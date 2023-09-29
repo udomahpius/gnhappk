@@ -42,9 +42,10 @@ const AuthService = {
 	},
 
 
-	verifyEmail: async (token) => {
+	verifyEmail: async (token, email) => {
         const response = await noAuthAPI.post("auth/verify-email", {
-            token
+            token,
+			email
         });
         return response
 	},
