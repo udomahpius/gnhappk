@@ -61,9 +61,7 @@ const VerifyEmail = () => {
             toast.success(response.data.message);
             localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
-            setTimeout(() => {
-                router.replace("/auth/login");
-            }, 1500);
+            router.replace("/auth/login");
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
