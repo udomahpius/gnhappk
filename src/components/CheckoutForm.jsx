@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -11,11 +11,13 @@ import PaymentService from "@/services/PaymentService";
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const [email, setEmail] = React.useState('');
-  const [message, setMessage] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
+  const [loading, setLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!stripe) {
       return;
     }
@@ -46,6 +48,13 @@ export default function CheckoutForm() {
     });
   }, [stripe]);
 
+
+
+  const handleError = (error) => {
+    setIsLoading(false);
+    setMessage(error.message);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -57,9 +66,47 @@ export default function CheckoutForm() {
 
     setIsLoading(true);
 
+    const {error: submitError} = await elements.submit();
+    if (submitError) {
+      setIsLoading(false);
+      handleError(submitError);
+      return;
+    }
+
+
     const subscription = await PaymentService.createSubscription();
 
+
     console.log(subscription);
+
+    const { type, clientSecret } = subscription.data.data;
+
+    const confirmIntent = type === "setup" ? stripe.confirmSetup : stripe.confirmPayment;
+
+    // Confirm the Intent using the details collected by the Payment Element
+    const { error } = await confirmIntent({
+      elements,
+      clientSecret,
+      confirmParams: {
+        return_url: 'https://example.com/order/123/complete',
+      },
+    });
+
+
+    if (error) {
+      // This point is only reached if there's an immediate error when confirming the Intent.
+      // Show the error to your customer (for example, "payment details incomplete").
+      setIsLoading(false);
+      handleError(error);
+    } else {
+      // Your customer is redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer is redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
+      setIsLoading(false);
+    }
+
+    
+
 
     // const { error } = await stripe.confirmPayment({
     //   elements,
@@ -80,7 +127,7 @@ export default function CheckoutForm() {
     //   setMessage("An unexpected error occurred.");
     // }
 
-    setIsLoading(false);
+    
   };
 
   const paymentElementOptions = {
