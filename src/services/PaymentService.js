@@ -2,9 +2,9 @@ import { noAuthAPI } from "../config/api";
 
 
 const PaymentService = {
-	createCheckoutSession: async () => {
+	createSubscription: async () => {
         const response = await noAuthAPI.post("users/subscription");
-        return response
+        return response;
 	},
 	
 	createCustomerPortal: async () => {

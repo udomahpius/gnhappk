@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   PaymentElement,
   LinkAuthenticationElement,
@@ -6,15 +6,18 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { BigButton, Button } from ".";
+import PaymentService from "@/services/PaymentService";
 
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const [email, setEmail] = React.useState('');
-  const [message, setMessage] = React.useState(null);
-  const [isLoading, setIsLoading] = React.useState(false);
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState();
+  const [loading, setLoading] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!stripe) {
       return;
     }
@@ -45,6 +48,13 @@ export default function CheckoutForm() {
     });
   }, [stripe]);
 
+
+
+  const handleError = (error) => {
+    setIsLoading(false);
+    setMessage(error.message);
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -56,26 +66,68 @@ export default function CheckoutForm() {
 
     setIsLoading(true);
 
-    const { error } = await stripe.confirmPayment({
+    const {error: submitError} = await elements.submit();
+    if (submitError) {
+      setIsLoading(false);
+      handleError(submitError);
+      return;
+    }
+
+
+    const subscription = await PaymentService.createSubscription();
+
+
+    console.log(subscription);
+
+    const { type, clientSecret } = subscription.data.data;
+
+    const confirmIntent = type === "setup" ? stripe.confirmSetup : stripe.confirmPayment;
+
+    // Confirm the Intent using the details collected by the Payment Element
+    const { error } = await confirmIntent({
       elements,
+      clientSecret,
       confirmParams: {
-        // Make sure to change this to your payment completion page
         return_url: "https://app.setly.ai/payment/success",
       },
     });
 
-    // This point will only be reached if there is an immediate error when
-    // confirming the payment. Otherwise, your customer will be redirected to
-    // your `return_url`. For some payment methods like iDEAL, your customer will
-    // be redirected to an intermediate site first to authorize the payment, then
-    // redirected to the `return_url`.
-    if (error.type === "card_error" || error.type === "validation_error") {
-      setMessage(error.message);
+
+    if (error) {
+      // This point is only reached if there's an immediate error when confirming the Intent.
+      // Show the error to your customer (for example, "payment details incomplete").
+      setIsLoading(false);
+      handleError(error);
     } else {
-      setMessage("An unexpected error occurred.");
+      // Your customer is redirected to your `return_url`. For some payment
+      // methods like iDEAL, your customer is redirected to an intermediate
+      // site first to authorize the payment, then redirected to the `return_url`.
+      setIsLoading(false);
     }
 
-    setIsLoading(false);
+    
+
+
+    // const { error } = await stripe.confirmPayment({
+    //   elements,
+    //   confirmParams: {
+    //     // Make sure to change this to your payment completion page
+    //     return_url: "https://app.setly.ai/payment/success",
+    //   },
+    // });
+
+    // // This point will only be reached if there is an immediate error when
+    // // confirming the payment. Otherwise, your customer will be redirected to
+    // // your `return_url`. For some payment methods like iDEAL, your customer will
+    // // be redirected to an intermediate site first to authorize the payment, then
+    // // redirected to the `return_url`.
+    // if (error.type === "card_error" || error.type === "validation_error") {
+    //   setMessage(error.message);
+    // } else {
+    //   setMessage("An unexpected error occurred.");
+    // }
+
+    
   };
 
   const paymentElementOptions = {
@@ -98,5 +150,7 @@ export default function CheckoutForm() {
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
+
+// 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
   );
 }
