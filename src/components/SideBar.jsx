@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { deleteCookie } from "cookies-next";
 import { Inter, Montserrat } from "next/font/google"
 const inter = Montserrat({ subsets: ['latin'] });
 import {InboxIcon, HomeIcon, UserGroupIcon, QuestionMarkCircleIcon, CogIcon, LogoutIcon, BellIcon, CollectionIcon, SunIcon, DocumentTextIcon} from "@heroicons/react/outline";
@@ -23,7 +24,8 @@ function SideBar({ toggleMode, darkSide, user }) {
             const response = await AuthService.logout();
             console.log(response);
             localStorage.removeItem("setly_user");
-            router.replace("/auth/login")
+            deleteCookie("setly.sid");
+            router.replace("/auth/login");
         } catch (error) {
             console.log(error);
         }
