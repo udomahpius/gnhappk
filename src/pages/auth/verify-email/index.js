@@ -57,7 +57,7 @@ const VerifyEmail = () => {
     const verifyEmail = async () => {
         setDisabled(true);
         try {
-            const response = await AuthService.verifyEmail(otp);
+            const response = await AuthService.verifyEmail(otp, email);
             toast.success(response.data.message);
             localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
