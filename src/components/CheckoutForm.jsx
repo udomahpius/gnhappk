@@ -88,7 +88,7 @@ export default function CheckoutForm() {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: 'https://example.com/order/123/complete',
+        return_url: "https://app.setly.ai/payment/success",
       },
     });
 
@@ -150,5 +150,7 @@ export default function CheckoutForm() {
       {/* Show any error or success messages */}
       {message && <div id="payment-message">{message}</div>}
     </form>
+
+// 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
   );
 }
