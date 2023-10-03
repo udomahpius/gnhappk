@@ -24,7 +24,7 @@ function Layout({ children, user }) {
         <div className={`${inter.className} bg-gray-100 dark:bg-slate-600 wrapper overflow-y-hidden h-screen transition duration-200 ${darkSide}`}>
             {/* <Nav /> */}
             <SideBar toggleMode={toggleDarkMode} darkSide={darkSide} user={user} />
-            <article className="relative h-screen overflow-y-auto w-full bg-gray-100 dark:bg-slate-600 side-bar article p-0">
+            <article className="relative h-screen overflow-y-auto w-full bg-gray-100 dark:bg-slate-600 side-bar  p-0">
                 { children }
             </article>
             

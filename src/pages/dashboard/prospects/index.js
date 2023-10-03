@@ -130,7 +130,7 @@ function Prospects({ auth }) {
 
                 { user.status === "default_incomplete" && <SubscriptionPayment /> }
 
-                { user.status === "activated" && <div className="relative bg-white dark:bg-slate-900 w-full side-body shadow-lg">  
+                { user.status === "activated" && <section className="relative h-full bg-white dark:bg-slate-900 w-full side-body shadow-lg">  
                     <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400 bg-white dark:bg-black border^100" style={{ width: "100%"}}>
                         <thead className="text-xs text-gray-700 dark:text-gray-300 uppercase bg-white dark:bg-slate-900 w-full">
                             <tr>
@@ -174,7 +174,7 @@ function Prospects({ auth }) {
                         paginate={paginate}
                         currentPage={currentPage}
                     />
-                </div>}
+                </section>}
             </Layout>
         </>
     );
