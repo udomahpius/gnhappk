@@ -11,41 +11,40 @@ import PaymentService from "@/services/PaymentService";
 export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState();
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!stripe) {
       return;
     }
 
-    const clientSecret = new URLSearchParams(window.location.search).get(
-      "payment_intent_client_secret"
-    );
+    // const clientSecret = new URLSearchParams(window.location.search).get(
+    //   "payment_intent_client_secret"
+    // );
 
-    if (!clientSecret) {
-      return;
-    }
+    // if (!clientSecret) {
+    //   return;
+    // }
 
-    stripe.retrievePaymentIntent(clientSecret).then(({ paymentIntent }) => {
-      switch (paymentIntent.status) {
-        case "succeeded":
-          setMessage("Payment succeeded!");
-          break;
-        case "processing":
-          setMessage("Your payment is processing.");
-          break;
-        case "requires_payment_method":
-          setMessage("Your payment was not successful, please try again.");
-          break;
-        default:
-          setMessage("Something went wrong.");
-          break;
-      }
-    });
+    // stripe.retrieveSetupIntent(clientSecret).then(({ setupIntent }) => {
+    //   switch (setupIntent.status) {
+    //     case "succeeded":
+    //       setMessage("Success! Your payment method has been saved.");
+    //       break;
+    //     case "processing":
+    //       setMessage("Processing payment details. We'll update you when processing is complete.");
+    //       break;
+    //     case "requires_payment_method":
+    //       setMessage("Failed to process payment details. Please try another payment method.");
+    //       break;
+    //     default:
+    //       setMessage("Something went wrong.");
+    //       break;
+    //   }
+    // });
   }, [stripe]);
 
 
@@ -69,6 +68,7 @@ export default function CheckoutForm() {
     const {error: submitError} = await elements.submit();
     if (submitError) {
       setIsLoading(false);
+      console.log(submitError);
       handleError(submitError);
       return;
     }
@@ -88,7 +88,7 @@ export default function CheckoutForm() {
       elements,
       clientSecret,
       confirmParams: {
-        return_url: "https://app.setly.ai/payment/success",
+        return_url: "http://localhost:3000/payment/complete",
       },
     });
 
@@ -141,14 +141,9 @@ export default function CheckoutForm() {
         onChange={(e) => setEmail(e.target.value)}
       />
       <PaymentElement id="payment-element" options={paymentElementOptions} className="mb-5 w-full" />
-      {/* <button disabled={isLoading || !stripe || !elements} id="submit" className="bg-red-500">
-        <span id="button-text">
-          {isLoading ? <div className="spinner bg-red-500" id="spinner"></div> : "Pay now"}
-        </span>
-      </button> */}
       <BigButton text="Pay $24" background="black" id="submit" disable={isLoading} disabled={isLoading || !stripe || !elements} />
       {/* Show any error or success messages */}
-      {message && <div id="payment-message">{message}</div>}
+      {message && <div id="payment-message" className="text-red-500">{message}</div>}
     </form>
 
 // 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

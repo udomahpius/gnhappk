@@ -96,7 +96,7 @@ const Signup = ({ auth }) => {
                         <div className="mb-14">
                             <h2 className="font-semibold text-2xl mb-2">Sign Up</h2>
                             <div className="flex items-center gap-1">
-                                <span className="text-gray-800 text-[14px]">Create your account now. Already have an account?</span>
+                                <span className="text-gray-800 text-[14px]">Create your account now. Already have an account? </span>
                                 <Link href="/auth/login" className="text-setly-100 font-bold flex text-[14px]">Login</Link>
                             </div>
                         </div>
@@ -153,7 +153,7 @@ const Signup = ({ auth }) => {
                             </div>
 
                             <div className="mb-8">
-                                <label className="mb-2 text-gray-800 text-sm flex">Company Information</label>
+                                <label className="mb-2 text-gray-800 text-sm flex">Company Name</label>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div>
                                         <div className="border bg-white rounded-lg p-4 flex gap-2 hover:border-setly-100">
@@ -180,6 +180,7 @@ const Signup = ({ auth }) => {
                                             <option>Retail</option>
                                             <option>Sales</option>
                                             <option>Telecommunications</option>
+                                            <option>Others</option>
                                         </select>
                                         { errors.industry && touched.industry && <small className="text-red-700">{ errors.industry }</small>}
                                     </div>

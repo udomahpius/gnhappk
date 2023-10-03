@@ -18,31 +18,31 @@ function Settings({ auth }) {
     Profile: [
       {
         id: 1,
-        title: <Profile user={user} />
+        title: <Profile />
       },
     ],
     Notifications: [
       {
-        id: 1,
+        id: 2,
         title: <NotificationTab />,
       },
     ],
     Billing: [
       {
-        id: 1,
+        id: 3,
         title: <BillingTab />
       }
     ],
 
     Integrations: [
       {
-        id: 1,
+        id: 4,
         title: <IntegrationTab />,
       }
   ],
   })
   return (
-        <Layout>
+        <Layout user={user}>
           
             <div className="w-full px-2 sm:px-0 bg-gray-200 h-fit topnav">
                 <Tab.Group>

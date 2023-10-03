@@ -44,8 +44,8 @@ const Login = ({ auth }) => {
             localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             if(response.data.data.status === "pending" ) return router.replace("/auth/verify-email");
             setDisabled(false);
-            setCookie("setly.sid", "s%3A64ahNUyPIaYmACKiV69CmJVuaoNeG82U.aaYiOiDbTQ8E7sPn8NQQFYVSYjz6Uv7A4t41xNwKwFE", { maxAge: 6000000});
-            router.replace("/dashboard")
+            // setCookie("setly.sid", "s%3A64ahNUyPIaYmACKiV69CmJVuaoNeG82U.aaYiOiDbTQ8E7sPn8NQQFYVSYjz6Uv7A4t41xNwKwFE", { maxAge: 6000000});
+            router.replace("/dashboard");
         } catch (error) {
             console.log(error);
             toast.error(error.response.data.message);
@@ -94,10 +94,10 @@ const Login = ({ auth }) => {
 
                     <div className="bg-[rgb(0, 0, 0)] pt-12 px-12">
                         <div className="mb-14">
-                            <h2 className="font-semibold text-2xl mb-2">Welcome Back</h2>
+                            <h2 className="font-semibold text-2xl mb-2">Welcome</h2>
                             <div className="flex items-center gap-1">
-                                <span className="text-gray-800 text-[13px]">Login to continue using Setly. Already have an account?</span>
-                                <Link href="/auth/signup" className="text-setly-100 font-bold flex text-[14px]">Signup</Link>
+                                <span className="text-gray-800 text-[13px]">Login to continue using Setly. New to Setly? </span>
+                                <Link href="/auth/signup" className="text-setly-100 font-bold flex text-[14px]">Create an Account</Link>
                             </div>
                         </div>
 
@@ -121,7 +121,7 @@ const Login = ({ auth }) => {
                                     <div className="flex gap-3 items-center w-full">
                                         <LockClosedIcon className="h-5 w-5 text-gray-600" />
                                         <input type={ activePassword ? "text" : "password"} name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-700"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.password} />
+                                        onChange={handleChange} onBlur={handleBlur} value={values.password} autoComplete="current-password" />
                                     </div>
                                     <EyeIcon className={ activePassword ? "h-6 w-6 self-center" : "hidden"} onClick={(e) => setActivePassword(false)} />
                                     <EyeOffIcon className={ activePassword ? "hidden" : "h-6 w-6 self-center"} onClick={(e) => setActivePassword(true)} />

@@ -30,36 +30,20 @@ function SubscriptionPayment() {
     const router = useRouter();
     const [disabled, setDisabled] = useState(false);
 
+    // useEffect(() => {
+    //   // Create PaymentIntent as soon as the page loads
+    //   fetch("/api/create-payment-intent", {
+    //     method: "POST",
+    //     headers: { "Content-Type": "application/json" },
+    //     body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
+    //   })
+    //     .then((res) => res.json())
+    //     .then((data) => setClientSecret(data.clientSecret));
+    // }, []);
 
-    const checkoutSession = async() => {
-        setDisabled(true);
-        try {
-            const response = await PaymentService.createCheckoutSession();
-            console.log(response.data.data);
-            setDisabled(false);
-            router.replace(response.data.data)
-        } catch (error) {
-            setDisabled(false)
-            if(error.response.status === 401) {
-                router.replace("/auth/login")
-            }
-            toast.error(error.statusCode)
-            console.log(error);
-        }
+    const subscribe = () => {
+
     }
-
-    const [clientSecret, setClientSecret] = useState("");
-
-    useEffect(() => {
-      // Create PaymentIntent as soon as the page loads
-      fetch("/api/create-payment-intent", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: [{ id: "xl-tshirt" }] }),
-      })
-        .then((res) => res.json())
-        .then((data) => setClientSecret(data.clientSecret));
-    }, []);
   
     const appearance = {
       theme: "stripe",
@@ -90,72 +74,70 @@ function SubscriptionPayment() {
 
 
     return ( 
-        <div className="flex flex-col justify-center items-center h-full w-full bg-white side-body">
-            <div className="mb-5">
-                <Image src={stripe} alt="Stripe Logo" width={100} height={50} />
+        <div className="flex flex-col justify-center items-center h-full w-full bg-white side-body py-3">
+            <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-8 lg-pt-3">
+                <h2 className="mb-2 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Start Your 14 Days Free Trial</h2>
+                <p className="font-light text-gray-500 sm:text-xl dark:text-gray-400">Your $24 subscription will begin when your free trial period ends.</p>
             </div>
-            {/* {clientSecret && ( */}
-                <Elements options={options} stripe={stripePromise}>
-                    <CheckoutForm  />
-                </Elements>
-            {/* )} */}
+            
 
-        {/* <section className="bg-white dark:bg-gray-900">
-            <div className="py-5 px-4 mx-auto max-w-screen-xl lg:py-10 lg:px-6 flex flex-col justify-center items-center">
-                <div className="mx-auto max-w-screen-md text-center mb-8 lg:mb-8">
-                    <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">Start Your 14 Days Free Trial</h2>
-                    <p className="mb-5 font-light text-gray-500 sm:text-xl dark:text-gray-400">Your $24 subscription will begin when your free trial period ends.</p>
-                </div>
-                <div className="space-y-8 lg:grid lg:grid-cols-1 sm:gap-6 xl:gap-10 lg:space-y-0">
-                    <div className="flex flex-col p-4 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:py-5 xl:px-8 dark:bg-gray-800 dark:text-white">
-                        <h3 className="mb-3 text-2xl font-semibold">Starter</h3>
-                        <div className="flex justify-center items-baseline my-8">
-                            <span className="mr-2 text-5xl font-extrabold">$24</span>
-                            <span className="text-gray-500 dark:text-gray-400">/month</span>
+            <section className="bg-white dark:bg-gray-900 w-full">
+                <div className="py-3 px-4 mx-auto max-w-screen-xl lg:py-0 lg:px-6 flex justify-between">
+                    
+                    <div className="space-y-8 lg:grid lg:grid-cols-1 sm:gap-6 xl:gap-10 lg:space-y-0">
+                        <div className="flex flex-col p-4 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:py-5 xl:px-8 dark:bg-gray-800 dark:text-white">
+                            <h3 className="text-2xl font-semibold">Solo</h3>
+                            <div className="flex justify-center items-baseline my-6">
+                                <span className="mr-2 text-5xl font-extrabold">$24</span>
+                                <span className="text-gray-500 dark:text-gray-400">/month</span>
+                            </div>
+                            <ul role="list" className="mb-3 space-y-4 text-left">
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>500 AI Credits</span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>Import/Export Prospect Data</span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>Integrations: <span className="font-semibold">Linkedin</span></span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>AI Messaging &amp; Replying</span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>AI Generated Content Creation</span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>Earn Rewards &amp; Incentives</span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>Setly Communities</span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>Setly Sales Academy</span>
+                                </li>
+                                <li className="flex items-center space-x-3">
+                                    <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                                    <span>Customer Support</span>
+                                </li>
+                            </ul>
+                            {/* <Button text="Start Your Free Trial" disable={disabled} disabled={disabled} onClick={subscribe} /> */}
                         </div>
-                        <ul role="list" className="mb-8 space-y-4 text-left">
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>500 AI Credits</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>Import/Export Prospect Data</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>Integrations: <span className="font-semibold">Linkedin</span></span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>AI Messaging &amps; Replying</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>AI Generated Content Creation</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>Earn Rewards &amps; Incentives</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>Setly Communities</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>Setly Sales Academy</span>
-                            </li>
-                            <li className="flex items-center space-x-3">
-                                <svg className="flex-shrink-0 w-5 h-5 text-green-500 dark:text-green-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                                <span>Customer Support</span>
-                            </li>
-                        </ul>
-                        <a href="#" className="text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:ring-primary-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:text-white  dark:focus:ring-primary-900">Get started</a>
                     </div>
+
+                    <Elements options={options} stripe={stripePromise}>
+                        <CheckoutForm  />
+                    </Elements>
                 </div>
-            </div>
-        </section> */}
+            </section>
             {/* <div classNameName="mb-5">
                 <Image src={stripe} alt="Stripe Logo" width={100} height={50} />
             </div>

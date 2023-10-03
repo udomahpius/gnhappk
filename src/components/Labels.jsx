@@ -33,60 +33,81 @@ const Labels = ({ status }) => {
         <ul className="py-1 pl-2 text-sm text-gray-700 dark:text-gray-200 w-full" aria-labelledby="dropdownActionButton">
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 w-full hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Standard</a>
           </li>
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Conversation</a>
           </li>
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Current Connection </a>
           </li>
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Booking Link Sent</a>
           </li>
 
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Long Nurture</a>
           </li>
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Requested Info Nurture</a>
           </li>
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Demo or Bid Delivered</a>
           </li>
           <li className="flex gap-3 items-center">
             <div className="w-3 h-3 flex items-center">
-                <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
             </div>
-            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Reward</a>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Follow up Later</a>
+          </li>
+          <li className="flex gap-3 items-center">
+            <div className="w-3 h-3 flex items-center">
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+            </div>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Post Close Won Business</a>
+          </li>
+          <li className="flex gap-3 items-center">
+            <div className="w-3 h-3 flex items-center">
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+            </div>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Not Interested</a>
+          </li>
+          <li className="flex gap-3 items-center">
+            <div className="w-3 h-3 flex items-center">
+              <input id="radio-table-search-1" type="radio" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+              <label htmlFor="radio-table-search-1" className="sr-only">radio</label>
+            </div>
+            <a href="#" className="block py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Pending Decision</a>
           </li>
         </ul>
       </div>

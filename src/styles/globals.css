@@ -40,6 +40,9 @@ input:-webkit-autofill:active{
   -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
 
+input[type="text"]:disabled{background-color:white}
+input[type="email"]:disabled{background-color:white}
+
 header {
   grid-area: header;
   background-color: #fed330;
