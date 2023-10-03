@@ -82,7 +82,7 @@ function SubscriptionPayment() {
             
 
             <section className="bg-white dark:bg-gray-900 w-full">
-                <div className="py-3 px-4 mx-auto max-w-screen-xl lg:py-0 lg:px-6 flex justify-between">
+                <div className="py-3 px-4 mx-auto max-w-screen-xl lg:py-0 lg:px-6 flex justify-center gap-12">
                     
                     <div className="space-y-8 lg:grid lg:grid-cols-1 sm:gap-6 xl:gap-10 lg:space-y-0">
                         <div className="flex flex-col p-4 mx-auto max-w-lg text-center text-gray-900 bg-white rounded-lg border border-gray-100 shadow dark:border-gray-600 xl:py-5 xl:px-8 dark:bg-gray-800 dark:text-white">
