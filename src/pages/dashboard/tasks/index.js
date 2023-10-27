@@ -7,6 +7,7 @@ import { EyeIcon, UserRemoveIcon, TrashIcon, OfficeBuildingIcon, BriefcaseIcon }
 import rocket from "@/assets/rocket.webp"
 import { Montserrat } from "next/font/google";
 const inter = Montserrat({ subsets: ['latin'] })
+import tasks from "@/data/tasks.json";
 
 
 
@@ -51,7 +52,7 @@ function Tasks({ auth }) {
     return (
         <>
             <Layout user={user}>
-            <TopNav />
+            <TopNav placeholder="Search tasks" />
 
             { user.status === "onboarding" && <ConnectLinkedin /> }
 
@@ -74,57 +75,43 @@ function Tasks({ auth }) {
                     </div>
 
                     <div className="px-10">
-                        <h2 className="mb-5 text-lg font-semibold">Tasks</h2>
-
-                        <div className="bg-white shadow-md py-4 px-5 grid grid-cols-4 rounded-lg mb-5">
-                            <div className="flex gap-3 items-center">
-                                <Image className="rounded-full h-10 w-10" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" 
-                                width={85} height={85} alt="" />
-                                <div>
-                                    <h5>Saviour Essien</h5>
-                                    <p className="text-sm text-gray-500">Software Engineer</p>
-                                </div>
-                            </div>
-
-                            <div className="place-self-start">
-                                <h4>Action</h4>
-                                <p className="text-sm text-gray-500 truncate w-[220px]">Send a Connection Request Ago In the atmosphere of the heavens</p>
-                            </div>
-
-                            <div className="place-self-end">
-                                <h5>Status</h5>
-                                <p className="text-sm text-green-500">Completed</p>
-                            </div>
-
-                            <div className="place-self-end">
-                                <Button text="Send Request" disable={false} disabled={false} />
-                            </div>
+                        <div className="flex gap-4 items-center mb-5">
+                            <h2 className="text-lg font-semibold">Today&apos;s Tasks</h2>
+                            <span className="flex h-6 w-6 rounded-full bg-black text-white items-center justify-center text-sm font-medium">0</span>
                         </div>
 
-                        <div className="bg-white shadow-md py-4 px-5 grid grid-cols-4 rounded-lg">
-                            <div className="flex gap-3 items-center">
-                                <Image className="rounded-full h-10 w-10" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" 
-                                width={85} height={85} alt="" />
-                                <div>
-                                    <h5>Saviour Essien</h5>
-                                    <p className="text-sm text-gray-500">Software Engineer</p>
+                        { tasks.map((task, index) => (
+                            <div className="bg-white shadow-md py-4 px-5 grid grid-cols-3 rounded-lg mb-5" key={index}>
+                                <div className="flex gap-3 items-center">
+                                    <Image className="rounded-full h-10 w-10" src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png" 
+                                    width={85} height={85} alt="" />
+                                    <div>
+                                        <h5 className="font-medium">{task.name}</h5>
+                                        <p className="text-sm text-gray-500">Software Engineer</p>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div className="place-self-start">
-                                <h4>Action</h4>
-                                <p className="text-sm text-gray-500 truncate w-[220px]">Make a Linkedin Post</p>
-                            </div>
+                                <div className="place-self-start">
+                                    <h5 className="font-medium">Action</h5>
+                                    <p className="text-sm text-gray-500 truncate w-[220px]">{task.description}</p>
+                                </div>
 
-                            <div className="place-self-end">
-                                <h5>Status</h5>
-                                <p className="text-sm text-green-500">Completed</p>
-                            </div>
+                                <div className="place-self-end flex justify-between w-full">
+                                    <div className="col-span-5">
+                                        <h5 className="font-medium">Status</h5>
+                                        <p className="text-sm text-green-500 capitalize">{task.status}</p>
+                                    </div>
 
-                            <div className="border place-self-end">
-                                <Button text="Make Post" disable={false} disabled={false} />
+                                    <div className="col-span-5">
+                                        <Button text={task.action} disable={false} disabled={false} />
+                                    </div>
+                                </div>
+
+                                
                             </div>
-                        </div>
+                        ))}
+
+                        
                     </div>
                 </div> }
 

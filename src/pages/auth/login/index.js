@@ -13,9 +13,9 @@ import { withPublic } from "@/hooks/routes";
 import { BigButton } from "@/components/index.js";
 import { noAuthAPI } from "@/config/api";
 import { Montserrat } from "next/font/google";
-import { setCookie, hasCookie } from 'cookies-next';
+import { setCookie, hasCookie } from "cookies-next";
 
-const inter = Montserrat({ subsets: ['latin'] })
+const inter = Montserrat({ subsets: ['latin'] });
 
 
 const Login = ({ auth }) => {

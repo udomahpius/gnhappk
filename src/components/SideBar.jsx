@@ -3,7 +3,7 @@ import Link from "next/link";
 import { deleteCookie } from "cookies-next";
 import { Inter, Montserrat } from "next/font/google"
 const inter = Montserrat({ subsets: ['latin'] });
-import {InboxIcon, HomeIcon, UserGroupIcon, QuestionMarkCircleIcon, CogIcon, LogoutIcon, BellIcon, CollectionIcon, SunIcon, DocumentTextIcon} from "@heroicons/react/outline";
+import {InboxIcon, HomeIcon, UserGroupIcon, QuestionMarkCircleIcon, CogIcon, LogoutIcon, BellIcon, CollectionIcon, SunIcon, DocumentTextIcon, CashIcon} from "@heroicons/react/outline";
 import { MoonIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -48,12 +48,12 @@ function SideBar({ toggleMode, darkSide, user }) {
                             </div>
                             <div className="flex flex-col items-start justify-start text-clip overflow-hidden">
                                 <h3 className="text-gray-500 dark:text-gray-300 text-sm font-bold"> { user?.first_name }</h3>
-                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300  truncate">{ user?.points }/500 Credits</span>
+                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300 font-semibold  truncate">{ user?.points }/500 Credits</span>
                             </div>
                         </div>
                         {/* { process.env.NEXT_PUBLIC_SETLY_POINTS } */}
                         <BellIcon className="h-7 w-7 text-gray-500 dark:text-gray-300" />
-                        <span className="absolute inline-flex items-center justify-center w-6 h-6 text-xs text-white bg-red-600 border-white rounded-full top-1 right-1 dark:border-gray-900">0</span>
+                        <span className="absolute inline-flex items-center justify-center w-5 h-5 text-xs text-white font-medium bg-red-600 border-white rounded-full top-2 right-2 dark:border-gray-900">0</span>
                     </button>
 
 
@@ -98,7 +98,7 @@ function SideBar({ toggleMode, darkSide, user }) {
                     </ul>
                 </div>
                 
-                <ul className="pt-4 mt-4 space-y-5 font-medium border-t border-gray-200 dark:border-gray-700">
+                <ul className="pt-4 mt-4 mb-4 space-y-5 font-medium border-t border-gray-200 dark:border-gray-700">
                     <li>
                         <Link href="/dashboard/help" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/help" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                             <QuestionMarkCircleIcon className="h-6 w-6 mr-3" />
@@ -123,6 +123,10 @@ function SideBar({ toggleMode, darkSide, user }) {
                         </button>
                     </li>
                 </ul>
+                {/* <div className="flex items-center gap-2 pl-2 text-[0.8rem] font-medium text-gray-600 dark:text-gray-300">
+                    <CashIcon className="h-5 w-5" />
+                    <span>{ user?.points }/500 Credits</span>
+                </div> */}
                 
             </div>
         </aside>

@@ -19,6 +19,12 @@ import {
 import useTheme from "@/hooks/theme";
 const inter = Montserrat({ subsets: ['latin'] });
 
+import { io } from "socket.io-client";
+
+const socket = io("http://127.0.0.1:4000", {
+    reconnection: true
+})
+
 
 
 
@@ -72,6 +78,12 @@ function Dashboard({ auth }) {
     //         setDisabled(false);
     //     }
     // }
+    useEffect(() => {
+        socket.on("connect", () => {
+            console.log(socket); // x8WIv7-mJelg7on_ALbx
+        });
+        console.log("Socket ID", socket);
+    }, [])
 
 
 
