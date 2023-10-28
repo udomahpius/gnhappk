@@ -74,8 +74,8 @@ const Login = ({ auth }) => {
                             <div className="mb-12 pt-6">
                                 <Image src={logo} alt="Rythink Logo" width="250" height="10" />
                             </div>
-                            <h3 className="font-bold text-2xl mb-6 text-white">Let us help you run your freelance business.</h3>
-                            <p className="text-gray-300">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
+                            <h3 className="font-bold text-2xl mb-6 text-white">Connecting people</h3>
+                            <p className="text-gray-300">Our registration process is quick and easy, taking no more than 1 minutes to complete.</p>
                         </div>
 
                         <div>
@@ -96,7 +96,7 @@ const Login = ({ auth }) => {
                         <div className="mb-14">
                             <h2 className="font-semibold text-2xl mb-2">Welcome</h2>
                             <div className="flex items-center gap-1">
-                                <span className="text-gray-800 text-[13px]">Login to continue using Setly. New to Setly? </span>
+                                <span className="text-gray-800 text-[13px]">Login to continue using Good Neighbourhood. New to Good Neighbourhood? </span>
                                 <Link href="/auth/signup" className="text-setly-100 font-bold flex text-[14px]">Create an Account</Link>
                             </div>
                         </div>

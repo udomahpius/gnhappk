@@ -75,7 +75,7 @@ const Signup = ({ auth }) => {
                                 <Image src={logo} alt="Rythink Logo" width="250" height="10" />
                             </div>
                             <h3 className={`font-bold ${inter.className} text-2xl mb-6 text-white`}>Easily build your pipeline with AI.</h3>
-                            <p className="text-gray-300">Our sign-up process is easy and only takes about 6 minutes.</p>
+                            <p className="text-gray-300">Our sign-up process is easy and only takes about 1 minute.</p>
                         </div>
 
                         <div>
@@ -150,45 +150,6 @@ const Signup = ({ auth }) => {
                                     <EyeOffIcon className={ activePassword ? "hidden" : "h-6 w-6 self-center"} onClick={(e) => setActivePassword(true)} />
                                 </div>
                                 { errors.password && touched.password && <small className="text-red-700">{ errors.password }</small>}
-                            </div>
-
-                            <div className="mb-8">
-                                <label className="mb-2 text-gray-800 text-sm flex">Company Name</label>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <div className="border bg-white rounded-lg p-4 flex gap-2 hover:border-setly-100">
-                                            <OfficeBuildingIcon className="h-6 w-6 text-gray-400" />
-                                            <input type="text" name="company" placeholder="Company name" className="w-full flex items-center h-full outline-none text-gray-700"
-                                            onChange={handleChange} onBlur={handleBlur} value={values.company} />
-                                        </div>
-                                        { errors.company && touched.company && <small className="text-red-700">{ errors.company }</small>}
-                                    </div>
-                                    <div className="h-14">
-                                        <select name="industry" className="bg-white h-full hover:border-setly-100 rounded-lg flex px-2 border border-gray w-full outline-none text-gray-600"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.industry}>
-                                            <option>Select an Industry</option>
-                                            <option>Automotive</option>
-                                            <option>Construction</option>
-                                            <option>Consulting & Coaching</option>
-                                            <option>Financial Services</option>
-                                            <option>Higher Education</option>
-                                            <option>Information Technology & Services</option>
-                                            <option>Legal</option>
-                                            <option>Manufacturing</option>
-                                            <option>Medical & Health Care</option>
-                                            <option>Oil &amp; Energy</option>
-                                            <option>Retail</option>
-                                            <option>Sales</option>
-                                            <option>Telecommunications</option>
-                                            <option>Others</option>
-                                        </select>
-                                        { errors.industry && touched.industry && <small className="text-red-700">{ errors.industry }</small>}
-                                    </div>
-                                </div>
-                                <div className="grid grid-cols-2 gap-4">
-                                    
-                                    
-                                </div>
                             </div>
 
                             <BigButton text="Signup" type="submit" disable={disabled} disabled={disabled} onClick={handleSubmit} />
