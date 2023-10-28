@@ -75,7 +75,7 @@ const Signup = ({ auth }) => {
                                 <Image src={logo} alt="Rythink Logo" width="250" height="10" />
                             </div>
                             <h3 className={`font-bold ${inter.className} text-2xl mb-6 text-white`}>Easily build your pipeline with AI.</h3>
-                            <p className="text-gray-300">Our sign-up process is easy and only takes about 1 minute.</p>
+                            <p className="text-gray-300">Our sign-up process is easy and only takes about 1 minute</p>
                         </div>
 
                         <div>
