@@ -11,7 +11,7 @@ import AuthService from "@/services/AuthService";
 import { withPublic } from "@/hooks/routes";
 import { BigButton } from "@/components/index.js";
 import { noAuthAPI } from "@/config/api";
-import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon, EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+import { CheckCircleIcon, UserCircleIcon, LockClosedIcon, EyeIcon, EyeOffIcon, PhoneIcon } from "@heroicons/react/outline";
 import { Montserrat } from "next/font/google";
 const inter = Montserrat({ subsets: ['latin'] });
 
@@ -25,24 +25,20 @@ const Signup = ({ auth }) => {
 
 
     let userSchema = object({
-        first_name: string().min(3, "First Name must be at least 3 characters long").trim().required("First Name is required"),
-        last_name: string().min(3, "Last Name must be at least 3 characters long").trim().required("Last Name is required"),
-        email: string().email().trim().required("Email is required"),
-        password: string().min(8, "Password must be at least 8 characters long").required("Password is required"),
-        company: string().min(3, "Company Name must be at least 3 characters long").required("Company Name is required"),
-        industry: string().required("Industry is required"),
+        name: string().min(3, "First Name must be at least 3 characters long").trim().required("Full Name is required"),
+        phone: string().required("Phone Number is required"),
+        password: string().min(8, "Password must be at least 8 characters long").required("Password is required")
     });
 
 
     const onSubmit = async (values, actions) => {
         setDisabled(true);
         try {
-            const response = await AuthService.register(values.first_name, values.last_name, values.email, values.password, values.company, values.industry);
+            const response = await AuthService.register(values.name, values.phone, values.password);
             toast.success(response.data.message);
             setUser(response.data.data);
-            localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
-            router.replace("/auth/verify-email")
+            router.replace("/dashboard")
         } catch (error) {
             toast.error(error.response.data.message);
             actions.setSubmitting(false)
@@ -53,12 +49,9 @@ const Signup = ({ auth }) => {
 
     const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {
-          first_name: "",
-          last_name: "",
+          name: "",
           email: "",
-          password: "",
-          company: "",
-          industry: ""
+          password: ""
         },
         validationSchema: userSchema,
         onSubmit
@@ -104,38 +97,29 @@ const Signup = ({ auth }) => {
                         <form className="px-1">
                             <div className="mb-5">
                                 <label className="mb-2 text-gray-800 text-sm flex">Full Name</label>
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <div className="border rounded-lg px-4 flex justify-between h-14 bg-white hover:border-setly-100 hover:border-2">
-                                            <div className="flex gap-3 items-center w-full">
-                                                <UserCircleIcon className="h-6 w-6 text-gray-600" />
-                                                <input type="text" name="first_name" placeholder="Enter first name" className="w-full flex items-center h-full outline-none text-gray-700"
-                                                onChange={handleChange} onBlur={handleBlur} value={values.first_name} />
-                                            </div>
+                                <div>
+                                    <div className="border rounded-lg px-4 flex justify-between h-14 bg-white hover:border-setly-100 hover:border-2">
+                                        <div className="flex gap-3 items-center w-full">
+                                            <UserCircleIcon className="h-6 w-6 text-gray-600" />
+                                            <input type="text" name="name" placeholder="Enter full name" className="w-full flex items-center h-full outline-none text-gray-700"
+                                                onChange={handleChange} onBlur={handleBlur} value={values.name} />
                                         </div>
-                                        { errors.first_name && touched.first_name && <small className="text-red-700">{ errors.first_name }</small>}
                                     </div>
-                                    <div>
-                                        <div className="border rounded-lg px-4 h-14 bg-white hover:border-setly-100">
-                                            <input type="text" name="last_name" placeholder="Enter last name" className="w-full flex items-center h-full outline-none text-gray-700"
-                                            onChange={handleChange} onBlur={handleBlur} value={values.last_name} />
-                                        </div>
-                                        { errors.last_name && touched.last_name && <small className="text-red-700">{ errors.last_name }</small>}
-                                    </div>
+                                    { errors.name && touched.name && <small className="text-red-700">{ errors.name }</small>}
                                 </div>
                             </div>
 
                             <div className="mb-5">
-                                <label className="mb-2 text-gray-800 text-sm flex">Email Address</label>
+                                <label className="mb-2 text-gray-800 text-sm flex">Phone Number</label>
                                 <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
-                                        <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-700"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                                        <PhoneIcon className="h-5 w-5 text-gray-600" />
+                                        <input type="tel" name="phone" placeholder="Enter Phone Number" className="w-full flex items-center h-full outline-none text-gray-700"
+                                        onChange={handleChange} onBlur={handleBlur} value={values.phone} />
                                     </div>
-                                    { !errors.email && touched.email && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
+                                    { !errors.phone && touched.phone && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
                                 </div>
-                                { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
+                                { errors.phone && touched.phone && <small className="text-red-700">{ errors.phone }</small>}
                             </div>
 
                             <div className="mb-5">

@@ -9,7 +9,7 @@ import cancel from "@/assets/cancel.png";
 import UserService from "@/services/UserService";
 import toast, { Toaster } from "react-hot-toast";
 import logo from "@/assets/setly2.svg";
-import PaymentService from "@/services/PaymentService";
+import PaymentService from "@/services/DonationService";
 
 
 

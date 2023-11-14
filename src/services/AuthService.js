@@ -5,11 +5,10 @@ import api from "../config/api";
 const AuthService = {
 	waitForAuthorization: async (callback) => {
 		try {
-            const response = JSON.parse(localStorage.getItem("setly_user"))
+			const response = await noAuthAPI.get("/users");
+			// return response;
 
-            console.log(response);
-
-            callback(response);
+            callback(response.data.data);
         } catch (error) {
 			console.log(error);
 			callback(error?.message);
@@ -17,14 +16,14 @@ const AuthService = {
 	},
 
 
-	register: async (first_name, last_name, email, password, company, industry) => {
+
+
+
+	register: async (name, phone, password) => {
         const response = await noAuthAPI.post("auth/signup", {
-			first_name,
-			last_name,
-            email,
-            password,
-			company,
-			industry
+			name,
+            phone,
+            password
         });
 
         return response
@@ -32,9 +31,9 @@ const AuthService = {
 
 	
 
-	login: async (email, password) => {
+	login: async (phone, password) => {
 		const response = await noAuthAPI.post("/auth/login", {
-            email,
+            phone,
             password
         });
 

@@ -11,7 +11,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import { Layout, Nav } from "@/components";
 import Image from "next/image";
 import stripe from "@/assets/stripe.png";
-import PaymentService from "@/services/PaymentService";
+import PaymentService from "@/services/DonationService";
 
 const override = {
     display: "flex",

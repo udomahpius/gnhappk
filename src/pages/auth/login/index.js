@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useFormik } from "formik";
 import { object, string, number, date, InferType } from "yup";
 import logo from "@/assets/setly2.svg";
-import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon, EyeIcon, EyeOffIcon } from "@heroicons/react/outline";
+import { CheckCircleIcon, LockClosedIcon, EyeIcon, EyeOffIcon, PhoneIcon } from "@heroicons/react/outline";
 import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services/AuthService";
 import { withPublic } from "@/hooks/routes";
@@ -29,7 +29,7 @@ const Login = ({ auth }) => {
 
 
     let userSchema = object({
-        email: string().email().trim().required("Email is required"),
+        phone: string().required("Phone Number is required"),
         password: string().min(8, "Password must be at least 8 characters long").required("Password is required"),
     });
 
@@ -37,12 +37,12 @@ const Login = ({ auth }) => {
     const onSubmit = async (values, actions) => {
         setDisabled(true);
         try {
-            const response = await AuthService.login(values.email, values.password);
+            const response = await AuthService.login(values.phone, values.password);
             console.log(response);
             toast.success(response.data.message);
             setUser(response.data.data);
-            localStorage.setItem("setly_user", JSON.stringify(response.data.data));
-            if(response.data.data.status === "pending" ) return router.replace("/auth/verify-email");
+            localStorage.setItem("good_user", JSON.stringify(response.data.data));
+            //if(response.data.data.status === "pending" ) return router.replace("/auth/verify-email");
             setDisabled(false);
             // setCookie("setly.sid", "s%3A64ahNUyPIaYmACKiV69CmJVuaoNeG82U.aaYiOiDbTQ8E7sPn8NQQFYVSYjz6Uv7A4t41xNwKwFE", { maxAge: 6000000});
             router.replace("/dashboard");
@@ -57,7 +57,7 @@ const Login = ({ auth }) => {
 
     const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
         initialValues: {
-          email: "",
+          phone: "",
           password: ""
         },
         validationSchema: userSchema,
@@ -103,16 +103,16 @@ const Login = ({ auth }) => {
 
                         <form className="mb-12" onSubmit={handleSubmit}>
                             <div className="mb-5">
-                                <label className="mb-2 text-gray-800 text-sm flex">Email Address</label>
+                                <label className="mb-2 text-gray-800 text-sm flex">Phone Number</label>
                                 <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
                                     <div className="flex gap-3 items-center w-full">
-                                        <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-700"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.email} />
+                                        <PhoneIcon className="h-5 w-5 text-gray-600" />
+                                        <input type="tel" name="phone" placeholder="Enter Phone Number" className="w-full flex items-center h-full outline-none text-gray-700"
+                                        onChange={handleChange} onBlur={handleBlur} value={values.phone} />
                                     </div>
-                                    { !errors.email && touched.email && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
+                                    { !errors.phone && touched.phone && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
                                 </div>
-                                { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
+                                { errors.phone && touched.phone && <small className="text-red-700">{ errors.phone }</small>}
                             </div>
 
                             <div className="mb-5">

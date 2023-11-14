@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { withProtected } from "@/hooks/routes";
 import { Button } from "@/components";
-import PaymentService from "@/services/PaymentService";
+import PaymentService from "@/services/DonationService";
 import Image from "next/image";
 
 

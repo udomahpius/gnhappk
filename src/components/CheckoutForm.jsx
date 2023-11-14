@@ -6,7 +6,7 @@ import {
   useElements
 } from "@stripe/react-stripe-js";
 import { BigButton, Button } from ".";
-import PaymentService from "@/services/PaymentService";
+import PaymentService from "@/services/DonationService";
 
 export default function CheckoutForm() {
   const stripe = useStripe();

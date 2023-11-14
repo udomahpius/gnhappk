@@ -42,13 +42,13 @@ function SideBar({ toggleMode, darkSide, user }) {
                     <button className="mb-8 p-2 rounded-md relative w-full flex justify-between items-center hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
                         <div className="flex gap-3">
                             <div className="">
-                                <Image className="rounded-full h-10 w-10" src={user?.picture === "" ? `https://ui-avatars.com/api/?name=${user?.first_name}+${user?.last_name}` : user?.picture}
-                                width={85} height={85} alt={`${user?.first_name} ${user?.last_name} image`} priority={true} />
+                                <Image className="rounded-full h-10 w-10" src={`https://ui-avatars.com/api/?name=${user?.name?.split("")[0]}+${user?.name?.split("")[1]}`}
+                                width={85} height={85} alt={`${user?.name} image`} priority={true} />
                                 <span className="bottom-2 left-9 absolute w-3.5 h-3.5 bg-green-400 border-2 border-white dark:border-gray-800 rounded-full"></span>
                             </div>
                             <div className="flex flex-col items-start justify-start text-clip overflow-hidden">
-                                <h3 className="text-gray-500 dark:text-gray-300 text-sm font-bold"> { user?.first_name }</h3>
-                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300 font-semibold  truncate">{ user?.points }/500 Credits</span>
+                                <h3 className="text-gray-500 dark:text-gray-300 text-sm font-bold"> { user?.name }</h3>
+                                <span className="text-[0.7rem] text-gray-600 dark:text-gray-300 font-semibold  truncate">{ user?.phone }</span>
                             </div>
                         </div>
                         {/* { process.env.NEXT_PUBLIC_SETLY_POINTS } */}
@@ -66,32 +66,23 @@ function SideBar({ toggleMode, darkSide, user }) {
                         </li>
 
                         <li>
-                            <Link href="/dashboard/tasks" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/tasks" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
-                                <CollectionIcon className="h-6 w-6 mr-3" />
-                                <span className="flex-1 whitespace-nowrap group-hover:text-white">Tasks</span>
-                                <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium bg-slate-900 ${router.pathname === "/dashboard/inbox" ? "text-white bg-SETLY-BLUE" : "text-white dark:text-gray-300 bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}  dark:bg-SETLY-BLUE rounded-full dark:group-hover:bg-white hover:text-white`}>0</span>
+                            <Link href="/dashboard/earnings" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/earnings" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                                <CashIcon className="h-6 w-6 mr-3" />
+                                <span className="flex-1 whitespace-nowrap group-hover:text-white">Earnings</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/prospects" className={`group flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/prospects" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                            <Link href="/dashboard/donations" className={`group flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/donations" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
                                 <UserGroupIcon className="h-6 w-6 mr-3" />
-                                <span>Prospects</span>
+                                <span>Donations</span>
                             </Link>
                         </li>
 
                         <li>
-                            <Link href="/dashboard/inbox" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/inbox" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
-                                <InboxIcon className="h-6 w-6 mr-3 group-hover:text-white" />
-                                <span className="flex-1 whitespace-nowrap group-hover:text-white">Inbox</span>
-                                <span className={`inline-flex items-center justify-center w-3 h-3 p-3 ml-3 text-sm font-medium bg-slate-900 ${router.pathname === "/dashboard/inbox" ? "text-white bg-SETLY-BLUE" : "text-white dark:text-gray-300 bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}  dark:bg-SETLY-BLUE rounded-full dark:group-hover:bg-white hover:text-white`}>0</span>
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link href="/dashboard/make-a-post" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/make-a-post" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
-                                <DocumentTextIcon className="h-6 w-6 mr-3" />
-                                <span className="flex-1 whitespace-nowrap">Make a Post</span>
+                            <Link href="/dashboard/transactions" className={`flex items-center p-2 text-sm hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN group ${router.pathname === "/dashboard/transactions" ? "text-SETLY-BLUE" : "text-gray-600 dark:text-gray-300 rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN"}`}>
+                                <CollectionIcon className="h-6 w-6 mr-3" />
+                                <span className="flex-1 whitespace-nowrap group-hover:text-white">Referrals</span>
                             </Link>
                         </li>
 
@@ -113,13 +104,10 @@ function SideBar({ toggleMode, darkSide, user }) {
                         </Link>
                     </li>
 
-                    <li className="flex justify-between items-center">
+                    <li>
                         <button className="flex w-full items-center p-2 text-sm text-gray-600 hover:text-white hover:rounded-lg hover:bg-gradient-to-r from-SETLY-BLUE to-SETLY-GREEN dark:text-gray-300 rounded-lg dark:hover:text-gray-300 setly-bg-hover group" onClick={logout}>
                             <LogoutIcon className="h-6 w-6 mr-3" />
                             <span>Logout</span>
-                        </button>
-                        <button onClick={toggleMode}>
-                            { darkSide ? <SunIcon className="h-7 w-7 text-gray-200" /> : <MoonIcon className="h-7 w-7 text-gray-500" /> }
                         </button>
                     </li>
                 </ul>

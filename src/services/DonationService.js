@@ -1,11 +1,23 @@
 import { noAuthAPI } from "../config/api";
 
 
-const PaymentService = {
+const DonationService = {
 
 	collectPaymentDetails: async () => {
         const response = await noAuthAPI.post("users/collect_payment_method");
         return response;
+	},
+
+	makeDonation: async (amount) => {
+		const response = await noAuthAPI.post("/donation", {
+            amount,
+        });
+		return response;
+	},
+
+	listDonations: async () => {
+		const response = await noAuthAPI.get("/donation");
+		return response;
 	},
 
 
@@ -40,4 +52,4 @@ const PaymentService = {
 }
 
 
-export default PaymentService;
+export default DonationService;
