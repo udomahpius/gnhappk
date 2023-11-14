@@ -136,7 +136,6 @@ function Dashboard({ auth }) {
         </Layout>
        </>
     )
-
 }
 
 export default withProtected(Dashboard);
