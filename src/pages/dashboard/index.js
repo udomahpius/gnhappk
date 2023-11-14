@@ -84,8 +84,6 @@ function Dashboard({ auth }) {
 
 
 
-
-
     const onSelect = (plan) => {
         setSelected(plan);
         setAmount(plan.amount)
