@@ -1,11 +1,9 @@
-import { Montserrat } from "next/font/google";
 import { DropDown, TopSearch } from ".";
-const inter = Montserrat({ subsets: ["latin"] });
 
 
 function TopNav({ placeholder, inputValue, setInputValue }) {
     return (
-        <div className={`${inter.className} flex items-center justify-end gap-12 dark:border-b dark:border-slate-700 bg-white dark:bg-slate-900 shadow-lg dark:shadow-none w-full topnav px-4 h-16`}>
+        <div className="flex items-center justify-end gap-12 dark:border-b dark:border-slate-700 bg-white dark:bg-slate-900 shadow-lg dark:shadow-none w-full topnav px-4 h-16">
             <DropDown />
             <label htmlFor="table-search" className="sr-only">Search</label>
             <div className="relative">

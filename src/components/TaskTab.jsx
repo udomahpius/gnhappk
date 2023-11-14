@@ -1,6 +1,4 @@
 import { DocumentIcon, CalendarIcon, ChevronUpIcon, CheckCircleIcon, AtSymbolIcon } from "@heroicons/react/outline";
-import { Montserrat } from "next/font/google";
-const inter = Montserrat({ subsets: ['latin'] });
 import { Disclosure } from "@headlessui/react";
 import { Button } from ".";
 
