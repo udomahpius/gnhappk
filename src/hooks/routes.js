@@ -20,12 +20,12 @@ export function withPublic(WrappedComponent) {
 	return function WithPublic({...props}) {
 	  const router = useRouter();
 	  const auth = useAuth();
-	  const [cookies] = useCookies(["setly.sid"]);
+	  const [cookies] = useCookies(["good.sid"]);
   
-	  const accessToken = cookies["setly.sid"];
+	  const accessToken = cookies["good.sid"];
 
 	  if (accessToken) {
-		router.replace("/dashboard");
+		router.replace("/dashboard/home");
 		return (
 			<div className="min-h-screen flex items-center justify-center">
 				<ClipLoader
@@ -48,11 +48,11 @@ export function withProtected(WrappedComponent) {
   return function WithProtected({...props}) {
 	const router = useRouter();
 	const auth = useAuth();
-	const [cookies, setCookie] = useCookies(["setly.sid"]);
-	const accessToken = cookies["setly.sid"];
+	const [cookies, setCookie] = useCookies(["good.sid"]);
+	const accessToken = cookies["good.sid"];
 
 	  if (!accessToken) {
-		localStorage.removeItem("setly_user");
+		localStorage.removeItem("good_user");
 		router.replace("/auth/login");
 		return (
 			<div className="min-h-screen flex items-center justify-center">

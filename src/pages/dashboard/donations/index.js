@@ -1,30 +1,12 @@
-import { Fragment, useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import { DonationRow, Logout, SmallButton, SmatNav, Success } from "@/components";
 import { withProtected } from "@/hooks/routes";
-import LeadService from "@/services/ProspectService";
-import { Toaster, toast } from "react-hot-toast";
-import ClipLoader from "react-spinners/ClipLoader";
-import { Button, ConnectLinkedin, DropDown, Layout, Nav, RadioButton, SideBar, SubscriptionPayment } from "@/components";
-import Image from "next/image";
-import TopMenu from "@/components/TopMenu";
-import { Montserrat } from "next/font/google";
-import { LinkIcon, MailOpenIcon, CollectionIcon, DocumentDuplicateIcon, CheckCircleIcon, AtSymbolIcon } from "@heroicons/react/outline";
-import Link from "next/link";
-import {
-    CircularProgressbar,
-    CircularProgressbarWithChildren,
-    buildStyles
-  } from "react-circular-progressbar";
-  import "react-circular-progressbar/dist/styles.css";
-import useTheme from "@/hooks/theme";
-import currencyFormatter from "@/utils/currencyFormatter";
-const inter = Montserrat({ subsets: ['latin'] });
-import spinner from "@/assets/spinner.gif"
+import useLogOut from "@/hooks/useLogOut";
 import DonationService from "@/services/DonationService";
-import avatar from "@/assets/avatar.jpg";
-
-
-
+import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, SortDescendingIcon } from "@heroicons/react/outline";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import ClipLoader from "react-spinners/ClipLoader";
 
 
 
@@ -37,14 +19,18 @@ const override = {
 };
 
 
-function Donation({ auth }) {
+function Abeg({ auth }) {
     const router = useRouter();
-    const { user } = auth;
-    const [donations, setDonations] = useState([]);
+    const [setLogOut] = useLogOut();
+    const { setUser, user } = auth;
+    const [openModal, setOpenModal] = useState(false);
+    const [openSignOut, setOpenSignOut] = useState(false);
+    const [openSuccess, setOpenSuccessModal] = useState(false);
     const [disabled, setDisabled] = useState(false);
-    const [progress, setProgress] = useState(30);
-    const [selected, setSelected] = useState(null);
-
+    const [donations, setDonations] = useState(null);
+    const [file, setFile] = useState(null);
+    const [progress, setProgress] = useState(0);
+    const [enrollee, setEnrollee] = useState(null);
 
     useEffect(() => {
         listDonations()
@@ -55,26 +41,21 @@ function Donation({ auth }) {
         try {
             const response = await DonationService.listDonations();
             console.log(response);
-            toast.success(response.data.message);
+            //toast.success(response.data.message);
             setDisabled(false);
-            setDonations([...response.data.data])
+            setDonations(response.data.data);
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            //toast.error(error.response.data.message);
             setDisabled(false);
         }
     }
 
-
-
-
-
-    const onSelect = (plan) => {
-        setSelected(plan);
-        setAmount(plan.amount)
+    const openEnrollee = (enrollee) => {
+        setEnrollee(enrollee);
+        console.log(enrollee);
+        router.push(`/dashboard/staff/${enrollee.staff_id}`)
     }
-
-
 
     { disabled && 
         <div className="min-h-screen flex items-center justify-center">
@@ -89,39 +70,108 @@ function Donation({ auth }) {
         </div>
     }
 
-    return (
-       <>
-        <Toaster />
-        <Layout user={user}>
-            <div className="md:w-custom mx-auto py-8 md:flex md:justify-between md:flex-wrap w-[80%]">
+    console.log(donations);
 
-                <div className="w-full mb-10">
-                    <div className="mx-auto w-[50%] flex justify-center">
-                        <div className="bg-white h-28 border-2 w-36 flex justify-center items-center rounded-lg">
-                            <span>You</span>
+    return (
+        <main>
+            <Success visible={openSuccess} title="Staff list submitted successfully!" description="Your staff list has been submitted to Smathealth Medicare Limited"
+                closeModal={() => setOpenSuccessModal(false)} />
+            <SmatNav name={user?.name?.split(" ")[0]} openSignOut={() => setOpenSignOut(true)} />
+            <Logout visible={openSignOut} closeModal={() => setOpenSignOut(false)} logout={() => { setLogOut(true);  setOpenSignOut(false) }}  />
+            <section className="m-[32px]">
+                    {/* <div className="flex justify-between items-center mb-8">
+                        <h5 className="text-[#051438] text-[18px] font-semibold">Staff management</h5>
+                        <div className="flex items-center gap-8">
+                            <div className="flex gap-3 items-center bg-white border border-[#DFE2E9] rounded-[10px]  pr-[20px]">
+                                <input type="text" id="search" name="search" className="w-full py-[10px] pl-[20px] rounded-l-[10px]" placeholder="Search list" />
+                                <SearchIcon className="h-5 w-5" />
+                            </div>
+                            <SmallButton text="Upload staff details" onClick={() => setOpenModal(true)} />
+                        </div>
+                    </div> */}
+
+                    <div className="flex justify-between items-center mb-8">
+                        <h5 className="text-[#051438] text-[18px] font-semibold">Donations</h5>
+
+                        {/* {!disabled && staffs?.staff_members?.length > 0 && <div className="bg-[#DFE2E9] py-[8px] px-[16px] flex gap-7 justify-between items-center rounded-[10px]">
+                            <div className="flex flex-col  items-center">
+                                <span className="text-[#051438] text-[16px] font-semibold">{ staffs?.staff_members.length}</span>
+                                <span className="text-[#677597] text-[14px] font-semibold">Total staff enrolled</span>
+                            </div>
+                            <div className="flex flex-col  items-center">
+                                <span className="text-[#051438] text-[16px] font-semibold">{ staffs?.incomplete_setup }</span>
+                                <span className="text-[#677597] text-[14px] font-semibold">Enrollees with info completed</span>
+                            </div>
+
+                            <div className="flex flex-col  items-center">
+                                <span className="text-[#051438] text-[16px] font-semibold">{ staffs?.total_dependents }</span>
+                                <span className="text-[#677597] text-[14px] font-semibold">Total dependants</span>
+                            </div>
+                        </div>} */}
+
+
+                        <div className="flex items-center gap-8">
+                            <div className="flex gap-3 items-center bg-white border border-[#DFE2E9] rounded-[10px]  pr-[20px]">
+                                <input type="text" id="search" name="search" className="w-full py-[10px] pl-[20px] rounded-l-[10px]" placeholder="Search list" />
+                                <SearchIcon className="h-5 w-5" />
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div className="w-full">
-                    <div className="mx-auto w-[50%] flex justify-between">
 
-                        { donations.map(donation =>  
-                            donation.downlines.map((item) =>  
-                                <div key={item.user_id} className="bg-white h-28 border-2 w-36 flex justify-center items-center rounded-lg">
-                                    
-                                    <Image src={avatar} width={80} height={80} alt="" key={item.user_id} />
+                    { !disabled && donations?.length == 0 && <div className="h-[540px] flex justify-center items-center overflow-scroll">
+                        <div className="bg-white rounded-[10px] border border-[#DFE2E9] p-[16px] flex flex-col justify-center items-center h-[360px] w-[640px]">
+                            <Image src={icon} width="120" height="" alt="" className="mb-8" />
+                            <p className="text-[#677597] text-[16px] mb-2">No data recorded</p>
+                            <p className="text-[#051438] text-[16px] font-medium">Click on the Upload staff details button to get started</p>
+                        </div>
+                    </div> }
+
+                    {/* { !disabled && staffs == null && <div className="h-[550px] flex justify-center items-center">
+                        <span class="spinner"></span>
+                    </div> } */}
+
+                    { !disabled && donations?.length > 0 && <div className="h-[582px]">
+                        <div>
+                            <div className="flex justify-between items-center mb-5">
+                                <div className="flex gap-1 items-center">
+                                    <SortDescendingIcon className="h-5 w-5 text-[#0B0C7D]" />
                                 </div>
-                            )
 
-                        )}
-                    </div>
-                </div>            
-            </div>
-        </Layout>
-       </>
-    )
+                                <div className="flex gap-6 items-center">
+                                    <div className="flex gap-2 items-center">
+                                        <p className="text-[#677597] text-[16px] font-medium">
+                                            <span>1 - 20</span>
+                                        </p>
+                                        <span className="text-[#051438] text-[16px] font-medium">of</span>
+                                        <span className="text-[#677597] text-[16px] font-medium">200</span>
+                                    </div>
 
+                                    <div className="flex gap-3 items-center">
+                                        <button className="flex justify-center items-center bg-white disabled:bg-[#E6E8EB] border border-[#DFE2E9] rounded-[4px] h-[32px] w-[32px]" disabled>
+                                            <ChevronLeftIcon className="h-4 w-4" />
+                                        </button>
+                                        <button className="flex justify-center items-center bg-white disabled:bg-[#E6E8EB] border border-[#DFE2E9] rounded-[4px] h-[32px] w-[32px]">
+                                            <ChevronRightIcon className="h-4 w-4" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="">
+                                { donations.map(donation =>  
+                                    donation.downlines.map((item) =>  
+                                        <DonationRow donation={item} openPlan={openEnrollee} key={item.user_id} />
+                                    )
+                                )}
+                            </div>
+
+                        </div>
+                    </div>}
+
+            </section>
+        </main>
+    );
 }
 
-export default withProtected(Donation);
+export default withProtected(Abeg);

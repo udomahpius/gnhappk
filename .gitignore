@@ -3,7 +3,7 @@
 _static
 
 # dependencies
-/node_modules
+#/node_modules
 /.pnp
 .pnp.js
 
@@ -38,3 +38,4 @@ next-env.d.ts
 
 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
 
+ssh -i "Downloads/good-server.pem" ubuntu@16.170.154.105 -v
