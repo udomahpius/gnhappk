@@ -1,7 +1,7 @@
 import { DonationRow, Logout, RadioButton, SmallButton, SmatNav, Success } from "@/components";
-import { withProtected } from "@/hooks/routes";
-import useLogOut from "@/hooks/useLogOut";
-import DonationService from "@/services/DonationService";
+import { withProtected } from "@/hooks1/routes";
+import useLogOut from "@/hooks1/useLogOut";
+import DonationService from "@/services1/DonationService";
 import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, SortDescendingIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -161,4 +161,4 @@ function Home({ auth }) {
     );
 }
 
-export default withProtected(Home);
+export default Home;

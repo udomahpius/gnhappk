@@ -2,7 +2,7 @@ import { InformationCircleIcon, PlusCircleIcon, XIcon } from "@heroicons/react/o
 import success from "@/assets/success.png";
 import { Button, SmallButton, SmallButtonWhite } from "..";
 import Image from "next/image";
-import useSuccess from "@/hooks/useSuccess";
+import useSuccess from "@/hooks1/useSuccess";
 
 
 function Logout({ visible, closeModal, logout }) {

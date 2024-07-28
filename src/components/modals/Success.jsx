@@ -2,7 +2,7 @@ import { PlusCircleIcon, XIcon } from "@heroicons/react/outline";
 import success from "@/assets/success.png";
 import { Button, SmallButton } from "..";
 import Image from "next/image";
-import useSuccess from "@/hooks/useSuccess";
+import useSuccess from "@/hooks1/useSuccess";
 
 
 function Success({ visible, closeModal, title, description }) {

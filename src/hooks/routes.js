@@ -1,74 +1,41 @@
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import ClipLoader from "react-spinners/ClipLoader";
-import { useCookies } from 'react-cookie';
-import useAuth from "@/hooks/auth";
-import { setCookie, hasCookie } from 'cookies-next';
+import React from "react";
+import Editor from "@/pages/ai/carousels/[id]";
+import Write from "@/pages/ai/carousels/write";
 
-
-const override = {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    margin: "0 auto",
-    borderColor: "#269ACE",
+import LoggedIn from "./logged-in";
+import { GlobalLoader } from "@/components";
+export const getLoggedInContainer = (Component) => {
+  return  (
+    <React.Fragment>
+      <LoggedIn isView={Component === Write || Component === Editor}>
+        <Component></Component>
+      </LoggedIn>
+    </React.Fragment>
+  );
 };
 
+export const getComponentForAuthPages = (Component) => {
+  return  (
+    <div className="h-full font-sans antialiased text-gray-900 bg-white">
+      <Component />
+      <GlobalLoader></GlobalLoader>
+    </div>
+  );
+};
 
+export const getComponentForPublicPages = (Component) => {
+  return  (
+    <div className="h-screen flex flex-col">
+      <div className="relative flex flex-grow h-[calc(100%-60px)] pb-[60px] lg:pb-0">
+        <main
+          className={
 
-export function withPublic(WrappedComponent) {
-	return function WithPublic({...props}) {
-	  const router = useRouter();
-	  const auth = useAuth();
-	  const [cookies] = useCookies(["good.sid"]);
-  
-	  const accessToken = cookies["good.sid"];
-
-	  if (accessToken) {
-		router.replace("/dashboard/home");
-		return (
-			<div className="min-h-screen flex items-center justify-center">
-				<ClipLoader
-					color="white"
-					loading={true}
-					cssOverride={override}
-					size={50}
-					aria-label="Loading Spinner"
-					data-testid="loader"
-				/>
-			</div>
-		);
-	 }
-	  // If this is an accessToken we just render the component that was passed with all its props
-		return <WrappedComponent auth={auth} {...props} />;
-	};
-} 
-
-export function withProtected(WrappedComponent) {
-  return function WithProtected({...props}) {
-	const router = useRouter();
-	const auth = useAuth();
-	const [cookies, setCookie] = useCookies(["good.sid"]);
-	const accessToken = cookies["good.sid"];
-
-	  if (!accessToken) {
-		localStorage.removeItem("good_user");
-		router.replace("/auth/login");
-		return (
-			<div className="min-h-screen flex items-center justify-center">
-				<ClipLoader
-					color="white"
-					loading={true}
-					cssOverride={override}
-					size={50}
-					aria-label="Loading Spinner"
-					data-testid="loader"
-				/>
-			</div>
-		);
-	 }
-
-      // If this is an accessToken we just render the component that was passed with all its props
-      return <WrappedComponent auth={auth} {...props} />;
-	}
+              "flex-1 min-w-0 overflow-y-auto bg-white lg:border-l lg:border-gray-200"
+          }
+        >
+          <Component />
+        </main>
+      </div>
+    </div>
+  );
 };

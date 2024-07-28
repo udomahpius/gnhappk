@@ -1,8 +1,8 @@
 'use client';
 import { useState } from "react";
-import { withProtected } from "@/hooks/routes";
+import { withProtected } from "@/hooks1/routes";
 import { Button } from "@/components";
-import PaymentService from "@/services/DonationService";
+import PaymentService from "@/services1/DonationService";
 import Image from "next/image";
 
 

@@ -6,7 +6,7 @@ const RadioButton = ({ plan, amount, onSelect, selected }) => {
     const [activePlan, setActivePlan] = useState("");
 
     return (
-        <div className={`text-black w-56 rounded-lg shadow-md p-6 cursor-pointer mb-8 hover:bg-green-lightest focus:outline-none focus:shadow-outline-green  ${ selected === plan ? "bg-green-100 shadow-outline-green border border-green-600" : "bg-white"}`} tabindex="0" onClick={onSelect}>
+        <div className={`text-black w-56 rounded-lg shadow-md p-6 cursor-pointer focus:outline-none focus:shadow-outline-green border border-gray-100  ${ selected === plan ? "bg-green-100 shadow-outline-green border border-green-600" : "bg-white hover:bg-green-50 hover:border hover:border-green-400"}`} tabIndex="0" onClick={onSelect}>
             <div className="flex justify-between items-center mb-3">
                 <h1 className="uppercase text-base tracking-wide text-blue-darker my-2">{plan}</h1>
                 

@@ -1,7 +1,8 @@
 import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { withProtected } from "@/hooks/routes";
-import LeadService from "@/services/ProspectService";
+import useRequest from "@/api/useRequest";
+import { withProtected } from "@/hooks1/routes";
+import LeadService from "@/services1/ProspectService";
 import { Toaster, toast } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Button, ConnectLinkedin, DropDown, Layout, Nav, RadioButton, SideBar, SubscriptionPayment } from "@/components";
@@ -15,12 +16,15 @@ import {
     CircularProgressbarWithChildren,
     buildStyles
   } from "react-circular-progressbar";
+
   import "react-circular-progressbar/dist/styles.css";
-import useTheme from "@/hooks/theme";
+import useTheme from "@/hooks1/theme";
 import currencyFormatter from "@/utils/currencyFormatter";
 const inter = Montserrat({ subsets: ['latin'] });
 import spinner from "@/assets/spinner.gif"
-import DonationService from "@/services/DonationService";
+import DonationService from "@/services1/DonationService";
+import { createMakeDonationRequest } from "@/api/requestFactory/donation";
+import { NotificationContext } from "@/context/notification-context";
 
 
 
@@ -37,6 +41,7 @@ const override = {
 
 
 function Dashboard({ auth }) {
+    const { requestMaker } = useRequest();
     const router = useRouter();
     const { user } = auth;
     const [leads, setLeads] = useState([]);
@@ -44,6 +49,7 @@ function Dashboard({ auth }) {
     const [progress, setProgress] = useState(30);
     const [selected, setSelected] = useState(null);
     const [amount, setAmount] = useState(0);
+    const { showNotification } = useContext(NotificationContext);
 
 
     const plans = [
@@ -69,17 +75,28 @@ function Dashboard({ auth }) {
         event.preventDefault();
         console.log(amount);
         setDisabled(true);
-        try {
-            const response = await DonationService.makeDonation(amount);
-            console.log(response);
-            toast.success(response.data.message);
+        requestMaker(createMakeDonationRequest(amount))
+        .then((res) => {
             setDisabled(false);
-            setAmount(0)
-        } catch (error) {
-            console.log(error);
-            toast.error(error.response.data.message);
-            setDisabled(false);
-        }
+            setAmount(0);
+            showNotification(
+                {
+                  title: "Success",
+                  content: "Donation successful",
+                },
+                "success"
+            );
+        })
+        .catch((err) => {
+        console.log(err);
+        showNotification(
+          {
+            title: "Something went wrong",
+            content: "Couldn't make a donation, please try again later",
+          },
+          "error"
+        );
+      })
     }
 
 

@@ -7,10 +7,10 @@ import { object, string } from "yup";
 import React, { useState, useEffect } from "react";
 import logo from "@/assets/1.svg";
 import toast, { Toaster } from 'react-hot-toast';
-import AuthService from "@/services/AuthService";
+import AuthService from "@/services1/AuthService";
 import { BigButton, Button } from "@/components/index.js";
 import OtpInput from "react-otp-input";
-import { withPublic } from "@/hooks/routes";
+import { withPublic } from "@/hooks1/routes";
 import { Montserrat } from "next/font/google";
 import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/react/outline";
 const inter = Montserrat({ subsets: ['latin'] })

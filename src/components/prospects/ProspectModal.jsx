@@ -2,7 +2,7 @@ import { Dialog, Transition } from "@headlessui/react"
 import Image from "next/image";
 import { Fragment, useEffect, useState } from "react";
 import {PhoneIcon, MailIcon, PencilAltIcon, OfficeBuildingIcon, XIcon, PaperClipIcon, TrashIcon} from "@heroicons/react/outline";
-import ProspectService from "@/services/ProspectService";
+import ProspectService from "@/services1/ProspectService";
 import { Button, Labels, ProspectModalTabs } from "..";
 import Link from "next/link";
 

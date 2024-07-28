@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Nav, SideBar, TopNav } from "@/components/index.js";
-import useTheme from "@/hooks/theme";
+import useTheme from "@/hooks1/theme";
 import { Montserrat } from "next/font/google";
 const inter = Montserrat({ subsets: ['latin'] });
 

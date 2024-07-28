@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ebay/nice-modal-react": "^1.2.13",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^1.0.6",
     "@popperjs/core": "^2.11.8",
@@ -16,10 +17,12 @@
     "@stripe/stripe-js": "^2.1.6",
     "axios": "^1.4.0",
     "cookies-next": "^4.0.0",
+    "email-validator": "^2.0.4",
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.13",
+    "flutterwave-react-v3": "^1.3.2",
     "formik": "^2.4.3",
-    "moment": "^2.29.4",
+    "moment": "^2.30.1",
     "next": "13.4.13",
     "react": "18.2.0",
     "react-circular-progressbar": "^2.1.0",

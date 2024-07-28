@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Button } from "@/components";
-import UserService from "@/services/UserService";
+import UserService from "@/services1/UserService";
 import { Toaster, toast } from "react-hot-toast";
-import { withProtected } from "@/hooks/routes";
+import { withProtected } from "@/hooks1/routes";
 
 function Subscription({ auth }) {
     const router = useRouter();

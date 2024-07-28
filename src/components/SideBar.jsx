@@ -8,7 +8,7 @@ import { MoonIcon } from "@heroicons/react/solid";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import logo from "@/assets/setly2.svg";
-import AuthService from "@/services/AuthService";
+import AuthService from "@/services1/AuthService";
 
 
 

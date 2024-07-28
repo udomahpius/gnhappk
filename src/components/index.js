@@ -27,6 +27,7 @@ export { default as WorkflowTab } from "./WorkflowTab";
 export { default as NoteTab } from "./NoteTab";
 export { default as CheckoutForm } from "./CheckoutForm";
 
+
 export { default as ProspectItem } from "./prospects/ProspectItem";
 export { default as ProspectsList } from "./prospects/ProspectsList";
 
@@ -45,7 +46,8 @@ export { default as AddPlanModal } from "./modals/AddPlan.jsx";
 
 export { default as NavBar } from "./navbars/Nav.jsx";
 export { default as SmatNav } from "./navbars/SmatNav.jsx";
-
+export { default as GlobalLoader } from "./GlobalLoader.jsx";
+export { default as MobileNav } from "./MobileNav.jsx";
 
 
 export { default as InsurerRow } from "./rows/InsurerRow.jsx";

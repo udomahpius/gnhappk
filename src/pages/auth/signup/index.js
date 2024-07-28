@@ -1,148 +1,256 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import smathealth from "@/assets/good-logo.png";
+import logo from "@/assets/plateaumed-logo.png";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { useFormik } from "formik";
-import { object, string, number, date, InferType } from "yup";
-import logo from "@/assets/setly2.svg";
-import toast, { Toaster } from "react-hot-toast";
-import AuthService from "@/services/AuthService";
-import { withPublic } from "@/hooks/routes";
-import { BigButton } from "@/components/index.js";
-import { noAuthAPI } from "@/config/api";
-import { CheckCircleIcon, UserCircleIcon, LockClosedIcon, EyeIcon, EyeOffIcon, PhoneIcon } from "@heroicons/react/outline";
+import { CheckCircleIcon, UserCircleIcon, LockClosedIcon, PhoneIcon, MailIcon, ReceiptRefundIcon } from "@heroicons/react/outline";
+import toast, { Toaster } from 'react-hot-toast';
+import { BigButton, Button } from "@/components/index.js";
 import { Montserrat } from "next/font/google";
 const inter = Montserrat({ subsets: ['latin'] });
+import { signUpWithPhoneAndPassword } from "@/api/requestFactory/auth";
+import useRequest from "@/api/useRequest";
+import { retrieveToken } from "@/services/auth";
+import { storeUserSession } from "@/api/workspace";
 
 
-const Signup = ({ auth }) => {
+const Signup = () => {
     const router = useRouter();
-    const { setUser } = auth;
-
+    const { requestMaker } = useRequest();
+    const searchParams = useSearchParams();
     const [disabled, setDisabled] = useState(false);
     const [activePassword, setActivePassword] = useState(false);
+    const [name, setName] = useState('');
+    const [phone, setPhone] = useState('');
+    const [email, setEmail] = useState('');
+    const [code, setCode] = useState('');
+    const [password, setPassword] = useState('');
+    const [nameError, setNameError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [passwordFieldType, setPasswordFieldType] = useState('password');
 
 
-    let userSchema = object({
-        name: string().min(3, "First Name must be at least 3 characters long").trim().required("Full Name is required"),
-        phone: string().required("Phone Number is required"),
-        password: string().min(8, "Password must be at least 8 characters long").required("Password is required")
-    });
-
-
-    const onSubmit = async (values, actions) => {
-        setDisabled(true);
-        try {
-            const response = await AuthService.register(values.name, values.phone, values.password);
-            toast.success(response.data.message);
-            setUser(response.data.data);
-            setDisabled(false);
-            router.replace("/dashboard")
-        } catch (error) {
-            toast.error(error.response.data.message);
-            actions.setSubmitting(false)
-            setDisabled(false);
+    useEffect(() => {
+      retrieveToken().then((value) => {
+        if(value) {
+          router.replace('/');
         }
+      }).catch((error) => {
+        console.log(error);
+      });
+    }, [router]);
+
+    const redirectUrl = searchParams.get('redirectUrl') || '/';
+
+    
+
+    async function createAccount(e) {
+      e.preventDefault();
+      setNameError('');
+      setPhoneError('');
+      setPasswordError('');
+      e.preventDefault();
+      if(!name) {
+        setNameError("Full Name is required");
+        return;
+      }
+      if(!phone) {
+        setPhoneError("Phone is required");
+        return;
+      }
+      if(!email) {
+        setPhoneError("Email is required");
+        return;
+      }
+      if(!password) {
+        setPasswordError("Password is required");
+        return;
+      }
+      if(password.length < 6) {
+        setPasswordError("Password must be at least 6 characters long");
+        return;
+      }
+      requestMaker(signUpWithPhoneAndPassword(name, phone, email, password, code))
+        .then((res) => {
+            storeUserSession({
+              access_token: res?.data?.authorization,
+              expires_at: res?.data?.expires_at,
+              expires_in: res?.data?.expires_in,
+              user: {
+                id: res?.data?.id,
+                phone: res?.data?.phone,
+                email: res?.data?.email,
+                created_at: res?.data?.created_at,
+                updated_at: res?.data?.updated_at,
+                status: res?.data?.account_status
+              }
+            });
+          router.push(`/${redirectUrl}`);
+        })
+        .catch((err) => {
+        console.log(err);
+        alert(err.response?.data?.message || "Something went wrong");
+      })
     }
 
 
-    const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues: {
-          name: "",
-          email: "",
-          password: ""
-        },
-        validationSchema: userSchema,
-        onSubmit
-    });
-
     return (
-        <>
-            <Toaster />
-            <div className={`h-[100vh] ${inter.className} overflow-x-hidden`}>
-                <div className="grid gap-x-20 grid-cols-2 h-full py-8 mx-auto w-[80%]">
-                    <div className="card rounded-lg flex flex-col justify-between px-12 py-3 pb-10">
-                        <div className="w-[350px]">
-                            <div className="mb-12 pt-6">
-                                <Image src={logo} alt="Rythink Logo" width="250" height="10" />
-                            </div>
-                            <h3 className={`font-bold ${inter.className} text-2xl mb-6 text-white`}>Easily build your pipeline with AI.</h3>
-                            <p className="text-gray-300">Our sign-up process is easy and only takes about 1 minute</p>
-                        </div>
-
-                        <div>
-                            <div className="card setly-bg rounded-lg  p-5">
-                                <p className="mb-3 text-black text-opacity-80">Im impressed with the results Ive seen since starting to use this product, I begin receiving clients and projects in the first week.</p>
-                                <div className="text-black text-opacity-80">
-                                    <div>
-                                        <p className="text-sm font-semibold">Jonas Kim</p>
-                                        <p className="text-sm text-gray-800">Product Designer</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div className="bg-[rgb(0, 0, 0)] pt-6 px-6 overflow-y-auto">
-                        <div className="mb-14">
-                            <h2 className="font-semibold text-2xl mb-2">Sign Up</h2>
-                            <div className="flex items-center gap-1">
-                                <span className="text-gray-800 text-[14px]">Create your account now. Already have an account? </span>
-                                <Link href="/auth/login" className="text-setly-100 font-bold flex text-[14px]">Login</Link>
-                            </div>
-                        </div>
-
-                        <form className="px-1">
-                            <div className="mb-5">
-                                <label className="mb-2 text-gray-800 text-sm flex">Full Name</label>
-                                <div>
-                                    <div className="border rounded-lg px-4 flex justify-between h-14 bg-white hover:border-setly-100 hover:border-2">
-                                        <div className="flex gap-3 items-center w-full">
-                                            <UserCircleIcon className="h-6 w-6 text-gray-600" />
-                                            <input type="text" name="name" placeholder="Enter full name" className="w-full flex items-center h-full outline-none text-gray-700"
-                                                onChange={handleChange} onBlur={handleBlur} value={values.name} />
-                                        </div>
-                                    </div>
-                                    { errors.name && touched.name && <small className="text-red-700">{ errors.name }</small>}
-                                </div>
-                            </div>
-
-                            <div className="mb-5">
-                                <label className="mb-2 text-gray-800 text-sm flex">Phone Number</label>
-                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
-                                    <div className="flex gap-3 items-center w-full">
-                                        <PhoneIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="tel" name="phone" placeholder="Enter Phone Number" className="w-full flex items-center h-full outline-none text-gray-700"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.phone} />
-                                    </div>
-                                    { !errors.phone && touched.phone && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
-                                </div>
-                                { errors.phone && touched.phone && <small className="text-red-700">{ errors.phone }</small>}
-                            </div>
-
-                            <div className="mb-5">
-                                <label className="mb-2 text-gray-800 text-sm flex">Password</label>
-                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
-                                    <div className="flex gap-3 items-center w-full">
-                                        <LockClosedIcon className="h-5 w-5 text-gray-600" />
-                                        <input type={ activePassword ? "text" : "password"} name="password" placeholder="**********" className="w-full flex items-center h-full outline-none text-gray-700"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.password} />
-                                    </div>
-                                    <EyeIcon className={ activePassword ? "h-6 w-6 self-center" : "hidden"} onClick={(e) => setActivePassword(false)} />
-                                    <EyeOffIcon className={ activePassword ? "hidden" : "h-6 w-6 self-center"} onClick={(e) => setActivePassword(true)} />
-                                </div>
-                                { errors.password && touched.password && <small className="text-red-700">{ errors.password }</small>}
-                            </div>
-
-                            <BigButton text="Signup" type="submit" disable={disabled} disabled={disabled} onClick={handleSubmit} />
-                        </form>
+        <main className="flex w-full h-screen">
+            <section className="w-[50%] bg-[#677597] flex flex-col justify-end items-center text-white text-center">
+                <div className="mb-20 px-16">
+                    <h2 className="text-[32px] font-bold mb-20">Good Neighbourhood</h2>
+                    <h3 className="text-[24px] font-bold capitalize">Helping uplifting poverty</h3>
+                    <p className="text-[16px] font-medium">We are connecting the community to another sustainable stream of income to survive the harsh economy</p>
+                    <div className="flex justify-center gap-2 mt-5">
+                        <span className="w-[16px] bg-[#CDD8F3] h-[8px] rounded-[12px] flex"></span>
+                        <span className="w-[8px] bg-[#DFE2E9] h-[8px] rounded-full flex"></span>
+                        <span className="w-[8px] bg-[#DFE2E9] h-[8px] rounded-full flex"></span>
                     </div>
                 </div>
-            </div>
-        </>
+                
+            </section>
+            <section className="w-[50%] bg-[#EDF0F8] flex flex-col p-[32px]">
+                <Image src={smathealth} width="65" height="" alt="" className="self-end" />
+
+                <form className="px-[100px]">
+                    <div className="text-center mb-8">
+                        <h4 className="font-bold text-[24px] text-[#051438]">Welcome</h4>
+                        <p className="text-[16px] text-[#677597] font-medium">Provide your details to create an account</p>
+                    </div>
+
+                    <div className="grid grid-cols-2 justify-between gap-3 mb-5">
+                        <div className="">
+                            <label className="mb-2 text-gray-800 text-sm flex">Full Name</label>
+                            <div>
+                                <div className="border rounded-lg px-4 flex justify-between h-14 bg-white hover:border-setly-100 hover:border-2">
+                                    <div className="flex gap-3 items-center w-full">
+                                        <UserCircleIcon className="h-6 w-6 text-gray-600" />
+                                        <input type="text" name="name" placeholder="Enter full name" className="w-full flex items-center h-full outline-none text-gray-700"
+                                            onChange={(e) => setName(e.target.value)} value={name} />
+                                    </div>
+                                </div>
+                                {nameError &&
+                                    <small className="text-sm text-red-600 mt-1.5">
+                                        {nameError}
+                                    </small>
+                                }
+                            </div>
+                        </div>
+
+
+                        <div className="">
+                            <label className="mb-2 text-gray-800 text-sm flex">Phone Number</label>
+                            <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <div className="flex gap-3 items-center w-full">
+                                    <PhoneIcon className="h-5 w-5 text-gray-600" />
+                                    <input type="tel" name="phone" placeholder="Enter Phone Number" className="w-full flex items-center h-full outline-none text-gray-700"
+                                        onChange={(e) => setPhone(e.target.value)} value={phone} />
+                                </div>
+                                
+                            </div>
+                            {phoneError &&
+                                <small className="text-sm text-red-600 mt-1.5">
+                                    {phoneError}
+                                </small>
+                            }    
+                        </div>
+                    </div>
+
+
+                    <div className="grid grid-cols-2 justify-between gap-3 mb-5">
+                        <div className="">
+                            <label className="mb-2 text-gray-800 text-sm flex">Email Address</label>
+                            <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <div className="flex gap-3 items-center w-full">
+                                    <MailIcon className="h-5 w-5 text-gray-600" />
+                                    <input type="email" name="email" placeholder="Enter Email Address" className="w-full flex items-center h-full outline-none text-gray-700"
+                                        onChange={(e) => setEmail(e.target.value)} value={email} />
+                                </div>
+                                
+                            </div>
+                            {emailError &&
+                                <small className="text-sm text-red-600 mt-1.5">
+                                    {emailError}
+                                </small>
+                            }    
+                        </div>
+
+
+                        <div className="">
+                            <label className="mb-2 text-gray-800 text-sm flex">Password</label>
+                            <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                                <div className="flex gap-3 items-center w-full">
+                                    <LockClosedIcon className="h-5 w-5 text-gray-600" />
+                                    <input name="password" className="w-full flex items-center h-full outline-none text-gray-700"
+                                        onChange={(e) => setPassword(e.target.value)}
+                                        value={password} type={passwordFieldType} />
+                                </div>
+                                <div className="flex items-center pr-2">
+                                    <button
+                                        onClick={() => setPasswordFieldType(passwordFieldType === 'password' ? 'text' : 'password')}
+                                        type="button" className="text-gray-400 hover:text-gray-500">
+                                        <span className="sr-only">
+                                            Show Password
+                                        </span>
+                                        {
+                                            passwordFieldType === 'password' ?
+                                            <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor"  xmlns="http://www.w3.org/2000/svg">
+                                                <path fillRule="evenodd" clipRule="evenodd" d="M3.70692 2.29298C3.51832 2.11082 3.26571 2.01003 3.00352 2.01231C2.74132 2.01458 2.49051 2.11975 2.3051 2.30516C2.11969 2.49057 2.01452 2.74138 2.01224 3.00358C2.00997 3.26578 2.11076 3.51838 2.29292 3.70698L16.2929 17.707C16.4815 17.8891 16.7341 17.9899 16.9963 17.9877C17.2585 17.9854 17.5093 17.8802 17.6947 17.6948C17.8801 17.5094 17.9853 17.2586 17.9876 16.9964C17.9899 16.7342 17.8891 16.4816 17.7069 16.293L16.2339 14.82C17.7914 13.5781 18.9432 11.8999 19.5419 9.99998C18.2679 5.94298 14.4779 2.99998 9.99992 2.99998C8.43235 2.99785 6.88642 3.36583 5.48792 4.07398L3.70692 2.29298ZM7.96792 6.55298L9.48192 8.06798C9.82101 7.97793 10.1778 7.97853 10.5166 8.06971C10.8554 8.16089 11.1643 8.33946 11.4124 8.58755C11.6604 8.83563 11.839 9.14452 11.9302 9.48331C12.0214 9.8221 12.022 10.1789 11.9319 10.518L13.4459 12.032C13.8969 11.268 14.0811 10.3758 13.9696 9.49566C13.858 8.61554 13.4571 7.79747 12.8297 7.17016C12.2024 6.54284 11.3844 6.14187 10.5042 6.03033C9.62412 5.91878 8.7319 6.10199 7.96792 6.55298Z" fill="#667085"/>
+                                                <path d="M12.454 16.697L9.75001 13.992C8.77769 13.9311 7.86103 13.5174 7.17206 12.8286C6.4831 12.1398 6.06918 11.2233 6.00801 10.251L2.33501 6.578C1.49022 7.58402 0.852357 8.74692 0.458008 10C1.73201 14.057 5.52301 17 10 17C10.847 17 11.669 16.895 12.454 16.697Z" fill="#667085"/>
+                                            </svg>
+
+                                            :
+                                            <svg className="w-5 h-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                                <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                                <path fillRule="evenodd"
+                                                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                                clipRule="evenodd" />
+                                            </svg>
+                                        }
+                                    </button>
+                                </div>
+                            </div>
+                            {
+                                passwordError &&
+                                <small className="text-sm text-red-600 mt-1.5">
+                                    {passwordError}
+                                </small>
+                            }
+                        </div>
+                    </div>
+
+
+                    <div className="mb-5">
+                        <label className="mb-2 text-gray-800 text-sm flex">Referral Phone Number (Optional)</label>
+                        <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                            <div className="flex gap-3 items-center w-full">
+                                <ReceiptRefundIcon className="h-5 w-5 text-gray-600" />
+                                <input type="text" name="code" placeholder="Enter Referral Code" className="w-full flex items-center h-full outline-none text-gray-700"
+                                    onChange={(e) => setCode(e.target.value)} value={code} />
+                            </div>
+                                
+                        </div>
+                    </div>
+
+                    
+                    
+
+                    <Button text="Create Account" type="submit" onClick={createAccount} />
+
+                    <div className="flex justify-center items-center gap-1 mt-4">
+                        <span className="text-gray-800 text-[14px]">Already have an account? </span>
+                        <Link href="/auth/login" className="text-[#0B0C7D] font-bold flex text-[14px]">Login</Link>
+                    </div>
+                </form>
+
+                
+            </section>
+        </main>
     )
 }
 
-export default withPublic(Signup);
+export default Signup;

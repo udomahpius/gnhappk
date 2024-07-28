@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import useAuth from "../hooks/auth";
-import AuthService from "../services/AuthService";
+import useAuth from "../hooks1/auth";
+import AuthService from "../services1/AuthService";
 //import { useJwt } from "react-jwt";
 import ClipLoader from "react-spinners/ClipLoader";
 const override = {

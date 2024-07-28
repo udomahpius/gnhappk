@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import { Button, LinkedinButton } from "@/components";
-import AuthService from "@/services/AuthService";
-import UserService from "@/services/UserService";
+import AuthService from "@/services1/AuthService";
+import UserService from "@/services1/UserService";
 import { Toaster, toast } from "react-hot-toast";
-import { withProtected } from "@/hooks/routes";
+import { withProtected } from "@/hooks1/routes";
 import ClipLoader from "react-spinners/ClipLoader";
 import { Layout, Nav } from "@/components";
 import Image from "next/image";

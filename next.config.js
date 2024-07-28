@@ -22,8 +22,11 @@ const nextConfig = {
         port: '',
         pathname: '/images/users/**',
       },
-
-      
+      {
+        protocol: 'https',
+        hostname: 'avatar.iran.liara.run',
+        pathname: '**',
+      },
       {
         protocol: 'https',
         hostname: 'secondhand-sandy.vercel.app',
@@ -36,7 +39,6 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-
       {
         protocol: 'https',
         hostname: 'media.licdn.com',
@@ -49,7 +51,6 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
-
       {
         protocol: 'https',
         hostname: 'media.licdn.com',

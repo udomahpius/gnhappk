@@ -1,7 +1,7 @@
 import { useRouter } from "next/dist/client/router";
 import React from "react";
 import Image from "next/image";
-import useAuth from "../hooks/auth";
+import useAuth from "../hooks1/auth";
 import icon from "../assets/rythink.png";
 
 export default function AppLayout({ children }) {

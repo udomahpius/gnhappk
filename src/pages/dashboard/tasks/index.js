@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button, ConnectLinkedin, Layout, SubscriptionPayment, TopNav } from "@/components/index.js";
 import Image from "next/image";
-import ProspectService from "@/services/ProspectService";
-import { withProtected } from "@/hooks/routes";
+import ProspectService from "@/services1/ProspectService";
+import { withProtected } from "@/hooks1/routes";
 import { EyeIcon, UserRemoveIcon, TrashIcon, OfficeBuildingIcon, BriefcaseIcon } from "@heroicons/react/outline";
 import rocket from "@/assets/rocket.webp"
 import { Montserrat } from "next/font/google";
