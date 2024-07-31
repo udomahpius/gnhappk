@@ -88,12 +88,12 @@ function Home() {
         setDisabled(false);
         setAmount(0);
         setSelected(null);
-        showNotification({
-          title: "Success",
-          content: res.message,
-        },
-          "success"
-        );
+        // showNotification({
+        //   title: "Success",
+        //   content: res.message,
+        // },
+        //   "success"
+        // );
 
         router.replace(res.data);
       })
@@ -103,7 +103,7 @@ function Home() {
       setDisabled(false);
       showNotification({
         title: "Something went wrong",
-        content: "Couldn't make a donation, please try again later",
+        content: err.response.data.message || "Couldn't make a donation, please try again later",
         },
         "error"
       );
