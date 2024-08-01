@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Toaster, toast } from "react-hot-toast";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Button, ConnectLinkedin, DropDown, Layout, Nav, RadioButton, SideBar, SubscriptionPayment } from "@/components";
+import { Button, ConnectLinkedin, DropDown, Nav, RadioButton, SideBar, SubscriptionPayment } from "@/components";
 import Image from "next/image";
 import { Montserrat } from "next/font/google";
 import { LinkIcon, MailOpenIcon, CollectionIcon, DocumentDuplicateIcon, CheckCircleIcon, AtSymbolIcon } from "@heroicons/react/outline";

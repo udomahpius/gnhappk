@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { Button, LinkedinButton } from ".";
 import { useState, useEffect } from "react";
-import AuthService from "@/services1/AuthService";
 
 
 function Profile({ user }) {
