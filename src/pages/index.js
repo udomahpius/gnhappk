@@ -1,7 +1,5 @@
 import { DonationRow, Logout, RadioButton, SmallButton, SmatNav, Success } from "@/components";
 import useRequest from "@/api/useRequest";
-import useLogOut from "@/hooks1/useLogOut";
-import DonationService from "@/services1/DonationService";
 import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, SortDescendingIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";

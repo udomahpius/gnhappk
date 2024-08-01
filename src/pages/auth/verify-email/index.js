@@ -7,7 +7,6 @@ import { object, string } from "yup";
 import React, { useState, useEffect } from "react";
 import logo from "@/assets/1.svg";
 import toast, { Toaster } from 'react-hot-toast';
-import AuthService from "@/services1/AuthService";
 import { BigButton, Button } from "@/components/index.js";
 import OtpInput from "react-otp-input";
 import { Montserrat } from "next/font/google";
@@ -40,8 +39,8 @@ const VerifyEmail = () => {
         console.log("Hello");
         setDisabled(true);
         try {
-            const response = await AuthService.verifyEmail(values.token, email);
-            toast.success(response.data.message);
+            // const response = await AuthService.verifyEmail(values.token, email);
+            // toast.success(response.data.message);
             setDisabled(false);
             setTimeout(() => {
                 router.replace("/auth/login");
@@ -56,9 +55,9 @@ const VerifyEmail = () => {
     const verifyEmail = async () => {
         setDisabled(true);
         try {
-            const response = await AuthService.verifyEmail(otp, email);
-            toast.success(response.data.message);
-            localStorage.setItem("setly_user", JSON.stringify(response.data.data));
+            // const response = await AuthService.verifyEmail(otp, email);
+            // toast.success(response.data.message);
+            // localStorage.setItem("setly_user", JSON.stringify(response.data.data));
             setDisabled(false);
             router.replace("/auth/login");
         } catch (error) {

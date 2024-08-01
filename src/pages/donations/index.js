@@ -1,8 +1,5 @@
-import { DonationRow, Logout, SmallButton, SmatNav, Success } from "@/components";
+import { DonationRow, SmallButton, SmatNav, Success } from "@/components";
 import LoggedIn from "@/hooks/logged-in";
-import { withProtected } from "@/hooks1/routes";
-import useLogOut from "@/hooks1/useLogOut";
-import DonationService from "@/services1/DonationService";
 import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, SortDescendingIcon } from "@heroicons/react/outline";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -23,7 +20,6 @@ const override = {
 
 function Donations() {
     const router = useRouter();
-    const [setLogOut] = useLogOut();
     const [openModal, setOpenModal] = useState(false);
     const [openSignOut, setOpenSignOut] = useState(false);
     const [openSuccess, setOpenSuccessModal] = useState(false);
@@ -40,11 +36,11 @@ function Donations() {
     const listDonations = async () => {
         setDisabled(true);
         try {
-            const response = await DonationService.listDonations();
-            console.log(response);
-            //toast.success(response.data.message);
-            setDisabled(false);
-            setDonations(response.data.data);
+            // const response = await DonationService.listDonations();
+            // console.log(response);
+            // //toast.success(response.data.message);
+            // setDisabled(false);
+            // setDonations(response.data.data);
         } catch (error) {
             console.log(error);
             //toast.error(error.response.data.message);

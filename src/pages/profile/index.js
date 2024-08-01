@@ -1,7 +1,6 @@
 import {  Nav, SmallButtonWhite, SmatNav } from "@/components";
 import { NotificationContext } from "@/context/notification-context";
 import LoggedIn from "@/hooks/logged-in";
-import { withProtected } from "@/hooks1/routes";
 import { ChevronLeftIcon } from "@heroicons/react/outline";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
