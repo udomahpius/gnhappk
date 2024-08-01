@@ -100,7 +100,7 @@ const Signup = () => {
 
     return (
         <main className="flex w-full h-screen">
-            <section className="w-[50%] bg-[#677597] flex flex-col justify-end items-center text-white text-center">
+            <section className="w-[50%] bg-[#677597] hidden md:flex flex-col justify-end items-center text-white text-center">
                 <div className="mb-20 px-16">
                     <h2 className="text-[32px] font-bold mb-20">Good Neighbourhood</h2>
                     <h3 className="text-[24px] font-bold capitalize">Helping uplifting poverty</h3>
@@ -113,16 +113,18 @@ const Signup = () => {
                 </div>
                 
             </section>
-            <section className="w-[50%] bg-[#EDF0F8] flex flex-col p-[32px]">
+
+
+            <section className="w-full md:w-[50%] bg-[#EDF0F8] flex flex-col gap-7 md:gap-28 px-5 md:p-[32px] py-3 md:py-0">
                 <Image src={smathealth} width="65" height="" alt="" className="self-end" />
 
-                <form className="px-[100px]">
+                <form className="px-2 md:px-[100px]">
                     <div className="text-center mb-8">
                         <h4 className="font-bold text-[24px] text-[#051438]">Welcome</h4>
                         <p className="text-[16px] text-[#677597] font-medium">Provide your details to create an account</p>
                     </div>
 
-                    <div className="grid grid-cols-2 justify-between gap-3 mb-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 justify-between gap-3 mb-5">
                         <div className="">
                             <label className="mb-2 text-gray-800 text-sm flex">Full Name</label>
                             <div>
@@ -161,7 +163,7 @@ const Signup = () => {
                     </div>
 
 
-                    <div className="grid grid-cols-2 justify-between gap-3 mb-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 justify-between gap-3 mb-5">
                         <div className="">
                             <label className="mb-2 text-gray-800 text-sm flex">Email Address</label>
                             <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">

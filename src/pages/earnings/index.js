@@ -50,14 +50,14 @@ function Earnings () {
     return (
         
         <LoggedIn>
-            <section className="my-[32px] mx-auto w-[75%]">
+            <section className="my-[32px] mx-auto w-full md:w-[75%] px-4 md:px-0">
                 <div className="p-[16px] rounded-[10px] bg-white mb-10">
                     <div className="w-full flex gap-3 justify-between items-center mb-5">
                         <span className="text-[#A6AFC2] font-bold text-[16px]">Your earnings</span>
                     </div>
 
 
-                    <div className="grid grid-cols-4">
+                    <div className="grid grid-cols-2 md:grid-cols-4">
                         <div className="flex flex-col gap-1 w-full">
                             <span className="text-[14px] font-semibold text-[#677597]">Donations Made</span>
                             <span className="text-[25px] font-medium text-[#051438]">{currencyFormatter(donatedAmount)}</span>

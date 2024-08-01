@@ -12,27 +12,27 @@ function SmatNav({ user, openSignOut }) {
   
   
   return (
-    <nav className="flex justify-between items-center py-[14px] px-[32px] w-full bg-[#EDF0F8] border-b border-[#DFE2E9]">
-            <div className="flex items-center gap-28">
-              <Link href="/">
-                <Image src={logo} width="50" height="" className="" alt="" />
-              </Link>
+    <nav className="flex justify-end md:justify-between items-center py-[14px] px-4 md:px-[32px] w-full bg-[#EDF0F8] border-b border-[#DFE2E9]">
+      <div className="hidden md:flex items-center gap-28">
+        <Link href="/">
+          <Image src={logo} width="50" height="" className="" alt="" />
+        </Link>
                 
-                <ul className="flex items-center gap-10">
-                    <li>
-                        <Link href="/">Home</Link>
-                    </li>
-                    <li>
-                        <Link href="/timeline">Timeline</Link>
-                    </li>
-                    <li>
-                      <Link href="/earnings">Earnings</Link>
-                    </li>
-                    <li>
-                        <Link href="/profile">Profile</Link>
-                    </li>
-                </ul>
-            </div>
+        <ul className="flex items-center gap-10">
+          <li>
+            <Link href="/">Home</Link>
+          </li>
+          <li>
+            <Link href="/timeline">Timeline</Link>
+          </li>
+          <li>
+            <Link href="/earnings">Earnings</Link>
+          </li>
+          <li>
+            <Link href="/profile">Profile</Link>
+          </li>
+        </ul>
+      </div>
             {/* <button className="flex gap-4 items-center" type="button" onClick={openSignOut}>
                 <p className="text-[#051438] font-bold text-[18px]">Hi, { user?.name?.split(" ")[0] }</p>
                 <span className="bg-[#A6AFC2] w-[35px] h-[35px] rounded-full flex items-center justify-center text-white">
@@ -47,14 +47,14 @@ function SmatNav({ user, openSignOut }) {
                 </span>
             </button> */}
 
-            <OutsideAlerter
-                callback={() => {
-                  setShowAllWorkspaces(false);
-                  //setZIndex("z-0");
-                }}
-              >
-                <div className="relative">
-                  <div className="flex gap-12 items-center">
+      <OutsideAlerter
+        callback={() => {
+          setShowAllWorkspaces(false);
+          //setZIndex("z-0");
+        }}
+      >
+                <div className="relative w-full">
+                  <div className="flex gap-12 items-center justify-between">
                     <p className="text-[#051438] font-bold text-[18px]">Hi, { user?.name?.split(" ")[0] }</p>
                     <button
                       onClick={() => {
@@ -117,8 +117,8 @@ function SmatNav({ user, openSignOut }) {
                   )}
                 </div>
               </OutsideAlerter>
-        </nav>
-    );
+    </nav>
+  );
 }
 
 export default SmatNav;

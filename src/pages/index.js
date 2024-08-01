@@ -124,9 +124,9 @@ function Home() {
 
   return (
     <LoggedIn>
-      <section className="m-[32px]">
-        <div className="md:w-custom mx-auto py-8 md:flex md:justify-between md:flex-wrap w-[80%]">
-          <div className="grid grid-cols-4 gap-y-6 justify-evenly w-full mb-6">
+      <section className="m-5 md:m-[32px]">
+        <div className="md:w-custom mx-auto py-8 md:flex md:justify-between md:flex-wrap w-full md:w-[80%]">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-y-6 gap-x-3 justify-center md:justify-evenly w-full mb-6">
             {plans.map((plan, index) => (
               <RadioButton plan={plan.plan} selected={selected} amount={currencyFormatter(plan.amount)} key={index} onSelect={() => onSelect(plan)} /> 
             ))}
