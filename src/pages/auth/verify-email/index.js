@@ -10,7 +10,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import AuthService from "@/services1/AuthService";
 import { BigButton, Button } from "@/components/index.js";
 import OtpInput from "react-otp-input";
-import { withPublic } from "@/hooks1/routes";
 import { Montserrat } from "next/font/google";
 import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/react/outline";
 const inter = Montserrat({ subsets: ['latin'] })

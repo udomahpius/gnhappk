@@ -8,8 +8,6 @@ import { object, string, number, date, InferType } from "yup";
 import logo from "@/assets/setly2.svg";
 import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/react/outline";
 import toast, { Toaster } from 'react-hot-toast';
-import AuthService from "@/services1/AuthService";
-import { withPublic } from "@/hooks1/routes";
 import { BigButton } from "@/components/index.js";
 import { noAuthAPI } from "@/config/api";
 import { Montserrat } from "next/font/google";
