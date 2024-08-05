@@ -19,10 +19,10 @@ function Landing() {
         <nav className="bg-white border-gray-200 py-2.5 dark:bg-gray-900">
           <div className="flex flex-wrap items-center justify-between max-w-screen-xl px-4 mx-auto">
             <Link href="/" className="flex items-center">
-              <Image src={logo} width={40} className="h-6 mr-3 sm:h-5" alt="Logo" />
-              <span className="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Good Neighborhood</span>
+              <Image src={logo} width={40} className="mr-3" alt="Logo" />
+              <span className="hidden lg:flex self-center text-xl font-semibold whitespace-nowrap dark:text-white">Good Neighborhood</span>
             </Link>
-            <div className="hidden lg:flex items-center lg:order-2">
+            <div className="flex items-center lg:order-2">
               <Link href="/auth/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</Link>
               <Link href="/auth/signup" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Create Account</Link>
             </div>
@@ -283,7 +283,7 @@ function Landing() {
             <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
             <div className="text-center">
                 <Link href="/" className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
-                    <Image src={logo} width={40} className="h-6 mr-3 sm:h-9" alt="Logo" />
+                    <Image src={logo} width={40} className="mr-3" alt="Logo" />
                     Good Neighborhood    
                 </Link>
                 <span className="block text-sm text-center text-gray-500 dark:text-gray-400">&copy; 2023-2024 Good Neighborhood. All Rights Reserved.</span>

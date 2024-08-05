@@ -77,7 +77,7 @@ const Login = () => {
                 status: res?.data?.account_status
               }
             });
-          router.push(`/${redirectUrl}`);
+          router.push(`/home`);
         })
         .catch((err) => {
         console.log(err);

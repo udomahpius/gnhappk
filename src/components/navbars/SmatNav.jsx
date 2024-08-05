@@ -14,13 +14,13 @@ function SmatNav({ user, openSignOut }) {
   return (
     <nav className="flex justify-end md:justify-between items-center py-[14px] px-4 md:px-[32px] w-full bg-[#EDF0F8] border-b border-[#DFE2E9]">
       <div className="hidden md:flex items-center gap-28">
-        <Link href="/">
+        <Link href="/home">
           <Image src={logo} width="50" height="" className="" alt="" />
         </Link>
                 
         <ul className="flex items-center gap-10">
           <li>
-            <Link href="/">Home</Link>
+            <Link href="/home">Home</Link>
           </li>
           <li>
             <Link href="/timeline">Timeline</Link>

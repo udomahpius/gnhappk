@@ -8,9 +8,10 @@ import useRequest from "@/api/useRequest";
 import { createGetUserRequest } from "@/api/requestFactory/user";
 import Image from "next/image";
 import currencyFormatter from "@/utils/currencyFormatter";
-import { createGetDonationsRequest } from "@/api/requestFactory/donation";
+import { createCalculateDonationsRequest, createGetDonationsRequest } from "@/api/requestFactory/donation";
 import { createGetTransactionsRequest } from "@/api/requestFactory/transaction";
 import TransactionRow from "@/components/rows/TransactionRow";
+import percentageCalculator from "@/services/percentageCalculator";
 
 
 function Earnings () {
@@ -34,12 +35,18 @@ function Earnings () {
             return sum + transaction.amount
         }, 0);
         setDonatedAmount(totalDonatedAmount);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [requestMaker]);
 
-        const totalReceivedAmount = response.data.filter(transaction => transaction.type === "donated")
-        .reduce((sum, transaction) => {
-            return sum + transaction.amount
-        }, 0);
-        setDonationReceived(totalReceivedAmount);
+
+  useEffect(() => {
+    requestMaker(createCalculateDonationsRequest())
+      .then((res) => {
+        console.log(res);
+        setDonationReceived(percentageCalculator(res.data, 70))
       })
       .catch((error) => {
         console.error(error);

@@ -26,3 +26,10 @@ export const createGetDonationsRequest = () => {
         method: "GET",
     };
 }
+
+export const createCalculateDonationsRequest = () => {
+    return {
+        url: "/donation/calculate",
+        method: "GET",
+    };
+}
