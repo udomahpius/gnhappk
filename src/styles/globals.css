@@ -43,11 +43,11 @@ input:-webkit-autofill:active{
 input[type="text"]:disabled{background-color:white}
 input[type="email"]:disabled{background-color:white}
 
-header {
+/* header {
   grid-area: header;
   background-color: #fed330;
   padding: 20px;
-}
+} */
 article {
   grid-area: content;
   background-color: #ffffff;

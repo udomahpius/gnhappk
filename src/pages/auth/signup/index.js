@@ -37,14 +37,14 @@ const Signup = () => {
     useEffect(() => {
       retrieveToken().then((value) => {
         if(value) {
-          router.replace('/');
+          router.replace('/home');
         }
       }).catch((error) => {
         console.log(error);
       });
     }, [router]);
 
-    const redirectUrl = searchParams.get('redirectUrl') || '/';
+    const redirectUrl = searchParams.get('redirectUrl') || '/home';
 
     
 
