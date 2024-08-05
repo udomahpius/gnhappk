@@ -133,7 +133,7 @@ function Home() {
           </div>
 
           <form className="w-full mb-12">
-            <div className="w-full mb-5">
+            <div className="w-full mb-5 hidden">
               <label className="mb-2 flex">Custom Amount</label>
               <div className="w-full border rounded-lg h-14 bg-white">
                 <input type="number" value={amount} onChange={(e) => {setAmount(e.target.value); setSelected(null); e.target.value < 5000 && setDisabled(true); e.target.value >= 5000 && setDisabled(false)}} 
