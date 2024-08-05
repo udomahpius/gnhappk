@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import logo from "@/assets/good-logo.png";
-import hero from "@/assets/hero.png";
+import hero from "@/assets/hero-1.png";
 import featureOne from "@/assets/feature-1.png";
 import featureTwo from "@/assets/feature-2.png";
 
