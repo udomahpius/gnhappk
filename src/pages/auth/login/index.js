@@ -44,11 +44,9 @@ const Login = () => {
     
 
     async function signInWithEmailPassword(e) {
-      //Mixpanel.track("Login with Email Started", {email: email});
       e.preventDefault();
       setPhoneError('');
       setPasswordError('');
-      e.preventDefault();
       if(!phone) {
         setPhoneError("Phone is required");
         return;
@@ -77,13 +75,13 @@ const Login = () => {
                 status: res?.data?.account_status
               }
             });
-          router.push(`/home`);
+          router.push("/auth/callback");
         })
         .catch((err) => {
         console.log(err);
         alert(err.response?.data?.message || "Something went wrong");
-      })
-    }
+    })
+  }
 
 
   return (

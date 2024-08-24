@@ -19,7 +19,6 @@ import { storeUserSession } from "@/api/workspace";
 const Signup = () => {
     const router = useRouter();
     const { requestMaker } = useRequest();
-    const searchParams = useSearchParams();
     const [disabled, setDisabled] = useState(false);
     const [activePassword, setActivePassword] = useState(false);
     const [name, setName] = useState('');
@@ -44,16 +43,11 @@ const Signup = () => {
       });
     }, [router]);
 
-    const redirectUrl = searchParams.get('redirectUrl') || '/home';
-
-    
-
     async function createAccount(e) {
       e.preventDefault();
       setNameError('');
       setPhoneError('');
       setPasswordError('');
-      e.preventDefault();
       if(!name) {
         setNameError("Full Name is required");
         return;
@@ -89,7 +83,7 @@ const Signup = () => {
                 status: res?.data?.account_status
               }
             });
-          router.push(`/${redirectUrl}`);
+            router.push("/auth/callback");
         })
         .catch((err) => {
         console.log(err);

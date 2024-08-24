@@ -22,10 +22,43 @@ export const createVerifyPaymentRequest = (status, tx_ref, transaction_id) => {
 }
 
 
+export const createBankAccountRequest = (account_number, account_bank, account_name) => {
+  return {
+    url: "/payment/banks",
+    method: "POST",
+    data: {
+      account_number,
+      account_bank,
+      account_name
+    },
+  };
+}
+
+
+export const createGetBanksRequest = () => {
+  return {
+      url: "/payment/banks",
+      method: "GET",
+  };
+}
+
+
+export const createVerifyRequest = (account_number, account_bank) => {
+  return {
+    url: "/payment/verify/bank",
+    method: "GET",
+    params: {
+      account_number,
+      account_bank,
+    },
+  };
+}
+
+
 export const createGetDonationsRequest = () => {
   return {
-      url: "/donation",
-      method: "GET",
+    url: "/donation",
+    method: "GET",
   };
 }
 

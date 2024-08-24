@@ -7,39 +7,34 @@ import failed from "@/assets/close.png";
 import Image from "next/image";
 import Link from "next/link";
 import LoggedIn from "@/hooks/logged-in";
-import { useRouter } from "next/navigation";
 
 
 
 function TransactionCallback() {
-  const router = useRouter();
   const { requestMaker } = useRequest();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [payment, setPayment] = useState(null);
   const { showNotification } = useContext(NotificationContext);
 
   const verifyPayment = () => {
+    setLoading(true);
     const urlParams = new URLSearchParams(window.location.search);
     let status = urlParams.get("status");
     let tx_ref = urlParams.get("tx_ref");
     let transaction_id = urlParams.get("transaction_id");
-    requestMaker(createVerifyPaymentRequest(status, tx_ref, transaction_id || null))
+    requestMaker(createVerifyPaymentRequest(status, tx_ref, transaction_id))
       .then((res) => {
         // if(res.data.status === "success") {
         //   setRequestCall(1);
         // }
-        if(status === "cancelled") {
-          router.replace("/home");
-        }
-        // showNotification({
-        //   title: "Success",
-        //   content: res.message,
-        // },
-        //   "success"
-        // );
+        showNotification({
+          title: "Success",
+          content: res.message,
+        },
+          "success"
+        );
         setPayment(res.data.data);
         setLoading(false);
-        
         //router.replace("/timeline");
       })
       .catch((error) => {
@@ -53,21 +48,16 @@ function TransactionCallback() {
         );
     });
   }
-
-  useEffect(() => {
-    verifyPayment()
-  }, []);
-
-  // setTimeout(() => {
-  //   verifyPayment()
-  // }, 2000);
-
   
 
   return (
     <LoggedIn>
-      { loading && <section className="flex flex-col h-screen justify-center items-center">
+      {loading && <section className="flex flex-col h-screen justify-center items-center">
         <p>Payment is processing</p>
+      </section>}
+
+      {payment?.status !== "successful" &&  <section className="flex flex-col h-screen justify-center items-center">
+        <button onClick={verifyPayment} className="py-3 px-4 bg-purple-700 text-white rounded-lg">Please Click to Verify Your Payment</button>
       </section>}
 
 

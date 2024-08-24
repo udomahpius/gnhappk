@@ -12,8 +12,7 @@ import { createGetUserRequest } from "@/api/requestFactory/user";
 function LoggedIn(props) {
   const { requestMaker } = useRequest();
   const [user, setUser] = useState(null);
-  const { notification, hideNotification } =
-    React.useContext(NotificationContext);
+  const { notification, hideNotification } = React.useContext(NotificationContext);
   const [userAccountStatus, setUserAccountStatus] = React.useState(null);
 
   useEffect(() => {
@@ -36,7 +35,9 @@ function LoggedIn(props) {
             type={notification.type}
             show={notification.show}
             onClose={hideNotification}
-          ></Notification>
+          >
+
+          </Notification>
           {/* dynamic-height is custom class in index.css */}
           <div className="dynamic-height h-[100dvh]">
 

@@ -65,13 +65,13 @@ function Donation() {
                             <div className="bg-white h-28 border-2 w-36 flex flex-col gap-1 justify-center items-center rounded-lg">
                                 <p>You</p>
                                 <Image
-                                            src={`https://avatar.iran.liara.run/public`}
-                                            width={50}
-                                            height={50}
-                                            // objectFit="cover"
-                                            className="rounded-full object-cover"
-                                            alt="profile image"
-                                        />
+                                    src={`https://avatar.iran.liara.run/public`}
+                                    width={50}
+                                    height={50}
+                                    // objectFit="cover"
+                                    className="rounded-full object-cover"
+                                    alt="profile image"
+                                />
                             </div>
                         </div>
                     </div>

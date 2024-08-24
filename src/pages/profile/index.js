@@ -38,12 +38,12 @@ function Profile () {
         <LoggedIn>
             <section className="my-[32px] mx-auto w-[75%]">
                 <div className="p-[16px] rounded-[10px] bg-white">
-                        <div className="w-full flex gap-3 justify-between items-center mb-5">
-                            <span className="text-[#A6AFC2] font-bold text-[16px]">Your information</span>
-                        </div>
+                    <div className="w-full flex gap-3 justify-between items-center mb-5">
+                        <span className="text-[#A6AFC2] font-bold text-[16px]">Your information</span>
+                    </div>
 
 
-                        <div>
+                    <div>
 
                             <div className="flex gap-4 mb-4">
                                 <span className="bg-[#A6AFC2] text-white rounded-full w-[45px] h-[45px] flex justify-center items-center">
