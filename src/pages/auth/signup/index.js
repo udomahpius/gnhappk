@@ -56,6 +56,10 @@ const Signup = () => {
         setPhoneError("Phone is required");
         return;
       }
+      if(phone.length < 11) {
+        setPasswordError("Phone number must be valid");
+        return;
+      }
       if(!email) {
         setPhoneError("Email is required");
         return;
@@ -64,6 +68,7 @@ const Signup = () => {
         setPasswordError("Password is required");
         return;
       }
+      
       if(password.length < 6) {
         setPasswordError("Password must be at least 6 characters long");
         return;

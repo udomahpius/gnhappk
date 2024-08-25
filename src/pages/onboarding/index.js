@@ -64,7 +64,7 @@ function Onboarding() {
             setAccountNameError("Account Name is required");
           return;
         }
-        requestMaker(createBankAccountRequest(accountNumber, "044", accountName))
+        requestMaker(createBankAccountRequest(accountNumber, "044", accountName, banks[5]?.name))
           .then((res) => {
             showNotification({
                 title: "Success",
@@ -107,10 +107,11 @@ function Onboarding() {
                             <select className="w-full px-2 rounded-lg h-14" name="bankName"
                                 onChange={(e) => setBankName(e.target.value)}
                             >
-                                {/* <option hidden>Select a Bank</option> */}
-                                {banks?.map((bank, index) => (
-                                    <option key={index} value={bank.code}>{bank.name}</option>
-                                ))}
+                                {/* <option hidden>Select a Bank</option> 
+                                banks?.map((bank, index) => (
+                                    <option key={index} value={bank.name}>{bank.name}</option>
+                                ))*/}
+                                <option value={banks[5]?.name}>{banks[5]?.name}</option>
                             </select>              
                         </div>
 

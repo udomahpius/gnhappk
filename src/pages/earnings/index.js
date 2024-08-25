@@ -9,7 +9,7 @@ import { createGetUserRequest } from "@/api/requestFactory/user";
 import Image from "next/image";
 import currencyFormatter from "@/utils/currencyFormatter";
 import { createCalculateDonationsRequest, createGetDonationsRequest } from "@/api/requestFactory/donation";
-import { createGetTransactionsRequest } from "@/api/requestFactory/transaction";
+import { createGetReferralRequest, createGetTransactionsRequest } from "@/api/requestFactory/transaction";
 import TransactionRow from "@/components/rows/TransactionRow";
 import percentageCalculator from "@/services/percentageCalculator";
 
@@ -21,6 +21,7 @@ function Earnings () {
     const [donationReceived, setDonationReceived] = useState(0);
     const [donationReceivedAmount, setDonationReceivedAmount] = useState(0);
     const [referralAmount, setReferralAmount] = useState(0);
+    const [referral, setReferral] = useState(0);
     const router = useRouter();
     const { query } = useRouter();
     const { notification, hideNotification } = useContext(NotificationContext);
@@ -53,6 +54,18 @@ function Earnings () {
       });
   }, [requestMaker]);
 
+  useEffect(() => {
+    requestMaker(createGetReferralRequest())
+      .then((res) => {
+        console.log(res);
+        setReferralAmount(res.data.totalAmount);
+        setReferral(res.data.referrals)
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, [requestMaker]);
+
 
     return (
         
@@ -76,13 +89,13 @@ function Earnings () {
                         </div>
 
                         <div className="flex flex-col gap-1 w-full">
-                            <span className="text-[14px] font-semibold text-[#677597]">Referral</span>
-                            <span className="text-[25px] font-medium text-[#051438]">{currencyFormatter(10000)}</span>
+                            <span className="text-[14px] font-semibold text-[#677597]">No. of Referrals</span>
+                            <span className="text-[25px] font-medium text-[#051438]">{referral}</span>
                         </div>
 
                         <div className="flex flex-col gap-1 w-full">
                             <span className="text-[14px] font-semibold text-[#677597]">Referral Earned</span>
-                            <span className="text-[25px] font-medium text-[#051438]">{currencyFormatter(10000)}</span>
+                            <span className="text-[25px] font-medium text-[#051438]">{currencyFormatter(referralAmount)}</span>
                         </div>
 
                     </div>
@@ -91,7 +104,7 @@ function Earnings () {
                 {transactions.length > 0 && <div className="">
                     <h3 className="mb-3 text-lg">Earnings History</h3>
                     { transactions.map(transaction =>  
-                        <TransactionRow transaction={transaction} key={transaction.user_id} />
+                      <TransactionRow transaction={transaction} key={transaction.user_id} />
                     )}
                 </div>}
 

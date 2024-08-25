@@ -5,3 +5,11 @@ export const createGetTransactionsRequest = () => {
     };
 }
 
+
+export const createGetReferralRequest = () => {
+    return {
+        url: "/transaction/referral",
+        method: "GET",
+    };
+}
+

@@ -22,14 +22,15 @@ export const createVerifyPaymentRequest = (status, tx_ref, transaction_id) => {
 }
 
 
-export const createBankAccountRequest = (account_number, account_bank, account_name) => {
+export const createBankAccountRequest = (account_number, account_bank, account_name, bank_name) => {
   return {
     url: "/payment/banks",
     method: "POST",
     data: {
       account_number,
       account_bank,
-      account_name
+      account_name,
+      bank_name
     },
   };
 }
