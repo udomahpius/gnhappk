@@ -1,42 +1,21 @@
-import { DonationRow, Logout, RadioButton, SmallButton, SmatNav, Success } from "@/components";
+import { RadioButton, SmallButton } from "@/components";
 import useRequest from "@/api/useRequest";
-import { ChevronLeftIcon, ChevronRightIcon, SearchIcon, SortDescendingIcon } from "@heroicons/react/outline";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
-import ClipLoader from "react-spinners/ClipLoader";
 import currencyFormatter from "@/utils/currencyFormatter";
 import LoggedIn from "@/hooks/logged-in";
 import { NotificationContext } from "@/context/notification-context";
-import { createMakeDonationRequest } from "@/api/requestFactory/donation";
 import { createGetUserRequest } from "@/api/requestFactory/user";
 import { createPaymentRequest } from "@/api/requestFactory/payment";
 
-
-
-const override = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  margin: "0 auto",
-  borderColor: "#269ACE",
-};
 
 
 function Home() {
 
   const router = useRouter();
   const { requestMaker } = useRequest();
-  const [openModal, setOpenModal] = useState(false);
   const [user, setUser] = useState(null);
-  const [openSignOut, setOpenSignOut] = useState(false);
-  const [openSuccess, setOpenSuccessModal] = useState(false);
   const [disabled, setDisabled] = useState(true);
-  const [donations, setDonations] = useState(null);
-  const [file, setFile] = useState(null);
-  const [enrollee, setEnrollee] = useState(null);
-  const [leads, setLeads] = useState([]);
-  const [progress, setProgress] = useState(30);
   const [selected, setSelected] = useState(null);
   const [amount, setAmount] = useState();
   const { showNotification } = useContext(NotificationContext);
@@ -54,14 +33,14 @@ function Home() {
       plan: "Golden",
       amount: 20000
     },
-        {
-            plan: "Sappehire",
-            amount: 50000
-        },
-        {
-          plan: "Platinum",
-          amount: 100000
-      }
+    {
+      plan: "Sappehire",
+      amount: 50000
+    },
+    {
+      plan: "Platinum",
+      amount: 100000
+    }
   ];
 
 
@@ -102,7 +81,7 @@ function Home() {
       showNotification({
         title: "Something went wrong",
         content: err.response.data.message || "Couldn't make a donation, please try again later",
-        },
+      },
         "error"
       );
     })
