@@ -24,12 +24,23 @@ export const signInWithPhoneAndPassword = (phone, password) => {
 }
 
 
-export const forgotPassword = (phone) => {
+export const forgotPassword = (email) => {
     return {
         url: "/auth/forgot/password",
         method: "POST",
         data: {
-            phone
+            email
+        },
+    };
+}
+
+
+export const resendVerifyEmail = (email) => {
+    return {
+        url: "/auth/email/resend",
+        method: "PUT",
+        data: {
+            email
         },
     };
 }

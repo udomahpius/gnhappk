@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import smathealth from "@/assets/good-logo.png";
 import Image from "next/image";
+import * as EmailValidator from "email-validator";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { LockClosedIcon, PhoneIcon } from "@heroicons/react/outline";
@@ -175,7 +176,7 @@ const Login = () => {
               }
             </div>
 
-            <Link href="/" className="text-[#0B0C7D] text-[14px] font-semibold mb-10 flex">Forgot password?</Link>
+            <Link href="/auth/forgot-password" className="text-[#0B0C7D] text-[14px] font-semibold mb-10 flex">Forgot Password?</Link>
 
             <Button text="Login" type="submit" onClick={signInWithEmailPassword} />
 

@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react";
 import smathealth from "@/assets/good-logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import * as EmailValidator from "email-validator";
 import Link from "next/link";
 import { UserCircleIcon, LockClosedIcon, PhoneIcon, MailIcon, ReceiptRefundIcon } from "@heroicons/react/outline";
 import { Button } from "@/components/index.js";
@@ -60,6 +61,10 @@ const Signup = () => {
       }
       if(!email) {
         setEmailError("Email is required");
+        return;
+      }
+      if(!EmailValidator.validate(email)) {
+        setEmailError("Please enter a valid email");
         return;
       }
       if(!password) {

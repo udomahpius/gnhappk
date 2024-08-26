@@ -1,106 +1,143 @@
 "use client";
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useContext } from "react";
+import smathealth from "@/assets/good-logo.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import * as EmailValidator from "email-validator";
 import Link from "next/link";
-import { useFormik } from "formik";
-import { object, string, number, date, InferType } from "yup";
-import logo from "@/assets/setly2.svg";
-import { CheckCircleIcon, AtSymbolIcon, UserCircleIcon, OfficeBuildingIcon, LockClosedIcon } from "@heroicons/react/outline";
-import toast, { Toaster } from 'react-hot-toast';
-import { BigButton } from "@/components/index.js";
-import { noAuthAPI } from "@/config/api";
-import { Montserrat } from "next/font/google";
-
-const inter = Montserrat({ subsets: ['latin'] })
-
+import { MailIcon } from "@heroicons/react/outline";
+import { Button } from "@/components/index.js";
+import { forgotPassword, signInWithPhoneAndPassword } from "@/api/requestFactory/auth";
+import useRequest from "@/api/useRequest";
+import { storeUserSession } from "@/api/workspace";
+import { GlobalLoader } from "@/components";
+import Notification from "@/components/Notification";
+import { NotificationContext } from "@/context/notification-context";
 
 
 const ForgotPassword = () => {
-    const router = useRouter();
-
-    const [disabled, setDisabled] = useState(false);
-
-    let userSchema = object({
-        email: string().email().trim().required("Email is required"),
-    });
-
-
-    const onSubmit = async (values, actions) => {
-        setDisabled(true);
-        setTimeout(() => {
-            setDisabled(false);
-            router.replace("/auth/reset-password");
-        }, 2000);
-    }
+  const router = useRouter();
+  const { requestMaker } = useRequest();
+  const { notification, showNotification, hideNotification } = useContext(NotificationContext);
+  const [emailSent, setEmailSent] = useState(false);
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
 
 
-    const { values, errors, touched, isSubmitting, handleBlur, handleChange, handleSubmit } = useFormik({
-        initialValues: {
-          email: "",
+    async function signInWithEmailPassword(e) {
+      e.preventDefault();
+      setEmailError('');
+      if(!email) {
+        setEmailError("Email address is required");
+        return;
+      }
+        // regex for email validation
+      if(!EmailValidator.validate(email)) {
+        setEmailError("Please enter a valid email");
+        return;
+      }
+      requestMaker(forgotPassword(email))
+        .then((res) => {
+          setEmailSent(true);
+          showNotification({
+            title: "Success",
+            content: res.message,
+          },
+            "success"
+          );
+        })
+        .catch((err) => {
+        console.log(err);
+        showNotification({
+          title: "Something went wrong",
+          content: err.response?.data?.message || "Something went wrong",
         },
-        validationSchema: userSchema,
-        onSubmit
-    });
-
-    return (
-        <>
-            <Toaster />
-            <div className={`h-[100vh] ${inter.className} overflow-x-hidden`}>
-                <div className="grid gap-x-20 grid-cols-2 h-full py-8 mx-auto w-[80%]">
-                    <div className="card rounded-lg flex flex-col justify-between px-12 py-3 pb-10">
-                        <div className="w-[380px]">
-                            <div className="mb-12 pt-6">
-                                <Image src={logo} alt="Rythink Logo" width="250" height="10" />
-                            </div>
-                            <h3 className="font-bold text-2xl mb-6 text-white">Let us help you run your freelance business.</h3>
-                            <p className="text-gray-300">Our registration process is quick and easy, taking no more than 10 minutes to complete.</p>
-                        </div>
-
-                        <div>
-                            <div className="card setly-bg rounded-lg  p-5">
-                                <p className="mb-3 text-black text-opacity-80">Im impressed with the results Ive seen since starting to use this product, I begin receiving clients and projects in the first week.</p>
-                                <div className="text-black text-opacity-80">
-                                    <div>
-                                        <p className="text-sm font-semibold">Jonas Kim</p>
-                                        <p className="text-sm text-gray-800">Product Designer</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+          "error"
+      );
+    })
+  }
 
 
-                    <div className="bg-[rgb(0, 0, 0)] pt-12 px-12">
-                        <div className="mb-12">
-                            <h2 className="font-semibold text-2xl mb-2">Request a new password</h2>
-                            <div className="flex items-center gap-1">
-                                <span className="text-[#9E9E9E] text-[14px]">Go back to</span>
-                                <Link href="/auth/login" className="text-setly-100 font-bold flex text-[14px]">Login</Link>
-                            </div>
-                        </div>
+  return (
+    <>
+      <Notification
+        message={notification.message}
+        type={notification.type}
+        show={notification.show}
+        onClose={hideNotification}
+      >
 
-                        <form className="mb-12" onSubmit={handleSubmit}>
-                            <div className="mb-8">
-                                <label className="mb-2 text-gray-600 font-medium text-sm flex">Email Address</label>
-                                <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
-                                    <div className="flex gap-3 items-center w-full">
-                                        <AtSymbolIcon className="h-5 w-5 text-gray-600" />
-                                        <input type="email" name="email" placeholder="Enter email" className="w-full flex items-center h-full outline-none text-gray-500 focus:bg-white"
-                                        onChange={handleChange} onBlur={handleBlur} value={values.email} />
-                                    </div>
-                                    { !errors.email && touched.email && <CheckCircleIcon className="h-5 w-5 text-green-400 self-center" /> }
-                                </div>
-                                { errors.email && touched.email && <small className="text-red-700">{ errors.email }</small>}
-                            </div>
-
-                            <BigButton text="Send Email" type="submit" disable={disabled} disabled={disabled} />
-                        </form>
-                    </div>
-                </div>
+      </Notification>
+      <main className="flex w-full h-screen">
+        <section className="w-[50%] bg-[#677597] hidden md:flex flex-col justify-end items-center text-white text-center">
+          <div className="mb-20 px-16">
+            <h2 className="text-[32px] font-bold mb-20">Good Neighbourhood</h2>
+            <h3 className="text-[24px] font-bold capitalize">Helping uplifting poverty</h3>
+            <p className="text-[16px] font-medium">We are connecting the community to another sustainable stream of income to survive the harsh economy</p>
+            <div className="flex justify-center gap-2 mt-5">
+              <span className="w-[16px] bg-[#CDD8F3] h-[8px] rounded-[12px] flex"></span>
+              <span className="w-[8px] bg-[#DFE2E9] h-[8px] rounded-full flex"></span>
+              <span className="w-[8px] bg-[#DFE2E9] h-[8px] rounded-full flex"></span>
             </div>
-        </>
-    )
+          </div> 
+        </section>
+
+        <section className="w-full md:w-[50%] bg-[#EDF0F8] flex flex-col gap-10 md:gap-28 px-5 md:p-[32px] py-3 md:py-0">
+          <Image src={smathealth} width="65" height="" alt="" className="self-end" />
+          {emailSent && <div className="md:col-span-2 col-span-7 w-full flex flex-col gap-[32px]">
+            <div className="flex flex-col items-center mb-3">
+              <div className="font-1 text-[18px] font-bold leading-[30px] mb-[3px]">
+                Reset Mail Sent
+              </div>
+              <p className="text-[13px] text-center text-[#63768D] font400 cursor-pointer">
+                We&apos;ve sent you an email, kindly click on the link in the email to recover your password
+              </p>
+            </div>
+
+            <div className="mx-auto w-[50%]">
+              <Link href="https://mail.google.com/mail/u/0/#inbox"
+                target="_blank"
+                className="inline-flex w-full items-center justify-center gap-2 transition-all duration-150 rounded-[8px] px-3 py-2 sm:px-4 sm:py-2.5 text-sm font-semibold hover:bg-purple-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800 bg-purple-700 text-white disabled:bg-gray-300 disabled:cursor-not-allowed">
+                Check your mail app
+              </Link>
+            </div>
+          </div>}
+
+
+          {!emailSent && <form className="px-2 md:px-[100px]">
+            <div className="text-center mb-8">
+              <h4 className="font-bold text-[24px] text-[#051438]">Forgot Password</h4>
+              <p className="text-[16px] text-[#677597] font-medium">Provide your email address to change your password</p>
+            </div>
+
+            <div className="mb-5">
+              <label className="mb-2 text-gray-800 text-sm flex">Email Address</label>
+              <div className="border bg-white rounded-lg px-4 flex justify-between h-14 hover:border-setly-100 hover:border-2">
+                <div className="flex gap-3 items-center w-full">
+                  <MailIcon className="h-5 w-5 text-gray-600" />
+                  <input type="email" name="email" placeholder="Enter email address" className="w-full flex items-center h-full outline-none text-gray-700"
+                    onChange={(e) => setEmail(e.target.value)} value={email} />
+                </div>          
+              </div>
+              {emailError &&
+                <small className="text-sm text-red-600 mt-1.5">
+                  {emailError}
+                </small>
+              }                
+            </div>
+
+            <Button text="Reset Password" type="submit" onClick={signInWithEmailPassword} />
+
+            <div className="flex justify-center items-center gap-1 mt-4">
+              <span className="text-gray-800 text-[14px]">Back to Login</span>
+              <Link href="/auth/login" className="text-[#0B0C7D] font-bold flex text-[14px]">Login</Link>
+            </div>
+          </form>}
+        </section>
+      </main>
+      <GlobalLoader></GlobalLoader>
+    </>
+  )
 }
 
 export default ForgotPassword;
