@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "next dev ",
+    "build": "next build ",
+    "start": "next start  ",
+    "lint": "next lint "
   },
   "dependencies": {
     "@ebay/nice-modal-react": "^1.2.13",
+    "@fortawesome/fontawesome-svg-core": "^6.6.0",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^1.0.6",
     "@popperjs/core": "^2.11.8",
@@ -30,7 +32,7 @@
     "react-cookie": "^4.1.1",
     "react-dom": "18.2.0",
     "react-hot-toast": "^2.4.1",
-    "react-icons": "^4.10.1",
+    "react-icons": "^4.12.0",
     "react-otp-input": "^3.0.4",
     "react-quill": "^2.0.0",
     "react-spinners": "^0.13.8",
@@ -41,8 +43,15 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.15",
-    "postcss": "^8.4.27",
-    "tailwindcss": "^3.3.3"
-  }
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "description": "This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).",
+  "main": "next.config.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
 }

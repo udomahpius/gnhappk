@@ -7,9 +7,16 @@ import featureOne from "@/assets/feature-1.png";
 import featureTwo from "@/assets/feature-2.png";
 
 import Link from "next/link";
+import navBar from "@/assets/bar.png";
+import {useRef} from "react"
 
 
 function PrivacyPolicy() {
+          const navRef = useRef()
+  const showNav = () => {
+    navRef.current.classList.toggle("responsive_nav")
+  }
+
 
   const router = useRouter();
 
@@ -20,23 +27,69 @@ function PrivacyPolicy() {
           <div className="flex flex-wrap items-center justify-between max-w-screen-xl    mx-auto">
             <Link href="/" className="flex items-center">
               <Image src={logo} width={40} className="mr-3" alt="Logo" />
-              <span className="hidden lg:flex self-center text-xl font-semibold whitespace-nowrap dark:text-white">Good Neighborhood</span>
+              <span className="hidden md:flex self-center text-xl font-semibold whitespace-nowrap dark:text-white">
+                Good Neighborhood
+              </span>
             </Link>
 
-            <div>
-                <Link href="/auth/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">About</Link>
-                <Link href="/auth/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">How It Works</Link>
-                <Link href="/auth/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Donation Pools</Link>
-                <Link href="/auth/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Testimonials</Link>
-                <Link href="/auth/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Contact</Link>
+            <div
+              className="lg:flex items-center gap-1 nav-items   z-[-1] lg:z-auto lg:static absolute bg-white "
+              ref={navRef}
+            >
+              <Link
+                href="/auth/login"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                About
+              </Link>
+              <Link
+                href="/auth/login"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                How It Works
+              </Link>
+              <Link
+                href="/auth/login"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                Donation Pools
+              </Link>
+              <Link
+                href="/auth/login"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                Testimonials
+              </Link>
+              <Link
+                href="/auth/login"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                Contact
+              </Link>
             </div>
 
             <div className="flex items-center lg:order-2">
-              <Link href="/auth/login" className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800">Log in</Link>
-              <Link href="/auth/signup" className="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-purple-600 dark:hover:bg-purple-700 focus:outline-none dark:focus:ring-purple-800">Create Account</Link>
+              <Link
+                href="/auth/login"
+                className="text-gray-800 dark:text-white hover:bg-gray-50 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 dark:hover:bg-gray-700 focus:outline-none dark:focus:ring-gray-800"
+              >
+                Log in
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="text-white bg-green-800 hover:bg-green-700 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 sm:mr-2 lg:mr-0 dark:bg-green-800 dark:hover:bg-green-800 focus:outline-none dark:focus:ring-green-700"
+              >
+                Create Account
+              </Link>
             </div>
-
-            
+            <Link href="" className="flex items-center px-5 lg:px-0 ">
+              <span
+                className="lg:hidden flex self-center text-xl font-semibold whitespace-nowrap dark:text-white nav-btn nav-close-btn"
+                onClick={showNav}
+              >
+                <Image src={navBar} width={20} alt="Logo" />
+              </span>
+            </Link>
           </div>
         </nav>
       </header>
@@ -44,98 +97,101 @@ function PrivacyPolicy() {
       {/* Start block */}
       <div className="bg-gray-100 dark:bg-gray-900 pt-14">
         <div className="container mx-auto px-4 py-8 dark:text-gray-400">
-            <h1 className="text-3xl font-bold mb-4 dark:text-gray-200" align="center">Privacy Policy</h1>
+          <h1
+            className="text-3xl font-bold mb-4 dark:text-gray-200"
+            align="center"
+          >
+            Privacy Policy
+          </h1>
 
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Introduction</h2>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Introduction
+            </h2>
 
-                <p className="">
-                    We collect information from users.
-                </p>
-            </div>
+            <p className="">We collect information from users.</p>
+          </div>
 
-            
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Information Collection</h2>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Information Collection
+            </h2>
 
-                <p className="">
-                    We collect names, email addresses, and other information.
-                </p>
-            </div>
+            <p className="">
+              We collect names, email addresses, and other information.
+            </p>
+          </div>
 
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Use of Information
+            </h2>
 
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Use of Information</h2>
+            <p className="">
+              We use information to provide and improve our services.
+            </p>
+          </div>
 
-                <p className="">
-                    We use information to provide and improve our services.
-                </p>
-            </div>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Data Security
+            </h2>
 
+            <p className="">
+              We take data security seriously. We do not intend to share or use
+              users data other than providing efficient and quality services.
+            </p>
+          </div>
 
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Data Security</h2>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Data Sharing
+            </h2>
 
-                <p className="">
-                    We take data security seriously. We do not intend to share or use users data other than providing efficient and quality services.
-                </p>
-            </div>
+            <p className="">We do not share user information.</p>
+          </div>
 
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              User Rights
+            </h2>
 
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Data Sharing</h2>
+            <p className="">
+              Users have the right to access and correct their information.
+            </p>
+          </div>
 
-                <p className="">
-                    We do not share user information.
-                </p>
-            </div>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Cookies and Tracking
+            </h2>
 
-            
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">User Rights</h2>
+            <p className="">We use cookies and tracking technology.</p>
+          </div>
 
-                <p className="">
-                    Users have the right to access and correct their information.
-                </p>
-            </div>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Children&apos;s Privacy
+            </h2>
 
+            <p className="">Our platform is not intended for children.</p>
+          </div>
 
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Cookies and Tracking</h2>
+          <div className="mb-6">
+            <h2 className="text-lg font-bold mb-2 dark:text-gray-300">
+              Changes to Privacy Policy
+            </h2>
 
-                <p className="">
-                    We use cookies and tracking technology.
-                </p>
-            </div>
-
-
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Children&apos;s Privacy</h2>
-
-                <p className="">
-                    Our platform is not intended for children.
-                </p>
-            </div>
-
-
-            <div className="mb-6">
-                <h2 className="text-lg font-bold mb-2 dark:text-gray-300">Changes to Privacy Policy</h2>
-
-                <p className="">
-                    We reserve the right to modify our privacy policy.
-                </p>
-            </div>
-
-
-            
-
-
+            <p className="">
+              We reserve the right to modify our privacy policy.
+            </p>
+          </div>
         </div>
-    </div>
-    {/* End block */}
-    <footer className="bg-white dark:bg-gray-800">
+      </div>
+      {/* End block */}
+      <footer className="bg-gray-300 dark:bg-gray-800">
         <div className="max-w-screen-xl p-4 py-6 mx-auto lg:py-16 md:p-8 lg:p-10">
-            {/* <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
+          {/* <div className="grid grid-cols-2 gap-8 md:grid-cols-3 lg:grid-cols-5">
                 <div>
                     <h3 className="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Company</h3>
                     <ul className="text-gray-500 dark:text-gray-400">
@@ -219,14 +275,19 @@ function PrivacyPolicy() {
                     </ul>
                 </div>
             </div> */}
-            <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <div className="text-center">
-                <Link href="/" className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white">
-                    <Image src={logo} width={40} className="mr-3" alt="Logo" />
-                    Good Neighborhood    
-                </Link>
-                <span className="block text-sm text-center text-gray-500 dark:text-gray-400">&copy; 2023-2024 Good Neighborhood. All Rights Reserved.</span>
-                {/* <ul className="flex justify-center mt-5 space-x-5">
+          <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+          <div className="text-center">
+            <Link
+              href="/"
+              className="flex items-center justify-center mb-5 text-2xl font-semibold text-gray-900 dark:text-white"
+            >
+              <Image src={logo} width={40} className="mr-3" alt="Logo" />
+              Good Neighborhood
+            </Link>
+            <span className="block text-sm text-center text-gray-500 dark:text-gray-400">
+              &copy; 2023-2024 Good Neighborhood. All Rights Reserved.
+            </span>
+            {/* <ul className="flex justify-center mt-5 space-x-5">
                     <li>
                         <Link href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white dark:text-gray-400">
                             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fillRule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clipRule="evenodd" /></svg>
@@ -253,7 +314,7 @@ function PrivacyPolicy() {
                         </Link>
                     </li>
                 </ul> */}
-            </div>
+          </div>
         </div>
       </footer>
     </React.Fragment>
