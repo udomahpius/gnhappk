@@ -17,7 +17,8 @@ import pay2 from "@/assets/pay-2.jpg";
 import pay3 from "@/assets/pay-3.jpg";
 import pay4 from "@/assets/pay-4.jpg";
 import pay5 from "@/assets/pay-5.jpg";
-import {useRef} from "react"
+import { useRef } from "react"
+import AutoWriteText from "./AutoWriteText";
 
 // import aboutImg from "@/assets/about.jpg";
 import aboutImg from "@/assets/about-removebg-preview.png";
@@ -116,11 +117,11 @@ function Landing() {
         </nav>
       </header>
       {/* Start block */}
-      <section className="bg-green-800 dark:bg-gray-900">
+      <section className="bg-green-800 dark:bg-gray-900  gradiant-color">
         <div className="grid max-w-screen-xl px-4 pt-20 pb-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 lg:pt-28">
           <div className="mr-auto place-self-center lg:col-span-7">
             <h1 className="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white uppercase text-gray-200 ">
-              Empowering Communities, <br /> One Donation at a Time
+              <AutoWriteText />
             </h1>
             <p className="max-w-2xl mb-6 font-light text-white lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
               A product of ITEK SERVICES, connecting like-minded individuals for
@@ -158,10 +159,10 @@ function Landing() {
             </h1>
 
             <p className="font-light text-gray-500 sm:text-xl xl:text-sm mb-2 dark:text-gray-400 ">
-              <span className="font-bold"> Welcome to Good Neighborhood</span>, a
-              revolutionary platform that connects people with shared interests
-              to address immediate financial needs. Our platform leverages
-              cutting-edge computer algorithms to facilitate a secure,
+              <span className="font-bold"> Welcome to Good Neighborhood</span>,
+              a revolutionary platform that connects people with shared
+              interests to address immediate financial needs. Our platform
+              leverages cutting-edge computer algorithms to facilitate a secure,
               automated, and decentralized money contribution system. Unlike
               traditional investment platforms, Good Neighborhood operates on a
               peer-to-peer basis, eliminating the need for intermediaries or
@@ -243,7 +244,7 @@ function Landing() {
  mix-blend-luminosity bg-white"
       />
       <section
-        className="bg-green-700 pt-5  absolute z-50  ele-top rounded-lg"
+        className="bg-green-700 gradiant-color2 pt-5  absolute z-50  ele-top rounded-lg"
         id="testimonials"
       >
         <h1 className="  text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white uppercase text-center text-white dark:white ">
