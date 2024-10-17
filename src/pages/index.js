@@ -178,7 +178,7 @@ function Landing() {
               peer-to-peer donation system.
             </p>
             <p className="font-light text-gray-500 sm:text-xl xl:text-sm mb-2 dark:text-gray-400 ">
-              Good Neighborhood is more than just a platform, it's a
+              Good Neighborhood is more than just a platform,  it's a
               community-driven initiative that empowers individuals to take
               control of their financial well-being. Join us in revolutionizing
               the way we address immediate financial needs and build a stronger,
